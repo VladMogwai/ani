@@ -1,6 +1,5 @@
 import { useMemo, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useSearchParams } from 'react-router-dom'
 import { Vector2, Vector3, type ShaderMaterial } from 'three'
 import './style.css'
 
@@ -12,109 +11,39 @@ const CONFIG = {
   marginY: 0.062,
   cornerRadius: 0.05,
   edgeHalfWidth: 0.058,
-  wobbleAmp: 0.015,
+  wobbleAmp: 0.008, // slow whole-card sway
+  rippleAmp: 0.009, // shorter waves running along each edge
+  rippleFreq: 8, // ~1 wave along an edge, as in the reference
   bend: 0.3, // how far the bands at the vertical center sit left of top/bottom
   skew: 0.02,
-}
-
-type Theme = {
-  id: string
-  name: string
-  bgLeft: string
-  bgRight: string
+  bgLeft: '#fefee6',
+  bgRight: '#eae8dd',
   // [position along x, color]
-  gradient: [number, string][]
+  gradient: [
+    [0.0, '#fdffe5'],
+    [0.03, '#fdefc5'],
+    [0.06, '#fdcfa8'],
+    [0.09, '#feb58c'],
+    [0.125, '#ff9b72'],
+    [0.16, '#ff825a'],
+    [0.19, '#ff613c'],
+    [0.225, '#fb1f16'],
+    [0.27, '#d42a1d'],
+    [0.33, '#a52d1e'],
+    [0.39, '#8b2c1f'],
+    [0.45, '#632821'],
+    [0.51, '#3c241f'],
+    [0.55, '#20201d'],
+    [0.58, '#1e1e1e'],
+  ] as [number, string][],
   // edge glow from inside (0) to background (1)
-  fire: [number, string][]
-  font: { family: string; weight: number; style?: 'italic'; letterSpacing: string }
+  fire: [
+    [0.26, '#842720'],
+    [0.43, '#ce7d2d'],
+    [0.51, '#daac3a'],
+    [0.69, '#e5d59c'],
+  ] as [number, string][],
 }
-
-// shared positions for the 7-color themes: light, light 2, accent light, accent, accent dark, deep, dark
-const GRAD_POS = [0, 0.05, 0.11, 0.225, 0.33, 0.45, 0.58]
-const FIRE_POS = [0.26, 0.43, 0.51, 0.69]
-const zip = (pos: number[], colors: string[]) => colors.map((c, i) => [pos[i], c] as [number, string])
-
-const THEMES: Theme[] = [
-  {
-    id: 'ember',
-    name: 'Угли',
-    bgLeft: '#fefee6',
-    bgRight: '#eae8dd',
-    gradient: [
-      [0.0, '#fdffe5'],
-      [0.03, '#fdefc5'],
-      [0.06, '#fdcfa8'],
-      [0.09, '#feb58c'],
-      [0.125, '#ff9b72'],
-      [0.16, '#ff825a'],
-      [0.19, '#ff613c'],
-      [0.225, '#fb1f16'],
-      [0.27, '#d42a1d'],
-      [0.33, '#a52d1e'],
-      [0.39, '#8b2c1f'],
-      [0.45, '#632821'],
-      [0.51, '#3c241f'],
-      [0.55, '#20201d'],
-      [0.58, '#1e1e1e'],
-    ],
-    fire: zip(FIRE_POS, ['#842720', '#ce7d2d', '#daac3a', '#e5d59c']),
-    font: { family: 'system-ui, sans-serif', weight: 600, letterSpacing: '-0.02em' },
-  },
-  {
-    id: 'ocean',
-    name: 'Океан',
-    bgLeft: '#eef4f6',
-    bgRight: '#dde6ea',
-    gradient: zip(GRAD_POS, ['#f2fbff', '#d3f0fa', '#9fdcf0', '#1fa3d6', '#146f9a', '#0d3a55', '#0b1621']),
-    fire: zip(FIRE_POS, ['#0e3a5a', '#2a8fc0', '#7fd3e8', '#cdeef5']),
-    font: { family: "'Manrope', sans-serif", weight: 600, letterSpacing: '-0.02em' },
-  },
-  {
-    id: 'lavender',
-    name: 'Лаванда',
-    bgLeft: '#f7f3fb',
-    bgRight: '#e9e4ef',
-    gradient: zip(GRAD_POS, ['#fbf7ff', '#ece1ff', '#d9c3ff', '#8b5cf6', '#5b2bb5', '#33186a', '#17121f']),
-    fire: zip(FIRE_POS, ['#3b1a6e', '#7c4ddb', '#c3a6ff', '#e6dbff']),
-    font: { family: "'Cormorant Garamond', serif", weight: 500, style: 'italic', letterSpacing: '0' },
-  },
-  {
-    id: 'emerald',
-    name: 'Изумруд',
-    bgLeft: '#f3f8ef',
-    bgRight: '#e3e9dd',
-    gradient: zip(GRAD_POS, ['#f6fff0', '#dcf7e2', '#b9f0c8', '#16c47f', '#0e8a5c', '#0a4a36', '#0f1a16']),
-    fire: zip(FIRE_POS, ['#0d4a35', '#21a06b', '#9fe3b8', '#d8f3df']),
-    font: { family: "'DM Serif Display', serif", weight: 400, letterSpacing: '0' },
-  },
-  {
-    id: 'rose',
-    name: 'Пудровая роза',
-    bgLeft: '#fdf4f1',
-    bgRight: '#efe5e1',
-    gradient: zip(GRAD_POS, ['#fff6f2', '#ffdfe0', '#ffc2c7', '#ff4d7d', '#b8285a', '#5e1832', '#1c1418']),
-    fire: zip(FIRE_POS, ['#6b1a38', '#e04b7a', '#f5b7c4', '#f8e1e4']),
-    font: { family: "'Playfair Display', serif", weight: 500, style: 'italic', letterSpacing: '0' },
-  },
-  {
-    id: 'sunset',
-    name: 'Закат',
-    bgLeft: '#fff8e6',
-    bgRight: '#efe6d4',
-    gradient: zip(GRAD_POS, ['#fff6e0', '#ffe6a8', '#ffcf6b', '#ff7a3d', '#e0364f', '#7a1240', '#1a0f1f']),
-    fire: zip(FIRE_POS, ['#5c1240', '#d9437a', '#ffb15c', '#ffe7b0']),
-    font: { family: "'Unbounded', sans-serif", weight: 600, letterSpacing: '-0.01em' },
-  },
-  {
-    id: 'graphite',
-    name: 'Графит',
-    bgLeft: '#f4f4f2',
-    bgRight: '#e6e6e3',
-    gradient: zip(GRAD_POS, ['#fafaf8', '#e8e8e5', '#cfcfcc', '#8a8a87', '#5a5a58', '#2e2e2d', '#141414']),
-    fire: zip(FIRE_POS, ['#2b2b2b', '#6e6e6e', '#b5b5b2', '#dcdcda']),
-    font: { family: "'Space Grotesk', sans-serif", weight: 500, letterSpacing: '-0.03em' },
-  },
-]
 
 const hex = (h: string) => {
   const n = parseInt(h.slice(1), 16)
@@ -129,13 +58,15 @@ const vertexShader = /* glsl */ `
   }
 `
 
-// array sizes differ per theme, so the shader is built per theme
-const fragmentShader = (G: number, F: number) => /* glsl */ `
+const G = CONFIG.gradient.length
+const F = CONFIG.fire.length
+
+const fragmentShader = /* glsl */ `
   #define G ${G}
   #define F ${F}
   uniform float uTime;
   uniform vec2 uRes;
-  uniform float uPeriod, uMarginX, uMarginY, uRadius, uEdge, uAmp, uBend, uSkew;
+  uniform float uPeriod, uMarginX, uMarginY, uRadius, uEdge, uAmp, uRipple, uFreq, uBend, uSkew;
   uniform vec3 uBgL, uBgR;
   uniform vec3 uGradC[G];
   uniform float uGradP[G];
@@ -176,14 +107,21 @@ const fragmentShader = (G: number, F: number) => /* glsl */ `
     // height-normalized coordinates, center = 0
     vec2 q = (vUv - 0.5) * vec2(aspect, 1.0);
     vec2 wob = uAmp * vec2(sin(q.y * 3.0 + w), sin(q.x * 2.0 + w + 1.3));
+    // traveling ripples; the cross term gives opposite edges different phases.
+    // temporal multipliers are integers so the loop stays seamless
+    wob += uRipple * vec2(
+      sin(q.y * uFreq + q.x * 2.0 + w + 0.5) + 0.6 * sin(q.y * uFreq * 1.7 - q.x * 3.0 - 2.0 * w + 1.7),
+      sin(q.x * uFreq * 0.9 - q.y * 2.0 - w + 2.1) + 0.6 * sin(q.x * uFreq * 1.6 + q.y * 3.0 + 2.0 * w + 0.4)
+    );
     vec2 qw = q + wob;
 
     vec2 half_ = vec2(0.5 * aspect - uMarginX, 0.5 - uMarginY);
     float d = sdRoundBox(qw, half_, uRadius);
 
-    // gradient coordinate: x across the viewport, bent into a chevron, skewed over time
-    float x = qw.x / aspect + 0.5;
-    float dy = qw.y;
+    // gradient coordinate: x across the viewport, bent into a chevron, skewed over time.
+    // uses the undisplaced q: only the card edges ripple, the color bands stay put
+    float x = q.x / aspect + 0.5;
+    float dy = q.y;
     float s = x - uBend * sqrt(dy * dy + 0.002) + 0.016 - uSkew * dy * sin(w);
     vec3 inside = gradient(s);
 
@@ -198,7 +136,7 @@ const fragmentShader = (G: number, F: number) => /* glsl */ `
   }
 `
 
-function Background({ theme }: { theme: Theme }) {
+function Background() {
   const ref = useRef<ShaderMaterial>(null)
   const size = useThree((s) => s.size)
   const reduced = useMemo(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches, [])
@@ -213,16 +151,18 @@ function Background({ theme }: { theme: Theme }) {
       uRadius: { value: CONFIG.cornerRadius },
       uEdge: { value: CONFIG.edgeHalfWidth },
       uAmp: { value: CONFIG.wobbleAmp },
+      uRipple: { value: CONFIG.rippleAmp },
+      uFreq: { value: CONFIG.rippleFreq },
       uBend: { value: CONFIG.bend },
       uSkew: { value: CONFIG.skew },
-      uBgL: { value: hex(theme.bgLeft) },
-      uBgR: { value: hex(theme.bgRight) },
-      uGradC: { value: theme.gradient.map(([, c]) => hex(c)) },
-      uGradP: { value: theme.gradient.map(([p]) => p) },
-      uFireC: { value: theme.fire.map(([, c]) => hex(c)) },
-      uFireP: { value: theme.fire.map(([p]) => p) },
+      uBgL: { value: hex(CONFIG.bgLeft) },
+      uBgR: { value: hex(CONFIG.bgRight) },
+      uGradC: { value: CONFIG.gradient.map(([, c]) => hex(c)) },
+      uGradP: { value: CONFIG.gradient.map(([p]) => p) },
+      uFireC: { value: CONFIG.fire.map(([, c]) => hex(c)) },
+      uFireP: { value: CONFIG.fire.map(([p]) => p) },
     }),
-    [theme],
+    [],
   )
 
   useFrame((state) => {
@@ -234,41 +174,26 @@ function Background({ theme }: { theme: Theme }) {
   return (
     <mesh frustumCulled={false}>
       <planeGeometry args={[2, 2]} />
-      <shaderMaterial ref={ref} vertexShader={vertexShader} fragmentShader={fragmentShader(theme.gradient.length, theme.fire.length)} uniforms={uniforms} />
+      <shaderMaterial ref={ref} vertexShader={vertexShader} fragmentShader={fragmentShader} uniforms={uniforms} />
     </mesh>
   )
 }
 
-function Logo({ theme }: { theme: Theme }) {
-  const { family, weight, style, letterSpacing } = theme.font
+function Logo() {
   return (
-    <div className="wgl-logo" style={{ fontFamily: family, fontWeight: weight, fontStyle: style, letterSpacing }}>
+    <div className="wgl-logo">
       <span>{CONFIG.logoText}</span>
     </div>
   )
 }
 
 export default function Page() {
-  const [params, setParams] = useSearchParams()
-  const theme = THEMES.find((t) => t.id === params.get('v')) ?? THEMES[0]
   return (
-    <div className="wgl-root" style={{ background: theme.bgLeft }}>
+    <div className="wgl-root">
       <Canvas flat dpr={[1, 2]} gl={{ antialias: false }}>
-        <Background key={theme.id} theme={theme} />
+        <Background />
       </Canvas>
-      <Logo theme={theme} />
-      <nav className="wgl-themes">
-        {THEMES.map((t) => (
-          <button
-            key={t.id}
-            aria-pressed={t.id === theme.id}
-            style={{ fontFamily: t.font.family, fontStyle: t.font.style }}
-            onClick={() => setParams({ v: t.id }, { replace: true })}
-          >
-            {t.name}
-          </button>
-        ))}
-      </nav>
+      <Logo />
     </div>
   )
 }

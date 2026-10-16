@@ -1,16 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=DM+Serif+Display&family=Manrope:wght@600&family=Playfair+Display:ital,wght@1,500&family=Space+Grotesk:wght@500&family=Unbounded:wght@600&display=swap');
-
-.wgl-root { position: relative; height: 100vh; overflow: hidden; }
+.wgl-root { position: relative; height: 100vh; background: #fefee6; }
 .wgl-logo {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: clamp(18px, 7.5vw, 120px); line-height: 1; pointer-events: none;
+  color: #fff; font: 600 clamp(18px, 7.5vw, 120px)/1 system-ui, sans-serif;
+  letter-spacing: -0.02em; pointer-events: none;
 }
-.wgl-themes {
-  position: absolute; left: 0; right: 0; bottom: 16px; display: flex; flex-wrap: wrap;
-  justify-content: center; gap: 6px; padding: 0 16px;
-}
-.wgl-themes button {
-  padding: 6px 12px; border: 0; border-radius: 999px; font-size: 13px; cursor: pointer;
-  background: rgb(0 0 0 / 0.55); color: #fff; backdrop-filter: blur(6px);
-}
-.wgl-themes button[aria-pressed='true'] { background: #fff; color: #111; }
