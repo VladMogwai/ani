@@ -8,11 +8,11 @@
 .back { position: fixed; top: 12px; left: 12px; z-index: 10; padding: 4px 10px; border-radius: 8px; background: rgb(0 0 0 / .5); color: #fff; font-size: 13px; text-decoration: none; }
 
 /* Gallery backdrop: animated color blobs behind a dark "screen" panel; click the background for a new palette */
-@property --c1 { syntax: '<color>'; inherits: true; initial-value: #ff8a00; }
-@property --c2 { syntax: '<color>'; inherits: true; initial-value: #ff0a4e; }
-@property --c3 { syntax: '<color>'; inherits: true; initial-value: #ff7a5c; }
-@property --c4 { syntax: '<color>'; inherits: true; initial-value: #cfa8f0; }
-@property --c5 { syntax: '<color>'; inherits: true; initial-value: #ff8fa3; }
+@property --c1 { syntax: '<color>'; inherits: true; initial-value: #ff5f6d; }
+@property --c2 { syntax: '<color>'; inherits: true; initial-value: #6a3093; }
+@property --c3 { syntax: '<color>'; inherits: true; initial-value: #ffc371; }
+@property --c4 { syntax: '<color>'; inherits: true; initial-value: #4a00e0; }
+@property --c5 { syntax: '<color>'; inherits: true; initial-value: #ff9a8b; }
 .backdrop {
   position: relative;
   isolation: isolate;
@@ -23,6 +23,19 @@
   cursor: pointer;
 }
 .backdrop .panel { cursor: auto; }
+/* palette preview cursor: replaces the arrow over the background on mouse devices */
+@media (hover: hover) and (pointer: fine) { .backdrop { cursor: none; } }
+.palette-cursor {
+  position: fixed; top: -9px; left: -9px; z-index: 3;
+  width: 18px; height: 18px;
+  border: 1.5px solid rgb(255 255 255 / .9);
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgb(0 0 0 / .25);
+  pointer-events: none;
+  opacity: 0; scale: .5;
+  transition: opacity .2s, scale .2s;
+}
+.palette-cursor.visible { opacity: 1; scale: 1; }
 .blobs { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
 .blobs i {
   position: absolute;

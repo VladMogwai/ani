@@ -1,9 +1,11 @@
-import { Suspense, useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
+import { Suspense, useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent, type PointerEvent } from 'react'
 import { Link, Route, Routes, useParams } from 'react-router-dom'
 import { animations } from './registry'
 import { GridGlow } from './GridGlow'
 import { Intro } from './Intro'
 import './App.css'
+
+const DEFAULT_PALETTE = 5 // dusk
 
 // Backdrop palettes, one per click on the background: [top-left, top, top-right, bottom-right, bottom-left]
 const PALETTES = [
@@ -44,8 +46,12 @@ const useCardsPerPage = () => {
   return [listRef, perPage] as const
 }
 
+const otherPalette = (current: number) => (current + 1 + Math.floor(Math.random() * (PALETTES.length - 1))) % PALETTES.length
+
 function Gallery() {
-  const [palette, setPalette] = useState(0)
+  const [palette, setPalette] = useState(DEFAULT_PALETTE)
+  const [nextPalette, setNextPalette] = useState(() => otherPalette(DEFAULT_PALETTE))
+  const cursorRef = useRef<HTMLDivElement>(null)
   const [introDone, setIntroDone] = useState(false)
   const finishIntro = useCallback(() => setIntroDone(true), [])
   const panelRef = useRef<HTMLElement>(null)
@@ -58,13 +64,35 @@ function Gallery() {
 
   const onClick = (e: MouseEvent) => {
     if ((e.target as Element).closest('.panel')) return
-    setPalette((p) => (p + 1 + Math.floor(Math.random() * (PALETTES.length - 1))) % PALETTES.length)
+    setPalette(nextPalette)
+    setNextPalette(otherPalette(nextPalette))
+    cursorRef.current?.animate([{ scale: 1.6 }, { scale: 1 }], { duration: 400, easing: 'cubic-bezier(.2, .7, .2, 1)' })
+  }
+
+  // custom cursor over the background, filled with the palette a click would switch to
+  const onPointerMove = (e: PointerEvent) => {
+    const cursor = cursorRef.current!
+    if (e.pointerType !== 'mouse') return
+    cursor.style.translate = `${e.clientX}px ${e.clientY}px`
+    cursor.classList.toggle('visible', !(e.target as Element).closest('.panel'))
   }
 
   return (
-    <div className="backdrop" style={style} onClick={onClick}>
+    <div
+      className="backdrop"
+      style={style}
+      onClick={onClick}
+      onPointerMove={onPointerMove}
+      onPointerLeave={() => cursorRef.current!.classList.remove('visible')}
+    >
       <div className="blobs" aria-hidden><i /><i /><i /><i /><i /></div>
       <div className="grain" aria-hidden />
+      <div
+        ref={cursorRef}
+        className="palette-cursor"
+        style={{ background: `linear-gradient(135deg, ${PALETTES[nextPalette].join(', ')})` }}
+        aria-hidden
+      />
       {!introDone && <Intro panelRef={panelRef} onDone={finishIntro} />}
       <main ref={panelRef} className={`gallery panel ${introDone ? 'reveal' : 'pre-reveal'}`}>
         <GridGlow colors={PALETTES[palette]} />
