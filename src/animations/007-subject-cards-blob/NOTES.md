@@ -36,7 +36,7 @@ Siblings: 005-liquid-hero-blob, 006-simpl-video-menu
 - Haze: a fixed radial-gradient div; the loop tracks cursor speed, builds/fades its strength and only lets it drift
   toward the cursor while it is faint.
 - Track is a native horizontal scroller: touch scrolls natively (with snap), the mouse drags it.
-- CONFIG: cards (title, color, shape variant, text), colors, shapeRise/shapeDecay, focus, softBlur, grain, startBlur, breathe, grow, morph/morphIn/morphLoop, tilt, perspective, haze (color, size, opacity, build, fade, follow), friction, icon in/out/stagger, idle delay.
+- CONFIG: cards (title, color, accent, shape variant, text), colors, shapeRise/shapeDecay, focus, softBlur, grain, startBlur, breathe, grow, morph/softMorph/morphIn/morphLoop, tilt, perspective, haze (color, size, opacity, build, fade, follow), friction, icon in/out/stagger, idle delay.
 
 ## Preferences
 - No custom cursor (the reference's big "drag" circle was rejected): keep the normal mouse.
@@ -45,6 +45,10 @@ Siblings: 005-liquid-hero-blob, 006-simpl-video-menu
   fixed static shapes that only fade in ("не анимированное").
 - Blur must look grainy, like powder. The blob starts from the traced outline; after the first hover it keeps
   reshaping in a loop; on hover out it fades to invisible while the loop continues.
+- The powdery side reshapes much less than the crisp side (softMorph 0.3, smooth falloff across the blob).
+- Two colors per blob: main at the crisp edge, accent toward the powdery side (gradient along the soft axis; the
+  powder is accent-colored). Pairs: red→orange, orange→yellow, green→teal, violet→pink, red→purple, orange→rose,
+  green→lime.
 - Blobs lean back in perspective (rotateX 15°, origin at the bottom) — upright ones looked too vertical.
 - The hover shape is one blob (user's image) with variants of blur and reveal; the crisp side differs per card.
 - A sweeping-front reveal was rejected: "блюр пропал, просто пятно" — the smeared side must stay.
@@ -67,3 +71,5 @@ Siblings: 005-liquid-hero-blob, 006-simpl-video-menu
 - 2026-10-17: slow reshaping while hovered; powdery grain on the soft side.
 - 2026-10-17: first hover wakes a blob; afterwards it loops its reshaping and recedes to the background instead of fading out.
 - 2026-10-17: hover out fades the blob out completely again; its reshaping loop keeps running unseen.
+- 2026-10-17: accent color per card: blobs shade from the main color into the accent toward the powder.
+- 2026-10-17: the powdery side reshapes ~30 % as much as the crisp side.

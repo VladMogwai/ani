@@ -21,17 +21,35 @@ const f = (n: number) => n.toFixed(2)
 
 // closed Catmull-Rom spline through the (breathing) outline, as cubic Béziers.
 // `morph` (0..1) blends in the reshaping; `loop` (0..1) is the position in its cycle, so it repeats seamlessly;
-// `seed` offsets the cycle per card. At morph 0 the outline is the traced one.
-export function blobPath(v: Variant, t: number, breathe: number, grow: number, morph = 0, loop = 0, seed = 0) {
+// `seed` offsets the cycle per card; `softMorph` scales the reshaping on the powdery side (1 = as much as the
+// crisp side). At morph 0 the outline is the traced one.
+export function blobPath(
+  v: Variant,
+  t: number,
+  breathe: number,
+  grow: number,
+  morph = 0,
+  loop = 0,
+  seed = 0,
+  softMorph = 1,
+) {
   const rot = ((v.rotate + 3 * Math.sin(t * 0.35)) * Math.PI) / 180
   const cos = Math.cos(rot)
   const sin = Math.sin(rot)
   const s = v.size * grow
+  const sa = (v.soft * Math.PI) / 180
+  const sx = Math.cos(sa)
+  const sy = Math.sin(sa)
   const pts = BLOB.map(([bx, by], i) => {
+    // where this point sits between the crisp side (-1) and the powdery side (+1), in card space
+    const fx = bx * (v.flip ? -1 : 1)
+    const side = ((fx * cos - by * sin) * sx + (fx * sin + by * cos) * sy) / 0.45
+    const u = Math.min(1, Math.max(0, (side + 0.3) / 0.9))
+    const weight = 1 + (softMorph - 1) * u * u * (3 - 2 * u)
     // each point swells on its own rhythm; the morph adds waves running along the outline, so neighbours move together
     const a = (loop + seed * 0.37) * Math.PI * 2
     const wave = 0.6 * Math.sin(a + i * 0.9) + 0.4 * Math.sin(2 * a - i * 2.3)
-    const k = 1 + breathe * Math.sin(t * (0.6 + (i % 5) * 0.13) + i * 1.7) + morph * wave
+    const k = 1 + breathe * Math.sin(t * (0.6 + (i % 5) * 0.13) + i * 1.7) + morph * weight * wave
     const x = bx * k * (v.flip ? -1 : 1)
     const y = by * k
     return [v.x + (x * cos - y * sin) * s, v.y + (x * sin + y * cos) * s]

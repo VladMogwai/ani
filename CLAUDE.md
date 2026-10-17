@@ -102,5 +102,8 @@ so new animations follow them from the start.
 - Check smoothness, not only that it runs: no per-frame React state updates, mutate refs in `useFrame` / `useTick`.
 - Each page works full screen and at phone width.
 - Local only: `npm run dev` via `.claude/launch.json` (port 4173). No deploys unless asked.
+- Deploys (only when asked): `npm run deploy` → Cloudflare Worker `animation-lab` with static assets,
+  https://animation-lab.animation-lab.workers.dev. Config in `wrangler.jsonc` (account pinned). Wrangler must be logged in
+  as the animations account; check `npx wrangler whoami` first.
 - Preview quirk: when the browser pane is hidden, an R3F canvas can stay at 300×150 (blank) because the first
   ResizeObserver measurement doesn't arrive. Run `window.dispatchEvent(new Event('resize'))` before judging it broken.

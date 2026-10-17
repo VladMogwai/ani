@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "animation-lab",
+  // the animations account (cloudflareanimationpersonal), not the personal one
+  "account_id": "183921cd592f3bf4a5d779eba7817c70",
+  "compatibility_date": "2026-10-17",
+  // static site only: the Vite build, with every unknown path served index.html so /NNN-slug routes work
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}

@@ -4,16 +4,17 @@ import { FIGURES } from './figures'
 import './style.css'
 
 const CONFIG = {
+  // color: the blob's main color, at its crisp edge; accent: what it turns into toward the powdery side
   // shape: where the blob sits in the card (viewBox 0 0 100 190), its turn and which side stays blurred
   cards: [
-    { title: 'GCSE / IGCSEs', color: '#ff1d3d', shape: { x: 68, y: 88, size: 112, rotate: -10, soft: 135 }, text: 'Take a range of qualifications accredited by the main exam boards. Courses can be adapted to a one or two year programme.' },
-    { title: 'A-Levels', color: '#ff601b', shape: { x: 52, y: 86, size: 120, rotate: 0, soft: 15 }, text: 'Coming soon.' },
-    { title: 'Extracurriculars', color: '#4cbf7a', shape: { x: 60, y: 92, size: 104, rotate: 25, soft: 0 }, text: 'Schooling is more than just the core curriculum: speech and communication, entrepreneurship, coding and robotics.' },
-    { title: 'In Person Learning', color: '#5524d6', shape: { x: 52, y: 96, size: 104, rotate: -35, flip: true, soft: 135 }, text: 'Use a global network of partner centres for in-person teaching across the globe.' },
-    { title: 'Supplementary Courses', color: '#ff1d3d', shape: { x: 60, y: 88, size: 110, rotate: 160, soft: 200 }, text: 'Already enrolled elsewhere but want to join our community? Courses can be taken alongside your school.' },
-    { title: 'Exam Preparation', color: '#ff601b', shape: { x: 50, y: 90, size: 114, rotate: 80, flip: true, soft: 300 }, text: 'Focused revision plans, mock exams and feedback from experienced examiners.' },
-    { title: 'Tuition On Demand', color: '#5fd68f', shape: { x: 70, y: 72, size: 100, rotate: 200, soft: 160 }, text: 'Book a tutor whenever you need one: single sessions or a weekly plan.' },
-  ] satisfies { title: string; color: string; shape: Variant; text: string }[],
+    { title: 'GCSE / IGCSEs', color: '#ff1d3d', accent: '#ff9a3d', shape: { x: 68, y: 88, size: 112, rotate: -10, soft: 135 }, text: 'Take a range of qualifications accredited by the main exam boards. Courses can be adapted to a one or two year programme.' },
+    { title: 'A-Levels', color: '#ff601b', accent: '#ffd23d', shape: { x: 52, y: 86, size: 120, rotate: 0, soft: 15 }, text: 'Coming soon.' },
+    { title: 'Extracurriculars', color: '#4cbf7a', accent: '#3dd6e0', shape: { x: 60, y: 92, size: 104, rotate: 25, soft: 0 }, text: 'Schooling is more than just the core curriculum: speech and communication, entrepreneurship, coding and robotics.' },
+    { title: 'In Person Learning', color: '#5524d6', accent: '#ff4fa3', shape: { x: 52, y: 96, size: 104, rotate: -35, flip: true, soft: 135 }, text: 'Use a global network of partner centres for in-person teaching across the globe.' },
+    { title: 'Supplementary Courses', color: '#ff1d3d', accent: '#b44dff', shape: { x: 60, y: 88, size: 110, rotate: 160, soft: 200 }, text: 'Already enrolled elsewhere but want to join our community? Courses can be taken alongside your school.' },
+    { title: 'Exam Preparation', color: '#ff601b', accent: '#ff3d6e', shape: { x: 50, y: 90, size: 114, rotate: 80, flip: true, soft: 300 }, text: 'Focused revision plans, mock exams and feedback from experienced examiners.' },
+    { title: 'Tuition On Demand', color: '#5fd68f', accent: '#d6f25a', shape: { x: 70, y: 72, size: 100, rotate: 200, soft: 160 }, text: 'Book a tutor whenever you need one: single sessions or a weekly plan.' },
+  ] satisfies { title: string; color: string; accent: string; shape: Variant; text: string }[],
   bg: '#142131',
   text: '#eafced',
   // hover shape: appears whole, dim and fully blurred, then focuses (one edge turns crisp, the far side stays
@@ -28,6 +29,7 @@ const CONFIG = {
   // the first hover wakes a card's blob: from then on it reshapes in an endless loop, also while invisible;
   // leaving fades it out gradually, hovering again shows it at the loop's current phase
   morph: 0.2, // how far the outline reshapes (fraction of its radius)
+  softMorph: 0.3, // the powdery side reshapes this much relative to the crisp side
   morphIn: 2.5, // s for the reshaping to ramp up after the first hover
   morphLoop: 12, // s, one full reshaping cycle (it loops)
   grain: 80, // px, how far the powder scatters pixels on the soft side
@@ -172,6 +174,7 @@ export default function Page() {
           CONFIG.morph * ease,
           mo.t,
           i,
+          CONFIG.softMorph,
         )
         blobs.current[i].forEach((p) => p!.setAttribute('d', d))
         const blur = CONFIG.startBlur * (1 - focus) ** 2
@@ -275,6 +278,10 @@ export default function Page() {
               {/* the smeared copy, only on the blurred side so the crisp edge has no halo */}
               <svg className="cards-smear" viewBox="0 0 100 190" preserveAspectRatio="xMidYMin slice">
                 <defs>
+                  <linearGradient id={`cards-tone-a-${i}`} gradientUnits="userSpaceOnUse" {...ax}>
+                    <stop offset="0.3" stopColor={c.color} />
+                    <stop offset="1" stopColor={c.accent} />
+                  </linearGradient>
                   <linearGradient id={`cards-smear-${i}`} gradientUnits="userSpaceOnUse" {...ax}>
                     <stop offset="0.15" stopColor="#fff" stopOpacity="0" />
                     <stop offset="0.4" stopColor="#fff" />
@@ -284,12 +291,17 @@ export default function Page() {
                   </mask>
                 </defs>
                 <g mask={`url(#cards-smear-mask-${i})`}>
-                  <path ref={(e) => void (blobs.current[i][0] = e)} fill={c.color} />
+                  <path ref={(e) => void (blobs.current[i][0] = e)} fill={`url(#cards-tone-a-${i})`} />
                 </g>
               </svg>
               {/* crisp on its side of the blob, fading out toward the blurred side */}
               <svg viewBox="0 0 100 190" preserveAspectRatio="xMidYMin slice">
                 <defs>
+                  {/* main color at the crisp edge, turning into the accent toward the powdery side */}
+                  <linearGradient id={`cards-tone-b-${i}`} gradientUnits="userSpaceOnUse" {...ax}>
+                    <stop offset="0.3" stopColor={c.color} />
+                    <stop offset="1" stopColor={c.accent} />
+                  </linearGradient>
                   <linearGradient id={`cards-crisp-${i}`} gradientUnits="userSpaceOnUse" {...ax}>
                     <stop offset="0.35" stopColor="#fff" />
                     <stop offset="0.9" stopColor="#fff" stopOpacity="0" />
@@ -299,7 +311,7 @@ export default function Page() {
                   </mask>
                 </defs>
                 <g mask={`url(#cards-crisp-mask-${i})`}>
-                  <path ref={(e) => void (blobs.current[i][1] = e)} fill={c.color} />
+                  <path ref={(e) => void (blobs.current[i][1] = e)} fill={`url(#cards-tone-b-${i})`} />
                 </g>
               </svg>
             </div>
