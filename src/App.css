@@ -67,19 +67,77 @@
 .panel {
   position: relative;
   max-width: none;
-  min-height: calc(100vh - 2 * clamp(24px, 5vw, 72px));
-  padding: clamp(32px, 6vw, 72px) clamp(16px, 4vw, 56px);
+  display: flex; flex-direction: column;
+  height: calc(100svh - 2 * clamp(24px, 5vw, 72px));
+  min-height: 360px;
+  padding: clamp(32px, 6vw, 72px) clamp(16px, 4vw, 56px) clamp(16px, 3vw, 32px);
   border: 12px solid #0b0b0b;
   border-radius: 16px;
   background:
-    radial-gradient(50% 30% at 50% 15%, rgb(60 120 120 / .22), transparent 70%),
     repeating-linear-gradient(0deg, rgb(255 255 255 / .025) 0 1px, transparent 1px 3px),
     linear-gradient(rgb(255 255 255 / .03) 1px, transparent 1px) 0 0 / 32px 32px,
     linear-gradient(90deg, rgb(255 255 255 / .03) 1px, transparent 1px) 0 0 / 32px 32px,
     #1f2020;
   box-shadow: 0 30px 80px rgb(120 20 40 / .35);
 }
+/* the panel's teal light, faded in after the intro */
+.panel::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(50% 30% at 50% 15%, rgb(60 120 120 / .22), transparent 70%); }
+.panel.reveal::before { animation: fade-in 1.2s ease both; }
+@keyframes fade-in { from { opacity: 0; } }
+.grid-glow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.panel > :not(.grid-glow) { position: relative; }
 .panel h1 { text-align: center; }
-.panel ul { max-width: 960px; margin: 0 auto; }
-.panel a { background: rgb(24 24 27 / .75); }
+/* the list takes the free height; cards have a fixed row height so the pager can count how many fit */
+.panel ul { flex: 1; min-height: 0; width: 100%; max-width: 960px; margin: 0 auto; grid-auto-rows: 104px; align-content: start; overflow: hidden; }
+.panel a { height: 100%; overflow: hidden; background: rgb(24 24 27 / .75); }
+.panel a .muted:last-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pager { display: flex; justify-content: center; align-items: center; gap: 4px; padding-top: 16px; font: 13px/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.pager button, .pager span { min-width: 32px; height: 32px; padding: 0 6px; display: grid; place-items: center; color: var(--muted); }
+.pager button { border: 1px solid var(--line); border-radius: 6px; background: rgb(24 24 27 / .75); font: inherit; cursor: pointer; transition: color .2s, border-color .2s; }
+.pager button:hover:not(:disabled) { color: var(--text); border-color: var(--muted); }
+.pager button:disabled { opacity: .35; cursor: default; }
+.pager button[aria-current] { color: var(--text); border-color: var(--c2); box-shadow: 0 0 12px -2px var(--c2); }
 @media (max-width: 600px) { .panel { border-width: 6px; } }
+
+/* Intro: full-screen copy of the panel that shrinks onto it, then the content rises in */
+.panel.intro {
+  position: fixed; inset: 0; z-index: 1;
+  height: auto; min-height: 0; padding: 0;
+  border-width: 0; border-radius: 0;
+  display: grid; place-items: center; overflow: hidden;
+  cursor: pointer;
+}
+/* depth instead of light: darker glass, dark edges, a faint top-left reflection and a rim highlight */
+.panel.intro {
+  background-color: #111212;
+  box-shadow: inset 0 0 160px 20px rgb(0 0 0 / .7), inset 0 1px 0 rgb(255 255 255 / .06);
+}
+.panel.intro::before {
+  background:
+    linear-gradient(155deg, rgb(255 255 255 / .045), transparent 30%),
+    radial-gradient(ellipse 75% 70% at 50% 48%, transparent 35%, rgb(0 0 0 / .6) 100%);
+}
+.panel .intro-hi {
+  position: absolute; inset: 0;
+  isolation: isolate;
+  mix-blend-mode: screen; /* black drops out, the letters add the backdrop colors onto the panel */
+  background: linear-gradient(180deg, var(--c3) 0%, var(--c5) 55%, var(--c4) 100%);
+  animation: hi-in 1.2s cubic-bezier(.2, .7, .2, 1) both;
+}
+.intro-hi-mask {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  background: #000; color: #fff;
+  mix-blend-mode: multiply;
+  font: italic 400 clamp(140px, 32vw, 400px)/1 'Instrument Serif', Georgia, serif;
+}
+@keyframes hi-in { from { opacity: 0; transform: translateY(.08em); filter: blur(12px); } }
+.panel.pre-reveal > :not(.grid-glow) { opacity: 0; }
+.panel.reveal h1, .panel.reveal li, .panel.reveal .pager {
+  animation: rise .7s cubic-bezier(.2, .7, .2, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+@media (prefers-reduced-motion: reduce) {
+  .panel .intro-hi, .panel.reveal::before, .panel.reveal h1, .panel.reveal li, .panel.reveal .pager { animation: none; }
+}
