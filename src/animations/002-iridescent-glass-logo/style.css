@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+.igl-root {
+  position: relative; height: 100vh;
+  /* px per card-height unit, same formula as the shader */
+  --u: min(calc(100vh - 2 * var(--m)), calc((100vw - 2 * var(--m)) / var(--fit)));
+}
+.igl-logo {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: #fff; font: 500 calc(var(--u) * 0.2) / 1 Rubik, system-ui, sans-serif;
+  letter-spacing: -0.01em; pointer-events: none;
+}
