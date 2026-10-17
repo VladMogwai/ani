@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, type MutableRefObject } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Vector2, Vector3 } from 'three'
+import { Vector2 } from 'three'
+import { ORB, orbGlsl, orbUniforms } from '../../shared/orb'
 import './style.css'
 
 type Section = { orb: boolean; title: string; body?: string }
@@ -15,26 +16,7 @@ const CONFIG = {
   holeNoise: 0.45, // how ragged the hole edge is
   swirl: 0.55, // twist strength of the vortex
   swirlSpeed: 0.5,
-  colorDrift: 0.12, // slow color motion inside the orb
-  stars: 0.9,
-  // palette sampled from the video
-  page: '#0b0830',
-  pageDeep: '#030023',
-  orb: {
-    center: '#3a60a7', // the middle is the darkest, light gathers toward the edges
-    top: '#94aef0',
-    topLeft: '#b4c6f0',
-    left: '#5c62ae',
-    right: '#3f9ed6',
-    aqua: '#55d6e2', // aurora crescent, lower right
-    mint: '#7be3c4',
-    edgeLow: '#3f4386',
-    sheen: '#c9bdfb', // reflection arc just inside the upper-right edge
-  },
-  rim: '#c6d2fd',
-  iridescence: 0.45, // pearl thin-film tint, stronger toward the edge
-  rimGradient: 0.65, // colored rim band strength
-  sparkles: 7, // glints inside the orb (max 12)
+  // orb look and palette: src/shared/orb.ts (ORB)
   wheelThreshold: 25,
   swipeThreshold: 40,
   sections: [
@@ -52,10 +34,6 @@ const CONFIG = {
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const clamp01 = (x: number) => Math.min(1, Math.max(0, x))
 const easeOutQuad = (t: number) => 1 - (1 - t) * (1 - t)
-const hex = (h: string) => {
-  const n = parseInt(h.slice(1), 16)
-  return new Vector3(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255)
-}
 const italics = (s: string) => s.replace(/\*(.+?)\*/g, '<em>$1</em>')
 
 type Nav = { p: number; from: number; to: number; start: number }
@@ -82,42 +60,8 @@ const fragmentShader = /* glsl */ `
   uniform float uOrbR;
   uniform vec2 uOrbGrow;
   uniform float uHoleStart, uHoleGrow, uHoleSoft, uHoleNoise;
-  uniform float uSwirl, uSwirlSpeed, uDrift, uStars;
-  uniform vec3 uPage, uPageDeep, uRim;
-  uniform vec3 uCenter, uTop, uTopLeft, uLeft, uRight, uAqua, uMint, uEdgeLow, uSheen;
-  uniform float uIri, uRimGrad;
-  uniform int uSparkles;
-
-  float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-  float noise(vec2 p) {
-    vec2 i = floor(p), f = fract(p);
-    vec2 u = f * f * (3.0 - 2.0 * f);
-    return mix(mix(hash(i), hash(i + vec2(1, 0)), u.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), u.x), u.y);
-  }
-  float fbm(vec2 p) {
-    float v = 0.0, a = 0.5;
-    for (int i = 0; i < 5; i++) { v += a * noise(p); p = p * 2.03 + 11.7; a *= 0.5; }
-    return v;
-  }
-
-  vec3 rainbow(float x) { return 0.5 + 0.5 * cos(6.2832 * (x + vec3(0.0, 0.33, 0.67))); }
-
-  vec3 orbColor(vec2 q, float time) {
-    vec2 d = vec2(fbm(q * 1.3 + time * 0.06), fbm(q * 1.3 - time * 0.05 + 4.0)) - 0.5;
-    vec2 s = q + d * uDrift * 3.0;
-    float r = length(s);
-    vec3 c = uCenter;
-    c = mix(c, uRight, smoothstep(0.0, 0.95, s.x) * 0.9);
-    c = mix(c, uLeft, smoothstep(0.0, 0.9, -s.x) * 0.8);
-    c = mix(c, uTop, smoothstep(-0.1, 0.95, s.y) * 0.9);
-    c = mix(c, uTopLeft, smoothstep(0.25, 1.15, dot(s, vec2(-0.707, 0.707))));
-    // aurora crescent following the curvature, lower right; mint toward its left end
-    float arc = exp(-pow((r - 0.6 - 0.04 * sin(time * 0.3)) / 0.26, 2.0)) * 0.9;
-    float side = smoothstep(0.25, -0.6, s.y) * smoothstep(-0.9, 0.2, s.x);
-    c = mix(c, mix(uAqua, uMint, smoothstep(0.3, -0.4, s.x)), arc * side);
-    c = mix(c, uEdgeLow, smoothstep(0.72, 0.98, r) * smoothstep(-0.1, -0.7, s.y) * 0.8);
-    return c;
-  }
+  uniform float uSwirl, uSwirlSpeed;
+  ${orbGlsl}
 
   void main() {
     vec2 p = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;
@@ -130,19 +74,8 @@ const fragmentShader = /* glsl */ `
     float H = R * (uHoleStart * smoothstep(0.0, 0.12, t) + uHoleGrow * pow(t, 2.2));
     float px = 1.5 / uRes.y;
 
-    // background: deep navy with a faint violet haze and stars
-    vec3 col = mix(uPageDeep, uPage, smoothstep(1.2, 0.0, r) * 0.9);
-    col += vec3(0.16, 0.1, 0.35) * 0.25 * fbm(p * 1.5 + time * 0.03);
-    vec2 g = p * 38.0;
-    vec2 cell = floor(g);
-    vec2 star = cell + 0.2 + 0.6 * vec2(hash(cell), hash(cell + 7.1));
-    float sd = length(g - star);
-    float tw = 0.5 + 0.5 * sin(time * 1.5 + hash(cell) * 30.0);
-    col += uStars * step(0.9, hash(cell + 3.3)) * smoothstep(0.08, 0.0, sd) * tw * vec3(0.8, 0.85, 1.0);
-
-    // glow around the orb
-    float edge = r - R;
-    col += uRim * 0.16 * exp(-max(edge, 0.0) / (0.06 + R * 0.1)) * smoothstep(-0.02, 0.0, edge);
+    vec3 col = nightSky(p, time);
+    col += orbGlow(r, R);
 
     // the orb: a shaded sphere
     float inside = smoothstep(R + px, R - px, r);
@@ -160,37 +93,7 @@ const fragmentShader = /* glsl */ `
     vec3 orb = orbColor(q + polar * 0.15 * t, time);
     orb = mix(orb, uTopLeft * 1.1, streak * smoothstep(0.0, 0.5, t) * 0.5); // light streaks while spinning
 
-    // pearl: thin-film hue shift by view angle, direction and time
-    float fres = pow(1.0 - n.z, 2.0);
-    float qa = atan(q.y, q.x);
-    vec3 film = rainbow(fres * 1.3 + qa * 0.16 + time * 0.04 + fbm(q * 2.0 + time * 0.05) * 0.6);
-    film = mix(vec3(0.92, 0.92, 1.0), film, 0.5);
-    orb = mix(orb, film, uIri * (0.12 + 0.55 * fres));
-
-    // gradient rim: color runs around the edge (lavender top-right, sky right, mint low, violet left)
-    float rimBand = smoothstep(0.84, 0.99, rr);
-    vec3 rimCol = mix(uSheen, uRight * 1.3, smoothstep(0.9, -0.2, sin(qa)));
-    rimCol = mix(rimCol, uMint, smoothstep(-0.3, -0.95, sin(qa)) * 0.7);
-    rimCol = mix(rimCol, uTopLeft, smoothstep(0.2, -0.9, cos(qa)) * smoothstep(-0.5, 0.5, sin(qa)));
-    rimCol = mix(rimCol, film, 0.35);
-    orb = mix(orb, rimCol, rimBand * uRimGrad);
-
-    // reflection arc just inside the upper-right edge
-    float cres = exp(-pow((rr - 0.9) / 0.045, 2.0)) * smoothstep(0.1, 0.85, dot(q / max(rr, 1e-3), vec2(0.6, 0.8)));
-    orb += uSheen * 0.35 * cres * calm;
-    // soft sheen, top left
-    orb += vec3(0.85, 0.88, 1.0) * 0.16 * smoothstep(0.75, 0.0, length(q - vec2(-0.45, 0.5))) * calm;
-    // glints floating inside
-    for (int i = 0; i < 12; i++) {
-      if (i >= uSparkles) break;
-      float fi = float(i);
-      vec2 sp = (vec2(hash(vec2(fi, 1.3)), hash(vec2(fi, 7.9))) * 2.0 - 1.0) * 0.72;
-      sp += 0.04 * vec2(sin(time * 0.23 + fi), cos(time * 0.19 + fi * 1.7));
-      float dd = length(q - sp);
-      float tw = 0.55 + 0.45 * sin(time * (0.8 + hash(vec2(fi, 3.1))) + fi * 2.0);
-      float big = step(0.75, hash(vec2(fi, 5.5)));
-      orb += vec3(0.95, 0.97, 1.0) * tw * calm * (0.8 * smoothstep(0.01 + big * 0.006, 0.0, dd) + 0.16 * exp(-dd / (0.02 + big * 0.02)));
-    }
+    orb = orbFinish(orb, q, rr, n, time, calm);
     col = mix(col, orb, inside);
 
     // the hole: dark, ragged, swirling, with a blurred edge
@@ -213,7 +116,6 @@ const fragmentShader = /* glsl */ `
 
 function Vortex({ nav }: { nav: MutableRefObject<Nav> }) {
   const uniforms = useMemo(() => {
-    const o = CONFIG.orb
     return {
       uRes: { value: new Vector2(1, 1) },
       uTime: { value: 0 },
@@ -226,23 +128,7 @@ function Vortex({ nav }: { nav: MutableRefObject<Nav> }) {
       uHoleNoise: { value: CONFIG.holeNoise },
       uSwirl: { value: CONFIG.swirl },
       uSwirlSpeed: { value: CONFIG.swirlSpeed },
-      uDrift: { value: CONFIG.colorDrift },
-      uStars: { value: CONFIG.stars },
-      uPage: { value: hex(CONFIG.page) },
-      uPageDeep: { value: hex(CONFIG.pageDeep) },
-      uRim: { value: hex(CONFIG.rim) },
-      uCenter: { value: hex(o.center) },
-      uTop: { value: hex(o.top) },
-      uTopLeft: { value: hex(o.topLeft) },
-      uLeft: { value: hex(o.left) },
-      uRight: { value: hex(o.right) },
-      uAqua: { value: hex(o.aqua) },
-      uMint: { value: hex(o.mint) },
-      uEdgeLow: { value: hex(o.edgeLow) },
-      uSheen: { value: hex(o.sheen) },
-      uIri: { value: CONFIG.iridescence },
-      uRimGrad: { value: CONFIG.rimGradient },
-      uSparkles: { value: CONFIG.sparkles },
+      ...orbUniforms(),
     }
   }, [])
 
@@ -338,7 +224,7 @@ export default function Page() {
   }, [])
 
   return (
-    <div className="vortex-page" style={{ background: CONFIG.pageDeep }}>
+    <div className="vortex-page" style={{ background: ORB.pageDeep }}>
       <Canvas flat dpr={[1, 2]} gl={{ antialias: false }}>
         <Vortex nav={nav} />
       </Canvas>

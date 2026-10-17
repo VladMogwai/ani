@@ -18,7 +18,7 @@ Status: draft
   Sections alternate orb / dark; `vortexAmount(p)` maps the position to `t` (0 = orb at rest, 1 = swallowed).
 - Shader: orb radius `r0 * (1 + a*t + b*t^3)` (`orbGrow`), hole radius `r * (holeStart + holeGrow * t^2.2)`.
   Hole edge: fbm on twisted polar coords (`swirl`, `swirlSpeed`), ragged by `holeNoise`, feathered by `holeSoft`.
-  Orb at rest (palette in `CONFIG.orb`, sampled from the video): the middle is the darkest blue, light gathers toward
+  Orb at rest (palette and look in `ORB`, `src/shared/orb.ts`, shared with 004 and 005; sampled from the video): the middle is the darkest blue, light gathers toward
   the edges (pale top / top-left, violet left, sky right), a wide soft aqua→mint aurora crescent lower right, dark indigo
   at the low edge; all drifting slowly with fbm (`colorDrift`).
   Pearl: thin-film rainbow tint by view angle + direction + time (`iridescence`), stronger toward the edge.
@@ -45,3 +45,4 @@ Status: draft
 - 2026-10-17: first version from the Awwwards video.
 - 2026-10-17: orb reworked: darker center, light at the edges, aurora crescent, pearl iridescence, gradient rim,
   highlights and glints (the user found the first one artificial).
+- 2026-10-17: orb shader and palette moved to `src/shared/orb.ts` (004 and 005 use it too); no visual change.
