@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap');
+
+.hero-page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.hero-canvas {
+  position: absolute !important;
+  inset: 0;
+}
+
+.hero-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 7vw;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.hero-logo {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.hero-nav nav {
+  display: flex;
+  gap: 28px;
+  opacity: 0.6;
+}
+
+.hero-cta {
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: #eafced;
+  color: #142131;
+  font-weight: 500;
+}
+
+.hero-copy {
+  position: absolute;
+  left: 7vw;
+  top: 20vh;
+  max-width: 44vw;
+  pointer-events: none;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(36px, 5.6vw, 92px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.hero-copy p {
+  margin: 64px 0 0;
+  max-width: 400px;
+  font-size: 16px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* rotating phrase: old lines slide down and out, new ones rise from below, both clipped */
+.hero-phrase {
+  display: grid;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.hero-phrase > span {
+  grid-area: 1 / 1;
+}
+
+.hero-phrase-out {
+  animation: hero-out 0.45s cubic-bezier(0.55, 0, 0.75, 0.3) both;
+}
+
+.hero-phrase-in {
+  animation: hero-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.75s both;
+}
+
+@keyframes hero-out {
+  to {
+    transform: translateY(45%);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-in {
+  from {
+    transform: translateY(55%);
+    opacity: 0;
+  }
+}
+
+.hero-progress {
+  display: block;
+  width: 72px;
+  height: 1px;
+  margin-top: 28px;
+  background: rgb(234 252 237 / 0.2);
+}
+
+.hero-progress > span {
+  display: block;
+  height: 100%;
+  background: currentColor;
+  transform-origin: left;
+  animation: hero-progress linear both;
+}
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-nav nav {
+    display: none;
+  }
+
+  .hero-nav {
+    padding: 20px 16px;
+  }
+
+  .hero-copy {
+    left: 16px;
+    right: 16px;
+    max-width: none;
+    top: auto;
+    bottom: 48px;
+  }
+
+  .hero-copy p {
+    margin-top: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-phrase-out {
+    display: none;
+  }
+
+  .hero-phrase-in,
+  .hero-progress > span {
+    animation: none;
+  }
+}

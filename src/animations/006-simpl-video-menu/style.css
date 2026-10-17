@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap');
+
+.simpl-page {
+  --ease: cubic-bezier(0.7, 0, 0.2, 1);
+  --dur: 0.8s;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  color: #f3f6ef;
+  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media (pointer: fine) {
+  .simpl-page,
+  .simpl-page button {
+    cursor: none;
+  }
+}
+
+.simpl-canvas {
+  position: absolute !important;
+  inset: 0;
+}
+
+.simpl-nav {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 5vw 0 calc(5vw + 120px);
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.simpl-cta {
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: #f3f6ef;
+  color: #1d0b52;
+}
+
+.simpl-intro {
+  position: absolute;
+  z-index: 2;
+  left: 5vw;
+  top: 16vh;
+  width: min(300px, 30vw);
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+.simpl-intro b {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.simpl-intro.is-hidden {
+  opacity: 0;
+}
+
+.simpl-cols {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  padding-left: 2vw;
+}
+
+.simpl-col {
+  all: unset;
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  border-left: 1px solid rgb(0 0 0 / 0.12);
+  box-shadow: -18px 0 40px -20px rgb(0 0 0 / 0.35);
+  transition: flex-grow var(--dur) var(--ease), background-color 0.3s;
+}
+
+.simpl-col:first-child {
+  border-left: 0;
+  box-shadow: none;
+}
+
+.simpl-col:focus-visible {
+  outline: 2px solid #f3f6ef;
+  outline-offset: -4px;
+}
+
+.simpl-col:hover:not(.is-active) {
+  background-color: rgb(255 255 255 / 0.04);
+}
+
+.simpl-col.is-active {
+  flex-grow: 4.2;
+}
+
+.simpl-media {
+  position: absolute;
+  left: 42%;
+  right: 3%;
+  top: 14%;
+  bottom: 26%;
+  pointer-events: none;
+}
+
+.simpl-word {
+  position: absolute;
+  left: 3vw;
+  bottom: 13vh;
+  font-size: clamp(56px, 9vw, 150px);
+  font-weight: 300;
+  line-height: 1;
+  white-space: nowrap;
+  transition: font-size var(--dur) var(--ease);
+}
+
+.simpl-cols.has-active .simpl-word {
+  font-size: clamp(36px, 4.4vw, 72px);
+}
+
+.simpl-cols.has-active .simpl-col:not(.is-active) .simpl-word {
+  left: 1.6vw;
+}
+
+/* the rest of the word slides open after the first letter */
+.simpl-rest {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.2em; /* room for descenders inside the clip */
+  margin-bottom: -0.2em;
+  opacity: 0;
+  transform: translateY(20%);
+  transition:
+    max-width var(--dur) var(--ease),
+    opacity 0.3s,
+    transform 0.5s var(--ease);
+}
+
+.simpl-col:hover:not(.is-active) .simpl-rest {
+  max-width: 0.9em;
+  opacity: 0.25;
+}
+
+.is-active .simpl-rest {
+  max-width: 6em;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.15s;
+}
+
+.simpl-label {
+  position: absolute;
+  left: 3vw;
+  bottom: calc(13vh - 28px);
+  font-size: 13px;
+  opacity: 0.45;
+  transition: opacity 0.3s;
+}
+
+.simpl-cols.has-active .simpl-col:not(.is-active) .simpl-label {
+  left: 1.6vw;
+}
+
+.is-active .simpl-label {
+  opacity: 0;
+}
+
+.simpl-text,
+.simpl-play {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.simpl-text {
+  left: 3vw;
+  top: 30%;
+  width: min(260px, 32%);
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.simpl-play {
+  right: 5%;
+  bottom: 13vh;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.simpl-play i {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f3f6ef;
+  color: #4d18b4;
+  font-size: 10px;
+  font-style: normal;
+}
+
+.is-active .simpl-text,
+.is-active .simpl-play {
+  opacity: 1;
+  transition: opacity 0.5s 0.45s;
+}
+
+.simpl-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.simpl-cursor span {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  margin: -55px 0 0 -55px;
+  border-radius: 50%;
+  color: #1d0b52;
+  font-size: 12px;
+  font-weight: 500;
+  transition: transform 0.4s var(--ease, ease);
+}
+
+.simpl-cursor span.is-small {
+  transform: scale(0.18);
+  color: transparent;
+}
+
+@media (pointer: coarse) {
+  .simpl-cursor {
+    display: none;
+  }
+}
+
+/* phone: the columns become rows */
+@media (max-width: 700px) {
+  .simpl-nav {
+    padding: 16px;
+  }
+
+  .simpl-intro {
+    left: 16px;
+    top: 64px;
+    width: auto;
+    right: 16px;
+  }
+
+  .simpl-cols {
+    flex-direction: column;
+    padding: 30vh 0 0;
+  }
+
+  .simpl-col {
+    border-left: 0;
+    border-top: 1px solid rgb(0 0 0 / 0.12);
+    box-shadow: 0 -18px 40px -20px rgb(0 0 0 / 0.35);
+  }
+
+  .simpl-cols.has-active {
+    padding-top: 56px;
+  }
+
+  .simpl-word,
+  .simpl-label,
+  .simpl-cols.has-active .simpl-col:not(.is-active) .simpl-word,
+  .simpl-cols.has-active .simpl-col:not(.is-active) .simpl-label {
+    left: 16px;
+  }
+
+  .simpl-word,
+  .simpl-cols.has-active .simpl-word {
+    bottom: 22px;
+    font-size: 40px;
+  }
+
+  .simpl-label {
+    left: auto !important;
+    right: 16px;
+    bottom: 30px;
+  }
+
+  .simpl-media {
+    left: 40%;
+    right: 16px;
+    top: 16px;
+    bottom: 80px;
+  }
+
+  .simpl-text {
+    left: 16px;
+    top: 16px;
+    width: 36%;
+    font-size: 12px;
+  }
+
+  .simpl-play {
+    right: 16px;
+    bottom: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .simpl-page {
+    --dur: 0s;
+  }
+}

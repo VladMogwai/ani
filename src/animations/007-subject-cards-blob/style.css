@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap');
+
+.cards-page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  user-select: none;
+}
+
+.cards-track {
+  cursor: grab;
+}
+
+.cards-page.is-dragging,
+.cards-page.is-dragging .cards-track {
+  cursor: grabbing;
+}
+
+.cards-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 5vw 0 calc(5vw + 120px);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cards-cta {
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: #eafced;
+  color: #142131;
+}
+
+.cards-track {
+  display: flex;
+  margin-top: 10vh;
+  padding: 0 5vw;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.cards-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cards-card {
+  position: relative;
+  flex: 0 0 clamp(240px, 19vw, 320px);
+  height: min(60vh, 520px);
+  min-height: 380px;
+  padding: 28px 18px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid rgb(234 252 237 / 0.1);
+  border-left-width: 0;
+  isolation: isolate;
+}
+
+.cards-card:first-child {
+  border-left-width: 1px;
+}
+
+/* hover shape: fixed in the card, behind the text; JS sets its opacity, --u (one card unit in px) and the
+   focus blur */
+.cards-shape {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  pointer-events: none;
+}
+
+.cards-shape svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cards-smear {
+  filter: blur(calc(var(--u, 3px) * var(--soft))) url(#cards-grain);
+}
+
+.cards-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* violet haze behind the cards around a resting cursor; JS moves it and sets its opacity */
+.cards-haze {
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cards-haze span {
+  display: block;
+  transform: translate(-50%, -50%);
+}
+
+.cards-num {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.cards-card h2 {
+  margin: 6px 0 20px;
+  font-size: clamp(22px, 1.9vw, 30px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.cards-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  opacity: 0.75;
+}
+
+.cards-icon {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  width: 64px;
+  height: 64px;
+  overflow: visible;
+  fill: none;
+  stroke: rgb(234 252 237 / 0.6);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.cards-plus {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  font-size: 20px;
+  font-weight: 300;
+  opacity: 0.6;
+}
+
+.cards-pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5vh 5vw 0;
+  font-size: 12px;
+}
+
+.cards-bar {
+  width: 120px;
+  height: 1px;
+  background: rgb(234 252 237 / 0.2);
+}
+
+.cards-bar span {
+  display: block;
+  height: 100%;
+  background: currentColor;
+  transform-origin: left;
+}
+
+@media (pointer: coarse) {
+  .cards-track {
+    scroll-snap-type: x mandatory;
+  }
+
+  .cards-card {
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 700px) {
+  .cards-nav {
+    padding: 16px;
+  }
+
+  .cards-track {
+    padding: 0 16px;
+    scroll-padding: 0 16px;
+  }
+
+  .cards-card {
+    flex-basis: 78vw;
+  }
+
+  .cards-pager {
+    margin: 4vh 16px 0;
+  }
+}
+
