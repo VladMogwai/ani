@@ -1,0 +1,114 @@
+.lens-page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  color: #f3efe4;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.lens-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.lens-logo,
+.lens-counter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.lens-logo {
+  top: calc(50% - 0.6em);
+  font: italic 400 34px/1.2 Georgia, 'Times New Roman', serif;
+}
+
+.lens-counter {
+  top: calc(50% + 72px);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #9ea3d0;
+}
+
+.lens-ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.lens-buttons {
+  position: absolute;
+  top: calc(var(--title-bottom, 60%) + 28px);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 16px;
+}
+
+.pill {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px 8px 18px;
+  border-radius: 999px;
+  font: 600 11px/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pill span {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.pill-light {
+  border: 0;
+  background: #f3efe4;
+  color: #1b1840;
+}
+
+.pill-light span {
+  background: #b9b0f4;
+}
+
+.pill-dark {
+  border: 1px solid rgba(201, 189, 251, 0.35);
+  background: rgba(11, 8, 48, 0.55);
+  color: #f3efe4;
+}
+
+.pill-dark span {
+  background: #57c8f0;
+  color: #0b0830;
+}
+
+.lens-replay {
+  pointer-events: auto;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 8px 14px;
+  border: 1px solid rgba(201, 189, 251, 0.3);
+  border-radius: 999px;
+  background: transparent;
+  color: #9ea3d0;
+  font: 11px/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
