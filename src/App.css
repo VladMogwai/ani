@@ -6,3 +6,80 @@
 .muted { color: var(--muted); font-size: 13px; }
 .title { font-weight: 600; margin: 2px 0 6px; }
 .back { position: fixed; top: 12px; left: 12px; z-index: 10; padding: 4px 10px; border-radius: 8px; background: rgb(0 0 0 / .5); color: #fff; font-size: 13px; text-decoration: none; }
+
+/* Gallery backdrop: animated color blobs behind a dark "screen" panel; click the background for a new palette */
+@property --c1 { syntax: '<color>'; inherits: true; initial-value: #ff8a00; }
+@property --c2 { syntax: '<color>'; inherits: true; initial-value: #ff0a4e; }
+@property --c3 { syntax: '<color>'; inherits: true; initial-value: #ff7a5c; }
+@property --c4 { syntax: '<color>'; inherits: true; initial-value: #cfa8f0; }
+@property --c5 { syntax: '<color>'; inherits: true; initial-value: #ff8fa3; }
+.backdrop {
+  position: relative;
+  isolation: isolate;
+  min-height: 100%;
+  padding: clamp(24px, 5vw, 72px) clamp(12px, 7vw, 120px);
+  background: linear-gradient(180deg, var(--c3) 0%, var(--c5) 55%, var(--c4) 100%);
+  transition: --c1 1.6s ease, --c2 1.6s ease, --c3 1.6s ease, --c4 1.6s ease, --c5 1.6s ease;
+  cursor: pointer;
+}
+.backdrop .panel { cursor: auto; }
+.blobs { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
+.blobs i {
+  position: absolute;
+  width: 75vmax; height: 75vmax;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--c), transparent);
+  animation: var(--a) var(--d) ease-in-out infinite alternate;
+  will-change: transform;
+}
+.blobs i:nth-child(1) { --c: var(--c1); --a: drift-a; --d: 13s; left: -30vmax; top: -35vmax; }
+.blobs i:nth-child(2) { --c: var(--c2); --a: drift-b; --d: 17s; left: 10vw; top: -45vmax; animation-delay: -6s; }
+.blobs i:nth-child(3) { --c: var(--c3); --a: drift-c; --d: 11s; right: -35vmax; top: -30vmax; animation-delay: -3s; }
+.blobs i:nth-child(4) { --c: var(--c4); --a: drift-a; --d: 19s; right: -30vmax; bottom: -35vmax; animation-delay: -12s; animation-direction: alternate-reverse; }
+.blobs i:nth-child(5) { --c: var(--c5); --a: drift-b; --d: 15s; left: -35vmax; bottom: -40vmax; animation-delay: -9s; animation-direction: alternate-reverse; }
+@keyframes drift-a {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(30vw, 15vh) scale(1.25); }
+  66%  { transform: translate(10vw, 40vh) scale(.85); }
+  100% { transform: translate(-10vw, 20vh) scale(1.1); }
+}
+@keyframes drift-b {
+  0%   { transform: translate(0, 0) scale(1.1); }
+  33%  { transform: translate(-25vw, 25vh) scale(.9); }
+  66%  { transform: translate(20vw, 35vh) scale(1.3); }
+  100% { transform: translate(5vw, -5vh) scale(1); }
+}
+@keyframes drift-c {
+  0%   { transform: translate(0, 0) scale(.95); }
+  33%  { transform: translate(-35vw, 10vh) scale(1.2); }
+  66%  { transform: translate(-15vw, 45vh) scale(1); }
+  100% { transform: translate(-40vw, 30vh) scale(1.15); }
+}
+/* Film grain over everything */
+.grain {
+  position: fixed; inset: 0; z-index: 2;
+  pointer-events: none;
+  opacity: .3;
+  mix-blend-mode: overlay;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='2.5 0 0 0 -.75 2.5 0 0 0 -.75 2.5 0 0 0 -.75 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: reduce) { .blobs i { animation: none; } }
+.panel {
+  position: relative;
+  max-width: none;
+  min-height: calc(100vh - 2 * clamp(24px, 5vw, 72px));
+  padding: clamp(32px, 6vw, 72px) clamp(16px, 4vw, 56px);
+  border: 12px solid #0b0b0b;
+  border-radius: 16px;
+  background:
+    radial-gradient(50% 30% at 50% 15%, rgb(60 120 120 / .22), transparent 70%),
+    repeating-linear-gradient(0deg, rgb(255 255 255 / .025) 0 1px, transparent 1px 3px),
+    linear-gradient(rgb(255 255 255 / .03) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgb(255 255 255 / .03) 1px, transparent 1px) 0 0 / 32px 32px,
+    #1f2020;
+  box-shadow: 0 30px 80px rgb(120 20 40 / .35);
+}
+.panel h1 { text-align: center; }
+.panel ul { max-width: 960px; margin: 0 auto; }
+.panel a { background: rgb(24 24 27 / .75); }
+@media (max-width: 600px) { .panel { border-width: 6px; } }
