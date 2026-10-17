@@ -1,0 +1,74 @@
+.vortex-page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  touch-action: none;
+  color: #f2f3ff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.vortex-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  padding: 0 16px;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.vortex-text h2 {
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+.vortex-text em {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.vortex-text.is-orb {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.vortex-text.is-orb h2 {
+  font-size: clamp(36px, 7vw, 96px);
+  text-shadow: 0 2px 30px rgba(10, 8, 48, 0.35);
+}
+
+.vortex-text.is-dark {
+  justify-content: flex-start;
+  padding: 18vh 9vw 0;
+}
+
+.vortex-text.is-dark h2 {
+  font-size: clamp(32px, 5vw, 72px);
+}
+
+.vortex-text.is-dark em {
+  color: #57c8f0;
+}
+
+.vortex-text.is-dark p {
+  max-width: 26em;
+  margin: 1.6em 0 0 auto;
+  margin-right: 12vw;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #a9aed6;
+}
+
+@media (max-width: 600px) {
+  .vortex-text.is-dark {
+    padding: 22vh 24px 0;
+  }
+  .vortex-text.is-dark p {
+    margin: 1.6em 0 0;
+  }
+}
