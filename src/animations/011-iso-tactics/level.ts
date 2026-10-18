@@ -1,46 +1,75 @@
-// Heightmap of the dungeon floor. Digits are heights in levels (one level = LEVEL_H world units),
-// "w" is the floor of the flooded pit, "m" a mossy block standing in the water.
-// Row 0 is the far edge (low z), column 0 the far-left edge (low x): the camera looks from +x +z.
+// Geometry of the dungeon picture drawn by art/scenes/dungeon/build-dungeon.lua.
+// MAP and the constants below must match that script, so cells line up with the painted floor.
+
 export const MAP = [
-  '9999999998888777',
-  '9999888887777666',
-  '9988766666665555',
-  '9876544444444444',
-  '9865432222222222',
-  '8764322222222222',
-  '8763222222222222',
-  '7652222222222222',
-  '7642222222222222',
-  '6532222222wwww22',
-  '6422222222wmww22',
-  '5322222222wwww22',
+  'AAAAAAAAAAAAAAAA',
+  'A666666666444444',
+  'A666666666544444',
+  'A666666666444444',
+  'A222222522223222',
+  'A222222422222222',
+  'A222222322222222',
+  'A222222222222222',
+  'A222222222wwww22',
+  '8222222222wmww22',
+  '6222222222wwww22',
   '4222222222222222',
-  '3222222222222222',
+  '2222222222222222',
+  '2222222222222222',
 ]
 
-export const LEVEL_H = 0.5
-export const WATER_Y = 0.65
+export const TILE_W = 64
+export const TILE_H = 32
+export const LEVEL_PX = 16
+const MARGIN = 40
+const MAX_H = 10
+
 export const COLS = MAP[0].length
 export const ROWS = MAP.length
 
-export type Cell = { x: number; z: number; h: number; water: boolean; moss: boolean }
+export type Cell = { x: number; z: number; h: number; water: boolean }
 
-export const cells: Cell[] = MAP.flatMap((row, z) =>
-  [...row].map((ch, x) => {
-    const water = ch === 'w' || ch === 'm'
-    return { x, z, h: water ? 0 : Number(ch), water, moss: ch === 'm' }
-  }),
-)
+// cells use 1-based x (column) and z (row), like the Lua script
+export const cellAt = (x: number, z: number): Cell | null => {
+  const ch = MAP[z - 1]?.[x - 1]
+  if (!ch) return null
+  const water = ch === 'w' || ch === 'm'
+  return { x, z, water, h: water ? 0 : ch === 'A' ? 10 : Number(ch) }
+}
 
-export const cellAt = (x: number, z: number) => cells[z * COLS + x]
+// cells taken by the big props painted into the picture (CONFIG.props in the Lua script): tree, column, rubble
+export const PROPS: [number, number][] = [
+  [4, 3],
+  [3, 10],
+  [12, 7],
+]
 
-// world position of a cell's centre on the ground plane
-export const toWorld = (x: number, z: number): [number, number] => [x - COLS / 2 + 0.5, z - ROWS / 2 + 0.5]
+// a floor cell a unit can stand on
+export const walkable = (c: Cell | null) =>
+  !!c && !c.water && c.h <= 6 && !PROPS.some(([x, z]) => x === c.x && z === c.z)
 
-// small deterministic random so the scene looks the same on every load
-export const random = (seed: number) => () => {
-  seed = (seed + 0x6d2b79f5) | 0
-  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
-  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
-  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+const originX = MARGIN + ((ROWS - 1) * TILE_W) / 2
+const originY = MARGIN + MAX_H * LEVEL_PX
+
+// centre of the top face of a cell, in picture pixels
+export const cellCenter = (x: number, z: number) => {
+  const c = cellAt(x, z)!
+  return {
+    x: Math.floor(originX + ((x - z) * TILE_W) / 2) + TILE_W / 2,
+    y: Math.floor(originY + ((x + z) * TILE_H) / 2) - c.h * LEVEL_PX + TILE_H / 2,
+  }
+}
+
+// cell whose top diamond contains the picture point; front cells win where faces overlap
+export const cellAtPoint = (px: number, py: number): Cell | null => {
+  for (let sum = COLS + ROWS; sum >= 2; sum--) {
+    for (let z = ROWS; z >= 1; z--) {
+      const x = sum - z
+      const c = cellAt(x, z)
+      if (!c || c.water) continue
+      const p = cellCenter(x, z)
+      if (Math.abs(px - p.x) / (TILE_W / 2) + Math.abs(py - p.y) / (TILE_H / 2) <= 1) return c
+    }
+  }
+  return null
 }

@@ -10,3 +10,4 @@
   https://hormelz.itch.io/8-directional-char
   The per-direction sheets (256px cells) were packed with Aseprite CLI into `assets/mage/*.png`
   (one row per direction E, SE, S, SW, W, NW, N, NE; frames scaled to 128px). CC0, so they are committed.
+- Dungeon background: drawn by `art/scenes/dungeon/build-dungeon.lua` in Aseprite, exported to `assets/dungeon/`.

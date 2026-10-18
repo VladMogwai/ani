@@ -1,31 +1,30 @@
 # 011 — Iso tactics
 
 Source: reference/tactics-reference.webp (isometric turn-based dungeon tactics with dice), reference/source.md
-Engine: three
+Engine: pixi
 Status: draft
 
 ## Effect
-Dark stone dungeon seen from a fixed isometric angle, rendered at low resolution so it reads as pixel art.
-Terraced cliffs at the back, a flat floor with a golden grid, dry grass, a flooded pit with a mossy block,
-two wall torches with flickering flames and warm light. The player's mage (gold) and the enemy Dark Knight (red) stand on the grid and face each other.
-Hovering a floor cell highlights it. Drag rotates the camera around the map, wheel / pinch zooms.
+A hand-editable pixel-art dungeon drawn in Aseprite (terraced cliffs, stone slabs, dirt, grass, rubble,
+a flooded pit with a mossy block, three wall torches). The torch light flickers. The player's mage (gold ring)
+and the enemy Dark Knight (red ring) stand on floor cells, play their idle loops and face each other.
+Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery's dark panel on the colour backdrop
+(`src/shared/ScreenFrame.tsx`), the canvas is transparent so the panel texture shows around the picture.
 
 ## Implementation
-- "Pixel 3D": real 3D scene (R3F) drawn with `dpr = 1 / CONFIG.pixel` and `image-rendering: pixelated`,
-  orthographic camera at 45° azimuth and ~30° elevation (the classic 2:1 pixel-art angle), no antialiasing, `flat` (no tone mapping).
-- Level is a heightmap in `level.ts` (digits = height levels of 0.5 units, `w` water pit, `m` mossy block).
-  Every level of every column is one instance of a box, so side textures keep their proportions.
-- Textures are tiny canvases drawn in `textures.ts` (stone top/side, grass tuft, moss), sampled with NearestFilter.
-- Water and torch flames are small ShaderMaterials; torch point lights flicker in `useFrame`.
-- Readability: each unit has a team-coloured 1 px outline (shader on a billboard plane checks 8 neighbours of the
-  sheet frame at `CONFIG.outline.texels`), a pulsing ring of the same colour and a dark spot under the feet;
-  grass is never placed on unit cells. Gold = player, red = enemy.
-- Characters are camera-facing billboards cut from sheets with 128 px frames, one row per direction; `CONFIG.characters` holds
-  per-sheet frames, fps, size, feet and `minLuma`. Knight: 15×8 licensed sheet. Mage: CC0 sheets packed by Aseprite. Facing is picked from the angle
-  to the target on screen, snapped to 8 directions; sheet row = direction index, clockwise from east
-  (0 E, 1 SE, 2 S, 3 SW, 4 W, 5 NW, 6 N, 7 NE). The enemy is the same knight tinted.
-- Licensed sprite sheets live in `licensed/` (gitignored, the repo is public). See reference/source.md to restore them.
-- CONFIG: pixel size, camera angles and zoom, lights, grid, grass density, torches, knight sprite size/feet/fps, units.
+- The dungeon is built by `art/scenes/dungeon/build-dungeon.lua` (Aseprite CLI) into `dungeon.aseprite` with layers
+  background / terrain / details / props / torches / darkness / light. Layers are exported to `assets/dungeon/`:
+  `base.png` (terrain + details + props + torches), `light.png` (drawn with `blendMode = 'add'`, alpha flickers), `darkness.png`.
+  Re-export after editing the .aseprite file:
+  `aseprite -b dungeon.aseprite --ignore-layer background --ignore-layer light --ignore-layer darkness --save-as base.png`
+  and `--layer light` / `--layer darkness` for the other two.
+- `level.ts` repeats the map and tile constants of the Lua script (64×32 diamonds, 16 px per level) so `cellCenter`
+  and `cellAtPoint` line up with the painted floor. Keep both in sync when the map changes.
+- PixiJS used imperatively in one effect. The picture covers the whole panel (scaled to fill, overflow cropped);
+  nearest sampling.
+- Characters: 128 px frames, one row per screen direction clockwise from east (E, SE, S, SW, W, NW, N, NE),
+  drawn 1:1 with the picture. Knight: licensed sheet in `licensed/` (gitignored). Mage: CC0 sheets packed by Aseprite.
+- CONFIG: light flicker, hover colour, ring and foot shadow sizes, character sheets (frames, fps, feet), units.
 
 ## Plan
 1. Diorama (this version).
@@ -37,17 +36,20 @@ Hovering a floor cell highlights it. Drag rotates the camera around the map, whe
 - Wants a game in the style of the reference; free assets first, own art later (user is learning Aseprite).
 - No golden grid lines on the floor: looks better without them.
 - No outline around characters; the team-coloured ring under the feet is enough.
+- Prefers the background drawn in Aseprite over the 3D scene.
 
 ## Open questions
 - The mage is a girl in an orange coat (CC0 sample model); recolour the coat to a robe colour, or keep it?
 - Dice rules: what each die colour does.
-- Portraits: placeholder or wait for user's own art?
 
 ## Changelog
-- 2026-10-18: first diorama with pixel 3D rendering, HD Knight sprites (free pack)
-- 2026-10-18: grid and hover highlight render before the sprites (renderOrder), so lines no longer show through the knights
-- 2026-10-18: grid lines hidden (`CONFIG.grid.show`), the user prefers the floor without them; cell hover stays
-- 2026-10-18: units stand out: team-coloured outline, ring and foot shadow, no grass on their cells
-- 2026-10-18: thinner outline (1 sheet px) that skips the knight's baked shadow
-- 2026-10-18: player is a mage (Hormelz CC0 sheets, packed with Aseprite CLI); the knight becomes the enemy
-- 2026-10-18: outline turned off (`CONFIG.outline.show`), only the team ring and foot shadow stay
+- 2026-10-18: first diorama with pixel 3D rendering (R3F), HD Knight sprites (free pack)
+- 2026-10-18: grid hidden, team rings, mage (Hormelz CC0) as the player, knight as the enemy
+- 2026-10-18: replaced the 3D scene with the Aseprite-drawn dungeon on PixiJS (the R3F version is in git history, commit aaa3324)
+- 2026-10-18: page framed like the gallery: dark panel on the animated colour backdrop
+- 2026-10-18: the picture covers the whole panel instead of fitting inside it
+- 2026-10-18: cliffs and terrace faces (4+ levels) are rock boulders instead of masonry, with chipped rims
+- 2026-10-18: accent props on their own Aseprite layer: dead tree with roots, broken column, chains, rubble heap,
+  skulls and bones; prop cells are listed in `PROPS` (level.ts) and are not walkable
+- 2026-10-18: new map: tall wall only as a one-cell rim at the back and left, the rest are walkable terraces
+  (6 and 4) linked by one-level stairs; torches and chains only on visible wall faces (the script asserts it)
