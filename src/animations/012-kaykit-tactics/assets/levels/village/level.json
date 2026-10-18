@@ -1,0 +1,153 @@
+{
+  "width": 3282,
+  "height": 2433,
+  "ox": 1584,
+  "oy": 792,
+  "props": [
+    {
+      "file": "prop-0.webp",
+      "ax": 192,
+      "ay": 341
+    },
+    {
+      "file": "prop-1.webp",
+      "ax": 119,
+      "ay": 231
+    },
+    {
+      "file": "prop-2.webp",
+      "ax": 194,
+      "ay": 262
+    },
+    {
+      "file": "prop-3.webp",
+      "ax": 146,
+      "ay": 301
+    },
+    {
+      "file": "prop-4.webp",
+      "ax": 71,
+      "ay": 131
+    },
+    {
+      "file": "prop-5.webp",
+      "ax": 177,
+      "ay": 134
+    },
+    {
+      "file": "prop-6.webp",
+      "ax": -13,
+      "ay": 24
+    },
+    {
+      "file": "prop-7.webp",
+      "ax": -13,
+      "ay": 24
+    },
+    {
+      "file": "prop-8.webp",
+      "ax": -13,
+      "ay": 24
+    },
+    {
+      "file": "prop-9.webp",
+      "ax": 94,
+      "ay": 91
+    },
+    {
+      "file": "prop-10.webp",
+      "ax": 42,
+      "ay": 49
+    },
+    {
+      "file": "prop-11.webp",
+      "ax": 27,
+      "ay": 51
+    },
+    {
+      "file": "prop-12.webp",
+      "ax": 58,
+      "ay": 52
+    },
+    {
+      "file": "prop-13.webp",
+      "ax": 76,
+      "ay": 145
+    },
+    {
+      "file": "prop-14.webp",
+      "ax": 64,
+      "ay": 60
+    },
+    {
+      "file": "prop-15.webp",
+      "ax": 24,
+      "ay": 31
+    },
+    {
+      "file": "prop-16.webp",
+      "ax": 18,
+      "ay": 100
+    },
+    {
+      "file": "prop-17.webp",
+      "ax": 18,
+      "ay": 100
+    },
+    {
+      "file": "prop-18.webp",
+      "ax": 18,
+      "ay": 100
+    },
+    {
+      "file": "prop-19.webp",
+      "ax": 101,
+      "ay": 206
+    },
+    {
+      "file": "prop-20.webp",
+      "ax": 124,
+      "ay": 231
+    },
+    {
+      "file": "prop-21.webp",
+      "ax": 70,
+      "ay": 273
+    },
+    {
+      "file": "prop-22.webp",
+      "ax": 194,
+      "ay": 290
+    },
+    {
+      "file": "prop-23.webp",
+      "ax": 149,
+      "ay": 302
+    },
+    {
+      "file": "prop-24.webp",
+      "ax": 45,
+      "ay": 72
+    },
+    {
+      "file": "prop-25.webp",
+      "ax": 41,
+      "ay": 42
+    }
+  ],
+  "front": true,
+  "lights": [
+    {
+      "x": 1414.2943725152286,
+      "y": 1111.7695619314359
+    },
+    {
+      "x": 1810.2741699796952,
+      "y": 1309.7594606636694
+    },
+    {
+      "x": 1527.4314575050762,
+      "y": 1281.4751894162073
+    }
+  ]
+}

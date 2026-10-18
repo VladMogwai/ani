@@ -1,0 +1,31 @@
+{
+  "frame": 128,
+  "feet": 0.2,
+  "anims": {
+    "idle": {
+      "frames": 13,
+      "fps": 12,
+      "loop": true
+    },
+    "walk": {
+      "frames": 26,
+      "fps": 12,
+      "loop": true
+    },
+    "attack": {
+      "frames": 13,
+      "fps": 12,
+      "loop": false
+    },
+    "hurt": {
+      "frames": 9,
+      "fps": 12,
+      "loop": false
+    },
+    "die": {
+      "frames": 10,
+      "fps": 12,
+      "loop": false
+    }
+  }
+}

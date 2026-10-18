@@ -1,0 +1,267 @@
+{
+  "name": "Ruined courtyard",
+  "floor": [
+    "....b...,,,.",
+    ".w.....,,,,.",
+    "...d....,,..",
+    ".......w....",
+    "..b.........",
+    ",,.....b..w.",
+    ",,,.........",
+    ".,,....d....",
+    "....w.....b.",
+    "..........,,"
+  ],
+  "floorPieces": {
+    ".": [
+      "dungeon/floor_tile_small"
+    ],
+    "b": [
+      "dungeon/floor_tile_small_broken_A",
+      "dungeon/floor_tile_small_broken_B"
+    ],
+    "w": [
+      "dungeon/floor_tile_small_weeds_A",
+      "dungeon/floor_tile_small_weeds_B"
+    ],
+    ",": [
+      "dungeon/floor_dirt_small_A",
+      "dungeon/floor_dirt_small_B",
+      "dungeon/floor_dirt_small_C",
+      "dungeon/floor_dirt_small_D"
+    ],
+    "d": [
+      "dungeon/floor_tile_small_decorated"
+    ]
+  },
+  "walls": {
+    "north": [
+      "dungeon/wall",
+      "dungeon/wall_cracked",
+      "dungeon/wall_archedwindow_open",
+      "dungeon/wall",
+      "dungeon/wall_broken",
+      "dungeon/wall"
+    ],
+    "west": [
+      "dungeon/wall",
+      "dungeon/wall_doorway",
+      "dungeon/wall_cracked",
+      "dungeon/wall",
+      "dungeon/wall_broken"
+    ],
+    "corner": "dungeon/pillar"
+  },
+  "wallDecor": [
+    {
+      "wall": "north",
+      "piece": 0,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    },
+    {
+      "wall": "north",
+      "piece": 3,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    },
+    {
+      "wall": "north",
+      "piece": 3,
+      "model": "dungeon/banner_red",
+      "y": 0
+    },
+    {
+      "wall": "west",
+      "piece": 0,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    },
+    {
+      "wall": "west",
+      "piece": 3,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    }
+  ],
+  "props": [
+    {
+      "cell": [
+        0,
+        3
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrel_large"
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        4
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrel_small_stack",
+          "rot": 30
+        }
+      ]
+    },
+    {
+      "cell": [
+        1,
+        0
+      ],
+      "parts": [
+        {
+          "model": "dungeon/crates_stacked"
+        }
+      ]
+    },
+    {
+      "cell": [
+        7,
+        0
+      ],
+      "parts": [
+        {
+          "model": "dungeon/box_stacked",
+          "rot": 15
+        }
+      ]
+    },
+    {
+      "cell": [
+        5,
+        4
+      ],
+      "parts": [
+        {
+          "model": "dungeon/table_medium"
+        },
+        {
+          "model": "dungeon/candle_lit",
+          "offset": [
+            0.3,
+            1,
+            -0.2
+          ]
+        }
+      ],
+      "light": [
+        0.3,
+        1.9,
+        -0.2
+      ]
+    },
+    {
+      "cell": [
+        4,
+        4
+      ],
+      "parts": [
+        {
+          "model": "dungeon/chair",
+          "rot": 90
+        }
+      ]
+    },
+    {
+      "cell": [
+        6,
+        4
+      ],
+      "parts": [
+        {
+          "model": "dungeon/stool"
+        }
+      ]
+    },
+    {
+      "cell": [
+        10,
+        1
+      ],
+      "parts": [
+        {
+          "model": "dungeon/chest",
+          "rot": 200
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        1
+      ],
+      "parts": [
+        {
+          "model": "dungeon/keg",
+          "rot": -20
+        }
+      ]
+    },
+    {
+      "cell": [
+        8,
+        6
+      ],
+      "parts": [
+        {
+          "model": "dungeon/torch_lit",
+          "offset": [
+            0,
+            0.4,
+            0
+          ]
+        }
+      ],
+      "light": [
+        0,
+        1.6,
+        0
+      ]
+    },
+    {
+      "cell": [
+        2,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/rubble_half",
+          "rot": -30
+        }
+      ]
+    },
+    {
+      "cell": [
+        9,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/rubble_half",
+          "rot": 60
+        },
+        {
+          "model": "dungeon/sword_shield_broken",
+          "offset": [
+            0.4,
+            0,
+            0.3
+          ]
+        }
+      ]
+    }
+  ],
+  "hero": [
+    6,
+    7
+  ]
+}

@@ -1,0 +1,657 @@
+{
+  "name": "Village at the forest edge",
+  "floor": [
+    "................",
+    "................",
+    "................",
+    ".......,........",
+    ".......,........",
+    ".......,........",
+    ".......,........",
+    ".......,,,,.....",
+    ".......,..,.....",
+    ",,,,,,,,..,,,,,,",
+    "..........,.....",
+    "..........,.....",
+    "..........,.....",
+    "..........,....."
+  ],
+  "floorPieces": {
+    ".": [],
+    ",": [
+      "dungeon/floor_dirt_small_A",
+      "dungeon/floor_dirt_small_B",
+      "dungeon/floor_dirt_small_C",
+      "dungeon/floor_dirt_small_D"
+    ]
+  },
+  "floorTint": {
+    ",": "#c49a68"
+  },
+  "ground": "hex-grass",
+  "scenery": [
+    {
+      "at": [
+        3,
+        3
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "scale": 2,
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "at": [
+        9,
+        2
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "scale": 2,
+          "rot": 40
+        }
+      ]
+    },
+    {
+      "at": [
+        27,
+        5
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "scale": 2,
+          "rot": 80
+        }
+      ]
+    },
+    {
+      "at": [
+        5,
+        25
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "scale": 2,
+          "rot": 120
+        }
+      ]
+    },
+    {
+      "at": [
+        24,
+        25
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "scale": 2,
+          "rot": 160
+        }
+      ]
+    },
+    {
+      "at": [
+        29,
+        15
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "scale": 2,
+          "rot": 200
+        }
+      ]
+    },
+    {
+      "at": [
+        2,
+        13
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "scale": 2,
+          "rot": 240
+        }
+      ]
+    },
+    {
+      "at": [
+        17,
+        3
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "scale": 2,
+          "rot": 280
+        }
+      ]
+    },
+    {
+      "at": [
+        13,
+        23
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "scale": 2,
+          "rot": 320
+        }
+      ]
+    }
+  ],
+  "props": [
+    {
+      "cell": [
+        4,
+        3
+      ],
+      "size": [
+        3,
+        3
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_tavern_red",
+          "scale": 5,
+          "rot": 90
+        }
+      ]
+    },
+    {
+      "cell": [
+        1,
+        5
+      ],
+      "size": [
+        2,
+        2
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_home_A_blue",
+          "scale": 5,
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        10,
+        2
+      ],
+      "size": [
+        3,
+        3
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_blacksmith_red",
+          "scale": 5,
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        13,
+        5
+      ],
+      "size": [
+        2,
+        2
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_home_B_red",
+          "scale": 5,
+          "rot": 180
+        }
+      ]
+    },
+    {
+      "cell": [
+        8,
+        5
+      ],
+      "size": [
+        2,
+        2
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_well_blue",
+          "scale": 3.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        12,
+        11
+      ],
+      "size": [
+        3,
+        3
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_grain",
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        11
+      ],
+      "parts": [
+        {
+          "model": "town/fence.glb",
+          "scale": 2,
+          "offset": [
+            0.9,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        12
+      ],
+      "parts": [
+        {
+          "model": "town/fence-gate.glb",
+          "scale": 2,
+          "offset": [
+            0.9,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        13
+      ],
+      "parts": [
+        {
+          "model": "town/fence.glb",
+          "scale": 2,
+          "offset": [
+            0.9,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "cell": [
+        8,
+        3
+      ],
+      "parts": [
+        {
+          "model": "town/cart.glb",
+          "scale": 2.2,
+          "rot": 30
+        }
+      ]
+    },
+    {
+      "cell": [
+        3,
+        4
+      ],
+      "parts": [
+        {
+          "model": "medieval/barrel",
+          "scale": 4
+        },
+        {
+          "model": "medieval/sack",
+          "scale": 4,
+          "offset": [
+            0.5,
+            0,
+            0.5
+          ]
+        }
+      ]
+    },
+    {
+      "cell": [
+        13,
+        3
+      ],
+      "parts": [
+        {
+          "model": "medieval/weaponrack",
+          "scale": 4,
+          "rot": -90
+        }
+      ]
+    },
+    {
+      "cell": [
+        9,
+        1
+      ],
+      "parts": [
+        {
+          "model": "medieval/crate_A_big",
+          "scale": 4
+        },
+        {
+          "model": "medieval/resource_lumber",
+          "scale": 3,
+          "offset": [
+            0.4,
+            0,
+            0.6
+          ]
+        }
+      ]
+    },
+    {
+      "cell": [
+        10,
+        6
+      ],
+      "parts": [
+        {
+          "model": "town/stall-red.glb",
+          "scale": 2.4,
+          "rot": 180
+        }
+      ]
+    },
+    {
+      "cell": [
+        14,
+        10
+      ],
+      "parts": [
+        {
+          "model": "medieval/wheelbarrow",
+          "scale": 4,
+          "rot": 60
+        }
+      ]
+    },
+    {
+      "cell": [
+        6,
+        6
+      ],
+      "parts": [
+        {
+          "model": "medieval/bucket_water",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "cell": [
+        5,
+        8
+      ],
+      "parts": [
+        {
+          "model": "town/lantern.glb",
+          "scale": 1.6
+        }
+      ],
+      "light": [
+        0,
+        2.2,
+        0
+      ]
+    },
+    {
+      "cell": [
+        12,
+        8
+      ],
+      "parts": [
+        {
+          "model": "town/lantern.glb",
+          "scale": 1.6
+        }
+      ],
+      "light": [
+        0,
+        2.2,
+        0
+      ]
+    },
+    {
+      "cell": [
+        9,
+        10
+      ],
+      "parts": [
+        {
+          "model": "town/lantern.glb",
+          "scale": 1.6
+        }
+      ],
+      "light": [
+        0,
+        2.2,
+        0
+      ]
+    },
+    {
+      "cell": [
+        1,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_2_A_Color1",
+          "rot": 20
+        }
+      ]
+    },
+    {
+      "cell": [
+        15,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_1_B_Color1",
+          "rot": 80
+        }
+      ]
+    },
+    {
+      "cell": [
+        2,
+        11
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_4_B_Color1"
+        }
+      ]
+    },
+    {
+      "cell": [
+        5,
+        13
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_3_C_Color1",
+          "rot": 140
+        }
+      ]
+    },
+    {
+      "cell": [
+        15,
+        7
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_2_C_Color1",
+          "rot": 200
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        12
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_2_A_Color1",
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        7,
+        12
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_3_A_Color1",
+          "scale": 1.1
+        }
+      ]
+    }
+  ],
+  "hero": [
+    6,
+    9
+  ],
+  "border": {
+    "depth": 7,
+    "spacing": 2.6,
+    "fill": 0.8,
+    "parts": [
+      {
+        "model": "forest/Tree_1_A_Color1"
+      },
+      {
+        "model": "forest/Tree_1_B_Color1"
+      },
+      {
+        "model": "forest/Tree_1_C_Color1"
+      },
+      {
+        "model": "forest/Tree_2_A_Color1"
+      },
+      {
+        "model": "forest/Tree_2_B_Color1"
+      },
+      {
+        "model": "forest/Tree_2_C_Color1"
+      },
+      {
+        "model": "forest/Tree_2_D_Color1"
+      },
+      {
+        "model": "forest/Tree_3_A_Color1"
+      },
+      {
+        "model": "forest/Tree_3_B_Color1"
+      },
+      {
+        "model": "forest/Tree_4_A_Color1"
+      },
+      {
+        "model": "forest/Tree_4_B_Color1"
+      },
+      {
+        "model": "forest/Tree_4_C_Color1"
+      },
+      {
+        "model": "forest/Tree_Bare_1_A_Color1"
+      },
+      {
+        "model": "forest/Bush_2_A_Color1",
+        "scale": 2
+      },
+      {
+        "model": "forest/Bush_2_B_Color1",
+        "scale": 2
+      },
+      {
+        "model": "forest/Bush_3_A_Color1",
+        "scale": 1.1
+      },
+      {
+        "model": "forest/Bush_4_A_Color1",
+        "scale": 2
+      },
+      {
+        "model": "forest/Rock_1_A_Color1",
+        "scale": 2.5
+      },
+      {
+        "model": "forest/Rock_3_B_Color1",
+        "scale": 2
+      }
+    ],
+    "lowDepth": 6,
+    "low": [
+      {
+        "model": "forest/Bush_1_A_Color1",
+        "scale": 4
+      },
+      {
+        "model": "forest/Bush_2_A_Color1",
+        "scale": 2
+      },
+      {
+        "model": "forest/Bush_4_A_Color1",
+        "scale": 2
+      },
+      {
+        "model": "forest/Bush_4_B_Color1",
+        "scale": 2
+      },
+      {
+        "model": "forest/Rock_1_A_Color1",
+        "scale": 2.5
+      },
+      {
+        "model": "forest/Rock_1_C_Color1",
+        "scale": 2.5
+      },
+      {
+        "model": "forest/Grass_1_A_Color1",
+        "scale": 2
+      },
+      {
+        "model": "forest/Grass_2_B_Color1",
+        "scale": 2
+      },
+      {
+        "model": "forest/Grass_1_C_Color1",
+        "scale": 2
+      }
+    ]
+  }
+}

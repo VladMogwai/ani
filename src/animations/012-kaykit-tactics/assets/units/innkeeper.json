@@ -1,0 +1,26 @@
+{
+  "frame": 128,
+  "feet": 0.2,
+  "anims": {
+    "idle": {
+      "frames": 26,
+      "fps": 12,
+      "loop": true
+    },
+    "walk": {
+      "frames": 19,
+      "fps": 12,
+      "loop": true
+    },
+    "wave": {
+      "frames": 26,
+      "fps": 12,
+      "loop": false
+    },
+    "cheer": {
+      "frames": 20,
+      "fps": 12,
+      "loop": false
+    }
+  }
+}

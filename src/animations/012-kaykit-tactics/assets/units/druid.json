@@ -1,0 +1,36 @@
+{
+  "frame": 128,
+  "feet": 0.2,
+  "anims": {
+    "idle": {
+      "frames": 26,
+      "fps": 12,
+      "loop": true
+    },
+    "walk": {
+      "frames": 13,
+      "fps": 12,
+      "loop": true
+    },
+    "cast": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    },
+    "heal": {
+      "frames": 26,
+      "fps": 12,
+      "loop": false
+    },
+    "hurt": {
+      "frames": 9,
+      "fps": 12,
+      "loop": false
+    },
+    "die": {
+      "frames": 32,
+      "fps": 12,
+      "loop": false
+    }
+  }
+}
