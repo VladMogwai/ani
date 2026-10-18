@@ -8,6 +8,8 @@ Status: draft
 A hand-editable pixel-art dungeon drawn in Aseprite (terraced cliffs, stone slabs, dirt, grass, rubble,
 a flooded pit with a mossy block, three wall torches). The torch light flickers. The player's mage (gold ring)
 and the enemy Dark Knight (red ring) stand on floor cells, play their idle loops and face each other.
+Every 30 s (first time 3 s after load) the mage casts a fireball at the knight: cast animation, the orb leaves her
+hand on frame 15, flies along a shallow arc with a spark trail, bursts on the knight, who plays his hurt animation.
 Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery's dark panel on the colour backdrop
 (`src/shared/ScreenFrame.tsx`), the canvas is transparent so the panel texture shows around the picture.
 
@@ -24,7 +26,9 @@ Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery'
   nearest sampling.
 - Characters: 128 px frames, one row per screen direction clockwise from east (E, SE, S, SW, W, NW, N, NE),
   drawn 1:1 with the picture. Knight: licensed sheet in `licensed/` (gitignored). Mage: CC0 sheets packed by Aseprite.
-- CONFIG: light flicker, hover colour, ring and foot shadow sizes, character sheets (frames, fps, feet), units.
+- Units have named animations (`CONFIG.characters[*].anims`: idle, cast, hurt; `loop` or one-shot) and return to idle
+  after a one-shot. The fireball is Graphics with additive blending in an `fx` container between units and light.
+- CONFIG: fireball timing/speed/arc/colours, light flicker, hover colour, ring and foot shadow sizes, character sheets (frames, fps, feet), units.
 
 ## Plan
 1. Diorama (this version).
@@ -53,3 +57,4 @@ Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery'
   skulls and bones; prop cells are listed in `PROPS` (level.ts) and are not walkable
 - 2026-10-18: new map: tall wall only as a one-cell rim at the back and left, the rest are walkable terraces
   (6 and 4) linked by one-level stairs; torches and chains only on visible wall faces (the script asserts it)
+- 2026-10-18: the mage throws a fireball at the knight every 30 s; knight hurt animation on impact
