@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Paid/licensed asset packs that must not be redistributed (see each animation NOTES.md)
+src/animations/*/licensed/
