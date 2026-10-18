@@ -1,20 +1,36 @@
 {
-  "name": "Village at the forest edge",
+  "name": "Village",
   "floor": [
-    "................",
-    "................",
-    "................",
-    ".......,........",
-    ".......,........",
-    ".......,........",
-    ".......,........",
-    ".......,,,,.....",
-    ".......,..,.....",
-    ",,,,,,,,..,,,,,,",
-    "..........,.....",
-    "..........,.....",
-    "..........,.....",
-    "..........,....."
+    "....................................",
+    "....................................",
+    "....................................",
+    "....................................",
+    "....................................",
+    "..............,.....................",
+    "..............,.....................",
+    "..............,.....................",
+    "..............,.....,,..............",
+    "......,,......,....,,,..............",
+    ".........,,,,,,,,,,,,...............",
+    ".........,,,,,,,,,,,,....,,...,,....",
+    ".........,,,,,,,,,,,,.,..,,...,,....",
+    ".........,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+    ".........,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+    ".........,,,,,,,,,,,,,..............",
+    "........,,,,,,,,,,,,,...............",
+    ".........,,,,,,,,,,,,...............",
+    "..........,,,,,.....................",
+    "...........,,,......................",
+    "...........,,,......................",
+    ".........,,,,,......................",
+    ".........,,,,,......................",
+    "...........,,,......................",
+    "...........,,,......................",
+    "...........,,,......................",
+    ".........,,,,,......................",
+    ".........,,,,,......................",
+    "...........,,,......................",
+    "...........,,,......................"
   ],
   "floorPieces": {
     ".": [],
@@ -32,118 +48,664 @@
   "scenery": [
     {
       "at": [
-        3,
-        3
-      ],
-      "parts": [
-        {
-          "model": "forest/Grass_1_A_Color1",
-          "scale": 2,
-          "rot": 0
-        }
-      ]
-    },
-    {
-      "at": [
-        9,
-        2
-      ],
-      "parts": [
-        {
-          "model": "forest/Grass_2_B_Color1",
-          "scale": 2,
-          "rot": 40
-        }
-      ]
-    },
-    {
-      "at": [
-        27,
-        5
-      ],
-      "parts": [
-        {
-          "model": "forest/Grass_1_C_Color1",
-          "scale": 2,
-          "rot": 80
-        }
-      ]
-    },
-    {
-      "at": [
-        5,
-        25
-      ],
-      "parts": [
-        {
-          "model": "forest/Grass_2_D_Color1",
-          "scale": 2,
-          "rot": 120
-        }
-      ]
-    },
-    {
-      "at": [
-        24,
-        25
-      ],
-      "parts": [
-        {
-          "model": "forest/Grass_1_A_Color1",
-          "scale": 2,
-          "rot": 160
-        }
-      ]
-    },
-    {
-      "at": [
-        29,
-        15
-      ],
-      "parts": [
-        {
-          "model": "forest/Grass_2_B_Color1",
-          "scale": 2,
-          "rot": 200
-        }
-      ]
-    },
-    {
-      "at": [
-        2,
-        13
-      ],
-      "parts": [
-        {
-          "model": "forest/Grass_1_C_Color1",
-          "scale": 2,
-          "rot": 240
-        }
-      ]
-    },
-    {
-      "at": [
         17,
-        3
+        6.19
       ],
       "parts": [
         {
           "model": "forest/Grass_2_D_Color1",
-          "scale": 2,
-          "rot": 280
+          "rot": 80,
+          "scale": 3
         }
       ]
     },
     {
       "at": [
-        13,
-        23
+        6.49,
+        1.19
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        56.14,
+        49.61
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        59.68,
+        48.4
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 100,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        52.7,
+        51.28
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        48.36,
+        30.36
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 300,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        20.16,
+        56.67
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        41.21,
+        52.94
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 260,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        43.12,
+        25.86
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        18.7,
+        47.84
       ],
       "parts": [
         {
           "model": "forest/Grass_1_A_Color1",
-          "scale": 2,
-          "rot": 320
+          "rot": 280,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        45.1,
+        16.83
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 80,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        71.8,
+        11.73
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 280,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        53.78,
+        19.24
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 60,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        60.44,
+        42.49
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 60,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        23.84,
+        10.65
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 20,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        25.71,
+        4.96
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        23.24,
+        19.3
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 40,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        21.13,
+        11.48
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 80,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        11.44,
+        34.39
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 280,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        12.21,
+        47.02
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 60,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        31.63,
+        12.43
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 20,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        4.48,
+        44.23
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        35.33,
+        14.94
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 320,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        21.09,
+        59.81
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        17.41,
+        24.64
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 260,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        31.93,
+        38.85
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 300,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        13.52,
+        2.21
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 320,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        14.98,
+        13.89
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        3.69,
+        55.68
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 20,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        35.59,
+        5.57
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        64.85,
+        18.9
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 160,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        35.74,
+        51.52
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 20,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        55.21,
+        16.17
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 280,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        40.98,
+        44.79
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        15.21,
+        9.4
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        58.31,
+        46.98
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        11.66,
+        36.5
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        5.69,
+        41.73
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        62.26,
+        36.49
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 220,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        5.74,
+        52.74
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 220,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        59.58,
+        5.11
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        56.69,
+        18.67
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        6.85,
+        6.87
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 260,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        61.76,
+        46.6
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        8.51,
+        33.5
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 100,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        50.88,
+        19.59
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        70.11,
+        0.29
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        8.71,
+        6.65
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 320,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        17.67,
+        50.85
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 100,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        70.98,
+        37.6
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        65.62,
+        18.34
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 240,
+          "scale": 3
         }
       ]
     }
@@ -151,309 +713,519 @@
   "props": [
     {
       "cell": [
-        4,
-        3
-      ],
-      "size": [
-        3,
-        3
+        12,
+        0
       ],
       "parts": [
         {
-          "model": "medieval/building_tavern_red",
-          "scale": 5,
-          "rot": 90
+          "model": "medieval/building_church_red",
+          "rot": 0,
+          "scale": 9
         }
+      ],
+      "size": [
+        5,
+        5
       ]
     },
     {
       "cell": [
-        1,
+        5,
+        4
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_home_B_red",
+          "rot": 0,
+          "scale": 9
+        }
+      ],
+      "size": [
+        4,
         5
+      ]
+    },
+    {
+      "cell": [
+        19,
+        4
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_home_A_yellow",
+          "rot": 0,
+          "scale": 9
+        }
+      ],
+      "size": [
+        4,
+        4
+      ]
+    },
+    {
+      "cell": [
+        3,
+        19
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_blacksmith_red",
+          "rot": 90,
+          "scale": 9
+        }
+      ],
+      "size": [
+        6,
+        6
+      ]
+    },
+    {
+      "cell": [
+        5,
+        25
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_home_A_red",
+          "rot": 90,
+          "scale": 9
+        }
+      ],
+      "size": [
+        4,
+        4
+      ]
+    },
+    {
+      "cell": [
+        24,
+        6
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_home_B_blue",
+          "rot": 0,
+          "scale": 9
+        }
+      ],
+      "size": [
+        4,
+        5
+      ]
+    },
+    {
+      "cell": [
+        29,
+        7
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_home_A_red",
+          "rot": 0,
+          "scale": 9
+        }
+      ],
+      "size": [
+        4,
+        4
+      ]
+    },
+    {
+      "cell": [
+        30,
+        0
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_windmill_red",
+          "rot": 0,
+          "scale": 9
+        }
+      ],
+      "size": [
+        5,
+        4
+      ]
+    },
+    {
+      "cell": [
+        23,
+        17
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_grain",
+          "rot": 0,
+          "scale": 5
+        }
+      ],
+      "size": [
+        5,
+        5
+      ]
+    },
+    {
+      "cell": [
+        29,
+        17
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_grain",
+          "rot": 0,
+          "scale": 5
+        }
+      ],
+      "size": [
+        5,
+        5
+      ]
+    },
+    {
+      "cell": [
+        23,
+        23
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_dirt",
+          "rot": 0,
+          "scale": 5
+        }
+      ],
+      "size": [
+        4,
+        5
+      ]
+    },
+    {
+      "cell": [
+        29,
+        23
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_grain",
+          "rot": 0,
+          "scale": 5
+        }
+      ],
+      "size": [
+        5,
+        5
+      ]
+    },
+    {
+      "cell": [
+        14,
+        13
+      ],
+      "parts": [
+        {
+          "model": "medieval/building_well_blue",
+          "rot": 0,
+          "scale": 5
+        }
       ],
       "size": [
         2,
         2
+      ]
+    },
+    {
+      "cell": [
+        18,
+        11
       ],
       "parts": [
         {
-          "model": "medieval/building_home_A_blue",
-          "scale": 5,
-          "rot": 0
+          "model": "town/cart.glb",
+          "rot": 30,
+          "scale": 3
         }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        19,
+        16
+      ],
+      "parts": [
+        {
+          "model": "town/stall-red.glb",
+          "rot": 0,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        9,
+        15
+      ],
+      "parts": [
+        {
+          "model": "town/stall-green.glb",
+          "rot": 90,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
       ]
     },
     {
       "cell": [
         10,
-        2
-      ],
-      "size": [
-        3,
-        3
-      ],
-      "parts": [
-        {
-          "model": "medieval/building_blacksmith_red",
-          "scale": 5,
-          "rot": 0
-        }
-      ]
-    },
-    {
-      "cell": [
-        13,
-        5
-      ],
-      "size": [
-        2,
-        2
-      ],
-      "parts": [
-        {
-          "model": "medieval/building_home_B_red",
-          "scale": 5,
-          "rot": 180
-        }
-      ]
-    },
-    {
-      "cell": [
-        8,
-        5
-      ],
-      "size": [
-        2,
-        2
-      ],
-      "parts": [
-        {
-          "model": "medieval/building_well_blue",
-          "scale": 3.2
-        }
-      ]
-    },
-    {
-      "cell": [
-        12,
         11
       ],
-      "size": [
-        3,
-        3
+      "parts": [
+        {
+          "model": "medieval/crate_A_small",
+          "rot": 15,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        20,
+        10
       ],
       "parts": [
         {
-          "model": "medieval/building_grain",
+          "model": "medieval/crate_B_big",
+          "rot": 40,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        4,
+        9
+      ],
+      "parts": [
+        {
+          "model": "medieval/barrel",
+          "rot": 0,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        9,
+        8
+      ],
+      "parts": [
+        {
+          "model": "medieval/barrel",
+          "rot": 50,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        9,
+        6
+      ],
+      "parts": [
+        {
+          "model": "town/stall-bench.glb",
+          "rot": 90,
           "scale": 3
         }
       ]
     },
     {
       "cell": [
-        11,
-        11
-      ],
-      "parts": [
-        {
-          "model": "town/fence.glb",
-          "scale": 2,
-          "offset": [
-            0.9,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "cell": [
-        11,
-        12
-      ],
-      "parts": [
-        {
-          "model": "town/fence-gate.glb",
-          "scale": 2,
-          "offset": [
-            0.9,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "cell": [
-        11,
-        13
-      ],
-      "parts": [
-        {
-          "model": "town/fence.glb",
-          "scale": 2,
-          "offset": [
-            0.9,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "cell": [
-        8,
-        3
-      ],
-      "parts": [
-        {
-          "model": "town/cart.glb",
-          "scale": 2.2,
-          "rot": 30
-        }
-      ]
-    },
-    {
-      "cell": [
-        3,
-        4
-      ],
-      "parts": [
-        {
-          "model": "medieval/barrel",
-          "scale": 4
-        },
-        {
-          "model": "medieval/sack",
-          "scale": 4,
-          "offset": [
-            0.5,
-            0,
-            0.5
-          ]
-        }
-      ]
-    },
-    {
-      "cell": [
-        13,
-        3
+        9,
+        20
       ],
       "parts": [
         {
           "model": "medieval/weaponrack",
-          "scale": 4,
-          "rot": -90
+          "rot": 90,
+          "scale": 6
         }
       ]
     },
     {
       "cell": [
-        9,
-        1
+        1,
+        24
       ],
       "parts": [
-        {
-          "model": "medieval/crate_A_big",
-          "scale": 4
-        },
         {
           "model": "medieval/resource_lumber",
-          "scale": 3,
-          "offset": [
-            0.4,
-            0,
-            0.6
-          ]
+          "rot": 20,
+          "scale": 6
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        22,
+        16
+      ],
+      "parts": [
+        {
+          "model": "medieval/sack",
+          "rot": 40,
+          "scale": 6
         }
       ]
     },
     {
       "cell": [
-        10,
-        6
+        34,
+        16
       ],
       "parts": [
         {
-          "model": "town/stall-red.glb",
-          "scale": 2.4,
-          "rot": 180
+          "model": "medieval/wheelbarrow",
+          "rot": 200,
+          "scale": 6
+        }
+      ],
+      "size": [
+        1,
+        2
+      ]
+    },
+    {
+      "cell": [
+        15,
+        12
+      ],
+      "parts": [
+        {
+          "model": "medieval/bucket_water",
+          "rot": 0,
+          "scale": 6
         }
       ]
     },
     {
       "cell": [
         14,
-        10
-      ],
-      "parts": [
-        {
-          "model": "medieval/wheelbarrow",
-          "scale": 4,
-          "rot": 60
-        }
-      ]
-    },
-    {
-      "cell": [
-        6,
-        6
-      ],
-      "parts": [
-        {
-          "model": "medieval/bucket_water",
-          "scale": 4
-        }
-      ]
-    },
-    {
-      "cell": [
-        5,
-        8
+        19
       ],
       "parts": [
         {
           "model": "town/lantern.glb",
-          "scale": 1.6
+          "rot": 0,
+          "scale": 2
         }
       ],
       "light": [
         0,
-        2.2,
+        2.86,
         0
       ]
     },
     {
       "cell": [
-        12,
-        8
+        21,
+        12
       ],
       "parts": [
         {
           "model": "town/lantern.glb",
-          "scale": 1.6
+          "rot": 0,
+          "scale": 2
         }
       ],
       "light": [
         0,
-        2.2,
+        2.86,
         0
       ]
     },
     {
       "cell": [
-        9,
+        15,
+        8
+      ],
+      "parts": [
+        {
+          "model": "town/lantern.glb",
+          "rot": 0,
+          "scale": 2
+        }
+      ],
+      "light": [
+        0,
+        2.86,
+        0
+      ]
+    },
+    {
+      "cell": [
+        8,
         10
       ],
       "parts": [
         {
           "model": "town/lantern.glb",
-          "scale": 1.6
+          "rot": 0,
+          "scale": 2
         }
       ],
       "light": [
         0,
-        2.2,
+        2.86,
+        0
+      ]
+    },
+    {
+      "cell": [
+        34,
+        12
+      ],
+      "parts": [
+        {
+          "model": "town/lantern.glb",
+          "rot": 0,
+          "scale": 2
+        }
+      ],
+      "light": [
+        0,
+        2.86,
+        0
+      ]
+    },
+    {
+      "cell": [
+        10,
+        28
+      ],
+      "parts": [
+        {
+          "model": "town/lantern.glb",
+          "rot": 0,
+          "scale": 2
+        }
+      ],
+      "light": [
+        0,
+        2.86,
         0
       ]
     },
@@ -465,192 +1237,385 @@
       "parts": [
         {
           "model": "forest/Tree_2_A_Color1",
-          "rot": 20
-        }
-      ]
-    },
-    {
-      "cell": [
-        15,
-        1
-      ],
-      "parts": [
-        {
-          "model": "forest/Tree_1_B_Color1",
-          "rot": 80
-        }
-      ]
-    },
-    {
-      "cell": [
-        2,
-        11
-      ],
-      "parts": [
-        {
-          "model": "forest/Tree_4_B_Color1"
-        }
-      ]
-    },
-    {
-      "cell": [
-        5,
-        13
-      ],
-      "parts": [
-        {
-          "model": "forest/Tree_3_C_Color1",
-          "rot": 140
-        }
-      ]
-    },
-    {
-      "cell": [
-        15,
-        7
-      ],
-      "parts": [
-        {
-          "model": "forest/Tree_2_C_Color1",
-          "rot": 200
+          "rot": 48,
+          "scale": 2.2
         }
       ]
     },
     {
       "cell": [
         0,
+        6
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_1_B_Color1",
+          "rot": 66,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        1,
         12
       ],
       "parts": [
         {
-          "model": "forest/Rock_2_A_Color1",
+          "model": "forest/Tree_4_B_Color1",
+          "rot": 169,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        17
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_3_A_Color1",
+          "rot": 187,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        9,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_2_B_Color1",
+          "rot": 344,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        18,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_Bare_1_A_Color1",
+          "rot": 317,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        23,
+        2
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_1_A_Color1",
+          "rot": 153,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        27,
+        3
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_2_C_Color1",
+          "rot": 312,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        35,
+        6
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_4_A_Color1",
+          "rot": 281,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        3,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_1_C_Color1",
+          "rot": 122,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        28
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 196,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        17,
+        27
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 10,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        35,
+        28
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 251,
           "scale": 6
         }
       ]
     },
     {
       "cell": [
-        7,
-        12
+        20,
+        22
       ],
       "parts": [
         {
-          "model": "forest/Bush_3_A_Color1",
-          "scale": 1.1
+          "model": "forest/Rock_1_A_Color1",
+          "rot": 134,
+          "scale": 3.5
         }
+      ]
+    },
+    {
+      "cell": [
+        16,
+        22
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_B_Color1",
+          "rot": 282,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        0,
+        21
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_C_Color1",
+          "rot": 147,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        34,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_B_Color1",
+          "rot": 142,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        3,
+        15
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_C_Color1",
+          "rot": 264,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        27,
+        28
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_E_Color1",
+          "rot": 187,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
       ]
     }
   ],
   "hero": [
-    6,
-    9
+    12,
+    25
   ],
   "border": {
     "depth": 7,
-    "spacing": 2.6,
+    "spacing": 4.5,
     "fill": 0.8,
     "parts": [
       {
-        "model": "forest/Tree_1_A_Color1"
+        "model": "forest/Tree_1_A_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_1_B_Color1"
+        "model": "forest/Tree_1_B_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_1_C_Color1"
+        "model": "forest/Tree_1_C_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_2_A_Color1"
+        "model": "forest/Tree_2_A_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_2_B_Color1"
+        "model": "forest/Tree_2_B_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_2_C_Color1"
+        "model": "forest/Tree_2_C_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_2_D_Color1"
+        "model": "forest/Tree_2_D_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_3_A_Color1"
+        "model": "forest/Tree_3_A_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_3_B_Color1"
+        "model": "forest/Tree_3_B_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_4_A_Color1"
+        "model": "forest/Tree_4_A_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_4_B_Color1"
+        "model": "forest/Tree_4_B_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_4_C_Color1"
+        "model": "forest/Tree_4_C_Color1",
+        "scale": 2.2
       },
       {
-        "model": "forest/Tree_Bare_1_A_Color1"
+        "model": "forest/Tree_Bare_1_A_Color1",
+        "scale": 2.2
       },
       {
         "model": "forest/Bush_2_A_Color1",
-        "scale": 2
+        "scale": 3
       },
       {
         "model": "forest/Bush_2_B_Color1",
-        "scale": 2
+        "scale": 3
       },
       {
         "model": "forest/Bush_3_A_Color1",
-        "scale": 1.1
+        "scale": 1.6
       },
       {
         "model": "forest/Bush_4_A_Color1",
-        "scale": 2
+        "scale": 3
       },
       {
         "model": "forest/Rock_1_A_Color1",
-        "scale": 2.5
+        "scale": 3.5
       },
       {
         "model": "forest/Rock_3_B_Color1",
-        "scale": 2
+        "scale": 3.5
       }
     ],
-    "lowDepth": 6,
+    "lowDepth": 40,
     "low": [
       {
         "model": "forest/Bush_1_A_Color1",
-        "scale": 4
+        "scale": 6
       },
       {
         "model": "forest/Bush_2_A_Color1",
-        "scale": 2
+        "scale": 3
       },
       {
         "model": "forest/Bush_4_A_Color1",
-        "scale": 2
+        "scale": 3
       },
       {
         "model": "forest/Bush_4_B_Color1",
-        "scale": 2
+        "scale": 3
       },
       {
         "model": "forest/Rock_1_A_Color1",
-        "scale": 2.5
+        "scale": 3.5
       },
       {
         "model": "forest/Rock_1_C_Color1",
-        "scale": 2.5
+        "scale": 3.5
       },
       {
         "model": "forest/Grass_1_A_Color1",
-        "scale": 2
+        "scale": 3
       },
       {
         "model": "forest/Grass_2_B_Color1",
-        "scale": 2
+        "scale": 3
       },
       {
         "model": "forest/Grass_1_C_Color1",
-        "scale": 2
+        "scale": 3
       }
     ]
   }

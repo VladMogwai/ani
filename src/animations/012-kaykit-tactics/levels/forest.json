@@ -1,0 +1,2858 @@
+{
+  "name": "Forest road",
+  "floor": [
+    "..............................",
+    "...................,..........",
+    "................,,,,,,,.......",
+    "...............,,,,,,,,,......",
+    ",,,,,,,........,,,,,,,,,......",
+    "......,,,......,,,,,,,,,......",
+    ".......,,.....,,,,,,,,,,,.....",
+    "........,,.....,,,,,,,,,......",
+    ".........,.....,,,,,,,,,......",
+    ".........,,....,,,,,,,,,......",
+    "..........,,,...,,,,,,,.......",
+    "...........,,...,..,..........",
+    "............,,,,,,............",
+    ".................,,,..........",
+    "...................,,.........",
+    "....................,,,.......",
+    ".....................,........",
+    ".....................,........",
+    ".....................,,.......",
+    ".....................,........",
+    ".....................,........",
+    ".....................,,.......",
+    ".....................,,.......",
+    "......................,,......"
+  ],
+  "floorPieces": {
+    ".": [],
+    ",": [
+      "dungeon/floor_dirt_small_A",
+      "dungeon/floor_dirt_small_B",
+      "dungeon/floor_dirt_small_C",
+      "dungeon/floor_dirt_small_D"
+    ]
+  },
+  "floorTint": {
+    ",": "#c49a68"
+  },
+  "ground": "hex-grass",
+  "scenery": [
+    {
+      "at": [
+        55.63,
+        35.39
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 220,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        17,
+        25.02
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        29.43,
+        38.63
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 80,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        50.24,
+        2.09
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 20,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        36.46,
+        30.55
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        37.26,
+        29.51
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 100,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        33.93,
+        2
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 220,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        7.38,
+        11.86
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        50.55,
+        32.27
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        18.37,
+        20.16
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        1.4,
+        29.71
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        26.81,
+        29.69
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 300,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        24.02,
+        3.22
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 220,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        5.5,
+        21.21
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 80,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        4.93,
+        35.21
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 320,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        53.69,
+        31.33
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 40,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        59.77,
+        35.14
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 80,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        58.9,
+        23.61
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 40,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        49.98,
+        29.3
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        53.79,
+        13.2
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 160,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        30.13,
+        44.16
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 320,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        14.24,
+        17.87
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        9.67,
+        44.95
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 100,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        2.91,
+        41.2
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 160,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        59.58,
+        30.23
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 160,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        22.54,
+        17.71
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        44.62,
+        2.32
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        17.46,
+        30.03
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 20,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        7.92,
+        10.91
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 20,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        0.16,
+        17.04
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        13.46,
+        28.01
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 220,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        37.44,
+        22.8
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        8.68,
+        31.94
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 160,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        58.03,
+        2.69
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 320,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        44.01,
+        11.93
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        54.7,
+        5.04
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 260,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        11.97,
+        29.19
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 320,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        53.36,
+        37.58
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 260,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        44.71,
+        22.33
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        59.8,
+        12.55
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        53.48,
+        44.41
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 160,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        38.15,
+        32.6
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        5.13,
+        24.36
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        50.5,
+        9.73
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        52.81,
+        15.77
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        28.17,
+        40.31
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 260,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        57.34,
+        11.22
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        37.36,
+        3.73
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 20,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        1.61,
+        5.12
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 80,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        42.04,
+        1.48
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 40,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        44.21,
+        3.16
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        53.48,
+        3.17
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        12.34,
+        5.37
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        28.63,
+        6.37
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        20.19,
+        12.54
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        2.9,
+        36.47
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        37.1,
+        1.49
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 260,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        31.12,
+        4.72
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        33.97,
+        34.29
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 100,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        45.03,
+        2.59
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 60,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        29.49,
+        38.25
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 220,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        57.43,
+        24.73
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        56.3,
+        11.11
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_A_Color1",
+          "rot": 40,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        29.42,
+        47.57
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 220,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        5.71,
+        44.57
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        22.32,
+        14.55
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        58.94,
+        30.28
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 340,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        35.65,
+        33.08
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 200,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        31.3,
+        41.66
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_C_Color1",
+          "rot": 100,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        27.79,
+        33.07
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 80,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        20.04,
+        30.85
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 160,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        18.09,
+        33.75
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        43.39,
+        28.94
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        19.68,
+        9.09
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_B_Color1",
+          "rot": 60,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        11.73,
+        7.25
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        26.1,
+        9.42
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_C_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        53.11,
+        22.27
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_1_D_Color1",
+          "rot": 260,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        41.61,
+        24.02
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_D_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        8.51,
+        28.98
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_A_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "at": [
+        54.48,
+        20.64
+      ],
+      "parts": [
+        {
+          "model": "forest/Grass_2_B_Color1",
+          "rot": 140,
+          "scale": 3
+        }
+      ]
+    }
+  ],
+  "props": [
+    {
+      "cell": [
+        19,
+        6
+      ],
+      "parts": [
+        {
+          "model": "medieval/resource_lumber",
+          "rot": 30,
+          "scale": 3
+        },
+        {
+          "model": "forest/Rock_1_A_Color1",
+          "scale": 1.6,
+          "offset": [
+            0.8,
+            0,
+            0
+          ],
+          "rot": 0
+        },
+        {
+          "model": "forest/Rock_1_C_Color1",
+          "scale": 1.6,
+          "offset": [
+            -0.8,
+            0,
+            0.1
+          ],
+          "rot": 90
+        },
+        {
+          "model": "forest/Rock_1_E_Color1",
+          "scale": 1.6,
+          "offset": [
+            0,
+            0,
+            0.8
+          ],
+          "rot": 180
+        },
+        {
+          "model": "forest/Rock_1_G_Color1",
+          "scale": 1.6,
+          "offset": [
+            0.1,
+            0,
+            -0.8
+          ],
+          "rot": 270
+        }
+      ],
+      "light": [
+        0,
+        0.7,
+        0
+      ]
+    },
+    {
+      "cell": [
+        16,
+        2
+      ],
+      "parts": [
+        {
+          "model": "medieval/tent",
+          "rot": 40,
+          "scale": 6
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        21,
+        2
+      ],
+      "parts": [
+        {
+          "model": "medieval/tent",
+          "rot": 330,
+          "scale": 6
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        22,
+        6
+      ],
+      "parts": [
+        {
+          "model": "medieval/tent",
+          "rot": 270,
+          "scale": 6
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        18,
+        2
+      ],
+      "parts": [
+        {
+          "model": "medieval/crate_A_big",
+          "rot": 10,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        22,
+        9
+      ],
+      "parts": [
+        {
+          "model": "medieval/crate_B_small",
+          "rot": 25,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        15,
+        8
+      ],
+      "parts": [
+        {
+          "model": "medieval/barrel",
+          "rot": 0,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        23,
+        9
+      ],
+      "parts": [
+        {
+          "model": "medieval/sack",
+          "rot": 60,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        14,
+        5
+      ],
+      "parts": [
+        {
+          "model": "medieval/weaponrack",
+          "rot": 90,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        17,
+        6
+      ],
+      "parts": [
+        {
+          "model": "medieval/resource_lumber",
+          "rot": 100,
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "cell": [
+        8,
+        12
+      ],
+      "parts": [
+        {
+          "model": "town/cart.glb",
+          "rot": 200,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_C_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        2,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_4_A_Color1",
+          "rot": 45,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        3,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 240,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        4,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 195,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        5,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 30,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        7,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_4_C_Color1",
+          "rot": 45,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_4_C_Color1",
+          "rot": 180,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        12,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 15,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        21,
+        0
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 255,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        2,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_D_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        6,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_H_Color1",
+          "rot": 75,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        9,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 255,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        12,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 285,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        25,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 225,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        26,
+        1
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_D_Color1",
+          "rot": 60,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        9,
+        2
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_C_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        7,
+        4
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 90,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        25,
+        4
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 255,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        4,
+        5
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 165,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        10,
+        5
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 210,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        24,
+        5
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 105,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        26,
+        5
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 285,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        29,
+        5
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 300,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        6
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        6
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_C_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        29,
+        6
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 345,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        13,
+        7
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 210,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        26,
+        7
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_C_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        2,
+        8
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_1_C_Color1",
+          "rot": 225,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        4,
+        8
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_1_A_Color1",
+          "rot": 150,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        12,
+        8
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 240,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        24,
+        8
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 285,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        1,
+        9
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_D_Color1",
+          "rot": 255,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        4,
+        9
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_H_Color1",
+          "rot": 210,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        4,
+        4
+      ]
+    },
+    {
+      "cell": [
+        24,
+        9
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 75,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        0,
+        10
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 345,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        8,
+        10
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_C_Color1",
+          "rot": 195,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        13,
+        10
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 330,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        23,
+        10
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        26,
+        10
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 30,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        28,
+        10
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 150,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        28,
+        11
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 150,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        24,
+        12
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_D_Color1",
+          "rot": 90,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        3
+      ]
+    },
+    {
+      "cell": [
+        26,
+        12
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 120,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        28,
+        12
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 30,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        13
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_3_A_Color1",
+          "rot": 270,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        1,
+        13
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 135,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        2,
+        13
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 30,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 15,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        1,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 45,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        2,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 255,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        5,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_2_B_Color1",
+          "rot": 0,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        7,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_4_A_Color1",
+          "rot": 255,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        8,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 345,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        10,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 105,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        15,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 315,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        27,
+        14
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 15,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        0,
+        15
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 315,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        7,
+        15
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 225,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        8,
+        15
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 30,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        12,
+        15
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 90,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        13,
+        15
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 60,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        1,
+        16
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_H_Color1",
+          "rot": 150,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        4,
+        4
+      ]
+    },
+    {
+      "cell": [
+        5,
+        16
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_D_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        11,
+        16
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 315,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        12,
+        16
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_C_Color1",
+          "rot": 105,
+          "scale": 3
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        15,
+        16
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 195,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        9,
+        17
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_C_Color1",
+          "rot": 150,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        15,
+        17
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        16,
+        17
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 225,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        17,
+        17
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 60,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        27,
+        17
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 195,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        12,
+        18
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 300,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        26,
+        18
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 255,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        29,
+        18
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 225,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        13,
+        19
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_D_Color1",
+          "rot": 45,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        16,
+        19
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_2_A_Color1",
+          "rot": 225,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        17,
+        19
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 285,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Tree_4_A_Color1",
+          "rot": 345,
+          "scale": 2.2
+        }
+      ]
+    },
+    {
+      "cell": [
+        2,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_H_Color1",
+          "rot": 165,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        5,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        6,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_H_Color1",
+          "rot": 45,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        4,
+        4
+      ]
+    },
+    {
+      "cell": [
+        10,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 90,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 90,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        12,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 0,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        17,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 345,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        18,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 165,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        22,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_2_A_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        23,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 180,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        27,
+        20
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_3_B_Color1",
+          "rot": 75,
+          "scale": 3.5
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        5,
+        21
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 180,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        24,
+        21
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_D_Color1",
+          "rot": 135,
+          "scale": 3
+        }
+      ],
+      "size": [
+        3,
+        3
+      ]
+    },
+    {
+      "cell": [
+        0,
+        22
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 60,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        5,
+        22
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 300,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        13,
+        22
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 285,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        27,
+        22
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 150,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        28,
+        22
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 120,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        29,
+        22
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_4_A_Color1",
+          "rot": 0,
+          "scale": 3
+        }
+      ]
+    },
+    {
+      "cell": [
+        4,
+        23
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 225,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "cell": [
+        13,
+        23
+      ],
+      "parts": [
+        {
+          "model": "forest/Rock_1_B_Color1",
+          "rot": 195,
+          "scale": 3.5
+        }
+      ]
+    },
+    {
+      "cell": [
+        27,
+        23
+      ],
+      "parts": [
+        {
+          "model": "forest/Bush_1_A_Color1",
+          "rot": 255,
+          "scale": 6
+        }
+      ]
+    }
+  ],
+  "hero": [
+    0,
+    4
+  ],
+  "border": {
+    "depth": 7,
+    "spacing": 4,
+    "fill": 0.95,
+    "parts": [
+      {
+        "model": "forest/Tree_1_A_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_1_B_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_1_C_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_2_A_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_2_B_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_2_C_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_2_D_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_3_A_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_3_B_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_4_A_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_4_B_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_4_C_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Tree_Bare_1_A_Color1",
+        "scale": 2.2
+      },
+      {
+        "model": "forest/Bush_2_A_Color1",
+        "scale": 3
+      },
+      {
+        "model": "forest/Bush_2_B_Color1",
+        "scale": 3
+      },
+      {
+        "model": "forest/Bush_3_A_Color1",
+        "scale": 1.6
+      },
+      {
+        "model": "forest/Bush_4_A_Color1",
+        "scale": 3
+      },
+      {
+        "model": "forest/Rock_1_A_Color1",
+        "scale": 3.5
+      },
+      {
+        "model": "forest/Rock_3_B_Color1",
+        "scale": 3.5
+      }
+    ],
+    "lowDepth": 40,
+    "low": [
+      {
+        "model": "forest/Bush_1_A_Color1",
+        "scale": 6
+      },
+      {
+        "model": "forest/Bush_2_A_Color1",
+        "scale": 3
+      },
+      {
+        "model": "forest/Bush_4_A_Color1",
+        "scale": 3
+      },
+      {
+        "model": "forest/Bush_4_B_Color1",
+        "scale": 3
+      },
+      {
+        "model": "forest/Rock_1_A_Color1",
+        "scale": 3.5
+      },
+      {
+        "model": "forest/Rock_1_C_Color1",
+        "scale": 3.5
+      },
+      {
+        "model": "forest/Grass_1_A_Color1",
+        "scale": 3
+      },
+      {
+        "model": "forest/Grass_2_B_Color1",
+        "scale": 3
+      },
+      {
+        "model": "forest/Grass_1_C_Color1",
+        "scale": 3
+      }
+    ]
+  }
+}

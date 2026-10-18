@@ -9,13 +9,15 @@ import { BAKE, SOURCE } from './units'
 
 // Level baker: builds a location of level.ts from the source models (buildLevel, also used by the editor) and renders
 // into assets/levels/<id>/
-// - base.webp: ground, floor, walls, decorations and scenery behind or on the map, with every prop's shadow
-// - front.webp: scenery in front of the map (east and south of it), same frame, drawn above the units
+// - base-<col>-<row>.webp: tiles of the ground, floor, walls, decorations and scenery behind or on the map, with every
+//   prop's shadow
+// - front-<col>-<row>.webp: scenery in front of the map (east and south of it), same tiles, drawn above the units
 // - prop-<i>.webp: every prop alone, cropped, with the picture point of its footprint centre (ax, ay)
 // - level.json: picture size, where the world origin lands, props and flame positions (written last)
 
 export const levelOut = (id: string) => `src/animations/012-kaykit-tactics/assets/levels/${id}`
 const PAD = 8 // px around pictures without a border
+const TILE = 1024 // logical px per side of a base / front tile (stored at BAKE.resolution)
 const A = Math.SQRT1_2
 const SIN = Math.sin(MathUtils.degToRad(BAKE.elevation))
 
@@ -206,16 +208,28 @@ export async function bakeLevel(id: string, level: Level, log: (s: string) => vo
     return renderer.domElement
   }
 
-  // base picture: the world origin is the camera target, so (ox, oy) is where it lands; front scenery and props only
-  // cast their shadows here
+  // big pictures are cut into tiles: browsers cap canvas and texture sizes (phones load textures up to 4096 px);
+  // the world origin is the camera target, so (ox, oy) is where it lands
   const origin = new Vector3()
-  const camera = orthoAt(origin, f.left, f.left + f.width / BAKE.ppu, f.top, f.top - f.height / BAKE.ppu)
+  const tiles = { size: TILE, cols: Math.ceil(f.width / TILE), rows: Math.ceil(f.height / TILE) }
+  const shootTiles = async (name: string) => {
+    for (let r = 0; r < tiles.rows; r++)
+      for (let c = 0; c < tiles.cols; c++) {
+        const w = Math.min(TILE, f.width - c * TILE)
+        const h = Math.min(TILE, f.height - r * TILE)
+        const left = f.left + (c * TILE) / BAKE.ppu
+        const top = f.top - (r * TILE) / BAKE.ppu
+        const canvas = shot(orthoAt(origin, left, left + w / BAKE.ppu, top, top - h / BAKE.ppu), w, h)
+        if (r === 0 && c === 0) preview(cloneCanvas(canvas))
+        await saveImage(canvas, `${out}/${name}-${c}-${r}.webp`)
+      }
+  }
+
+  // base picture: front scenery and props only cast their shadows here
   ghost(front, true)
   for (const g of props) ghost(g, true)
-  const base = shot(camera, f.width, f.height)
-  await saveImage(base, `${out}/base.webp`)
-  preview(cloneCanvas(base))
-  log(`${id} base: ${f.width}x${f.height}`)
+  await shootTiles('base')
+  log(`${id} base: ${f.width}x${f.height}, ${tiles.cols}x${tiles.rows} tiles`)
   const ox = -f.left * BAKE.ppu
   const oy = f.top * BAKE.ppu
 
@@ -225,7 +239,7 @@ export async function bakeLevel(id: string, level: Level, log: (s: string) => vo
   key.castShadow = false // things drawn alone: no shadows from things that are not there
   const hasFront = front.children.length > 0
   if (hasFront) {
-    await saveImage(shot(camera, f.width, f.height), `${out}/front.webp`)
+    await shootTiles('front')
     log(`front: ${front.children.length} items`)
   }
   front.visible = false
@@ -250,6 +264,7 @@ export async function bakeLevel(id: string, level: Level, log: (s: string) => vo
     height: f.height,
     ox,
     oy,
+    tiles,
     props: pictures,
     front: hasFront,
     lights: lights.map((l) => ({ x: ox + BAKE.ppu * dotRight(l.x, l.y, l.z), y: oy - BAKE.ppu * dotUp(l.x, l.y, l.z) })),

@@ -1,5 +1,6 @@
 import {
-  AmbientLight, DirectionalLight, HemisphereLight, MathUtils, OrthographicCamera, Scene, Vector3, WebGLRenderer,
+  AmbientLight, Color, DirectionalLight, HemisphereLight, MathUtils, Mesh, OrthographicCamera, SRGBColorSpace, Scene, Vector3,
+  WebGLRenderer, type MeshStandardMaterial, type Texture,
 } from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { BAKE } from './units'
@@ -7,8 +8,53 @@ import { BAKE } from './units'
 // Shared by the unit and level bakers: same loader, light, camera direction and file saving, so units and locations
 // match when the scene puts them together.
 
+// the packs' palettes are bright and toy-like; every texture is muted before baking: less saturation, darker,
+// yellow-greens pulled towards a deep green (hues in degrees)
+export const PALETTE = { sat: 0.55, light: 0.85, green: { from: [45, 110], to: 105, pull: 0.6 } }
+
+const muted = new Map<string, Texture>()
+const mute = (tex: Texture, key: string) => {
+  if (!muted.has(key)) {
+    const img = tex.image as CanvasImageSource & { width: number; height: number }
+    const c = document.createElement('canvas')
+    c.width = img.width
+    c.height = img.height
+    const g = c.getContext('2d')!
+    g.drawImage(img, 0, 0)
+    const data = g.getImageData(0, 0, c.width, c.height)
+    const px = data.data
+    const hsl = { h: 0, s: 0, l: 0 }
+    const col = new Color()
+    for (let i = 0; i < px.length; i += 4) {
+      col.setRGB(px[i] / 255, px[i + 1] / 255, px[i + 2] / 255, SRGBColorSpace).getHSL(hsl, SRGBColorSpace)
+      let h = hsl.h * 360
+      const { from, to, pull } = PALETTE.green
+      if (h >= from[0] && h <= from[1]) h += (to - h) * pull
+      col.setHSL(h / 360, hsl.s * PALETTE.sat, hsl.l * PALETTE.light, SRGBColorSpace)
+      const rgb = col.getRGB(new Color(), SRGBColorSpace)
+      px[i] = rgb.r * 255
+      px[i + 1] = rgb.g * 255
+      px[i + 2] = rgb.b * 255
+    }
+    g.putImageData(data, 0, 0)
+    const t = tex.clone()
+    t.image = c
+    t.needsUpdate = true
+    muted.set(key, t)
+  }
+  return muted.get(key)!
+}
+
 const loader = new GLTFLoader()
-export const load = (url: string) => loader.loadAsync(url)
+export const load = async (url: string) => {
+  const gltf = await loader.loadAsync(url)
+  const folder = url.split('/').slice(-2, -1)[0]
+  gltf.scene.traverse((o) => {
+    if (!(o instanceof Mesh)) return
+    for (const m of [o.material].flat() as MeshStandardMaterial[]) if (m.map) m.map = mute(m.map, `${folder}/${m.map.name || url}`)
+  })
+  return gltf
+}
 
 const post = async (path: string, body: Blob | string) => {
   const r = await fetch(`/__save?path=${encodeURIComponent(path)}`, { method: 'POST', body })

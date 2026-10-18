@@ -16,7 +16,7 @@ type Sky = { h: number; color: [number, number, number]; sat: number; glow: numb
 const CONFIG = {
   level: 'village', // default location
   // camera: how many cells fit across the panel (wheel zooms between min and max), how fast it catches up with the hero
-  view: { cells: 11, min: 6, max: 20, follow: 5 },
+  view: { cells: 14, min: 6, max: 24, follow: 5 },
   hero: { unit: 'hero', speed: 3.2 }, // speed in cells per second
   hover: { color: 0xf2d38a, path: 0.16, target: 0.35 },
   shadow: { rx: 20, ry: 10, alpha: 0.35 },
@@ -33,6 +33,10 @@ const CONFIG = {
     { h: 20.5, color: [0.42, 0.5, 0.85], sat: 0.6, glow: 1 },
     { h: 24, color: [0.42, 0.5, 0.85], sat: 0.6, glow: 1 },
   ] as Sky[],
+  indoor: { h: 0, color: [0.62, 0.58, 0.7], sat: 0.8, glow: 1 } as Sky, // crypts and houses: the same at every hour
+  // the look of the world at any hour, applied over the sky: less colour, darker, colder, more contrast (grim, not toy-like)
+  grade: { sat: 0.5, brightness: 0.8, contrast: 1.15, tint: [0.93, 0.97, 1] as [number, number, number] },
+  vignette: 0.55, // darkness at the panel corners
   glow: { color: 0xffa040, radius: 90, alpha: 0.85, flicker: 0.12 },
   clock: { color: 0xf0e6d0, size: 16 },
 }
@@ -49,13 +53,16 @@ const skyAt = (h: number): Sky => {
   return { h, color: [0, 1, 2].map((c) => mix(a.color[c], b.color[c])) as Sky['color'], sat: mix(a.sat, b.sat), glow: mix(a.glow, b.glow) }
 }
 
-// colour matrix: desaturate towards luminance, then multiply by the sky colour
+// colour matrix: desaturate towards luminance, multiply by the sky colour and the grade, then contrast around mid grey
 const skyMatrix = ({ color, sat }: Sky) => {
+  const { grade } = CONFIG
   const w = [0.2126, 0.7152, 0.0722]
+  const s = sat * grade.sat
+  const k = grade.contrast
   const m: number[] = []
   for (let r = 0; r < 3; r++) {
-    for (let c = 0; c < 3; c++) m.push(((1 - sat) * w[c] + (r === c ? sat : 0)) * color[r])
-    m.push(0, 0)
+    for (let c = 0; c < 3; c++) m.push(((1 - s) * w[c] + (r === c ? s : 0)) * color[r] * grade.tint[r] * grade.brightness * k)
+    m.push(0, 0.5 * (1 - k))
   }
   m.push(0, 0, 0, 1, 0)
   return m as ColorMatrixFilter['matrix']
@@ -105,8 +112,21 @@ export default function Location() {
       const graded = new Container()
       const sky = new ColorMatrixFilter()
       graded.filters = [sky]
-      const base = new Sprite(await Assets.load<Texture>(file('base.webp')))
-      base.scale.set(1 / res)
+      // the baked picture comes in tiles (base-<col>-<row>.webp, front-… for scenery in front of the map)
+      const tiled = async (name: string) => {
+        const { size, cols, rows } = pic.tiles
+        const cells = Array.from({ length: cols * rows }, (_, i) => [i % cols, Math.floor(i / cols)])
+        const textures = await Promise.all(cells.map(([col, r]) => Assets.load<Texture>(file(`${name}-${col}-${r}.webp`))))
+        const c = new Container()
+        for (const [i, [col, r]] of cells.entries()) {
+          const s = new Sprite(textures[i])
+          s.scale.set(1 / res)
+          s.position.set(col * size, r * size)
+          c.addChild(s)
+        }
+        return c
+      }
+      const base = await tiled('base')
       const hover = new Graphics()
       const ground = new Container() // shadows under units
       const depth = new Container() // props and units, sorted by zIndex = picture y of their front-most point
@@ -117,11 +137,7 @@ export default function Location() {
       world.addChild(graded, glows)
       app.stage.addChild(world)
 
-      if (pic.front) {
-        const f = new Sprite(await Assets.load<Texture>(file('front.webp')))
-        f.scale.set(1 / res)
-        frontLayer.addChild(f)
-      }
+      if (pic.front) frontLayer.addChild(await tiled('front'))
       for (const [i, p] of pic.props.entries()) {
         const prop = level.props[i]
         const s = new Sprite(await Assets.load<Texture>(file(p.file)))
@@ -276,7 +292,7 @@ export default function Location() {
         time += dt
         gameHours += (dt * 24 * (fast ? CONFIG.time.fast : 1)) / CONFIG.time.dayLength
         const h = gameHours % 24
-        const s = skyAt(h)
+        const s = level.indoor ? CONFIG.indoor : skyAt(h)
         sky.matrix = skyMatrix(s)
         for (const f of flames) {
           const flicker = reduced ? 0 : CONFIG.glow.flicker * (Math.sin(time * 9 + f.seed) * 0.6 + Math.sin(time * 23 + f.seed * 3) * 0.4)
@@ -327,6 +343,7 @@ export default function Location() {
   return (
     <ScreenFrame>
       <div ref={hostRef} style={{ position: 'absolute', inset: 0 }} />
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,${CONFIG.vignette}) 100%)` }} />
     </ScreenFrame>
   )
 }

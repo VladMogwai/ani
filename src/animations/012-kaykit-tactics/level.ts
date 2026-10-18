@@ -31,6 +31,7 @@ export type Level = {
   border?: { depth: number; spacing: number; fill: number; parts: Part[]; low?: Part[]; lowDepth?: number }
   props: Prop[]
   hero: [number, number]
+  indoor?: boolean // no sky: the scene keeps an indoor light at every hour, flames always burn
 }
 
 // levels/<id>.json, written by the editor (?edit)
@@ -69,8 +70,9 @@ export type LevelPicture = {
   height: number
   ox: number
   oy: number
+  tiles: { size: number; cols: number; rows: number } // base-<c>-<r>.webp (and front-…) cover the picture, size in px
   props: { file: string; ax: number; ay: number }[] // in the order of Level.props
-  front: boolean // front.webp: scenery in front of the map, same frame as base.webp, drawn above the units
+  front: boolean // front-<c>-<r>.webp: scenery in front of the map, same tiles as base, drawn above the units
   lights: { x: number; y: number }[] // flames in picture px
 }
 

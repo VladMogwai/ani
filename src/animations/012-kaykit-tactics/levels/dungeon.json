@@ -1,0 +1,719 @@
+{
+  "name": "Crypt under the church",
+  "indoor": true,
+  "floor": [
+    "tttttttttttttttttt",
+    "ttttbttttttddttttt",
+    "tttttttttttddttttt",
+    "tttttttttttddttbtt",
+    "ttbttttttttddttttt",
+    "tttttttttttddttttt",
+    "ttttttttbttddttttt",
+    "tttttttttttbtttttt",
+    "tttttttttttttttttt",
+    "tbtttttttttgtttgtt",
+    "ttttttttttgtttgtbt",
+    "tttbtttttttttgtttg",
+    "tttttttbttttgtttgt",
+    "tttttttttttgtttgtt"
+  ],
+  "floorPieces": {
+    "t": [
+      "dungeon/floor_tile_small"
+    ],
+    "b": [
+      "dungeon/floor_tile_small_broken_A",
+      "dungeon/floor_tile_small_broken_B"
+    ],
+    "d": [
+      "dungeon/floor_tile_small_decorated"
+    ],
+    "g": [
+      "dungeon/floor_tile_grate"
+    ]
+  },
+  "walls": {
+    "north": [
+      "dungeon/wall",
+      "dungeon/wall_cracked",
+      "dungeon/wall",
+      "dungeon/wall_pillar",
+      "dungeon/wall_archedwindow_gated",
+      "dungeon/wall",
+      "dungeon/wall_shelves",
+      "dungeon/wall",
+      "dungeon/wall_cracked"
+    ],
+    "west": [
+      "dungeon/wall_doorway",
+      "dungeon/wall",
+      "dungeon/wall_cracked",
+      "dungeon/wall",
+      "dungeon/wall_shelves",
+      "dungeon/wall",
+      "dungeon/wall"
+    ],
+    "corner": "dungeon/pillar"
+  },
+  "wallDecor": [
+    {
+      "wall": "north",
+      "piece": 1,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    },
+    {
+      "wall": "north",
+      "piece": 5,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    },
+    {
+      "wall": "north",
+      "piece": 8,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    },
+    {
+      "wall": "west",
+      "piece": 1,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    },
+    {
+      "wall": "west",
+      "piece": 5,
+      "model": "dungeon/torch_mounted",
+      "y": 2.2,
+      "light": true
+    },
+    {
+      "wall": "north",
+      "piece": 5,
+      "model": "dungeon/banner_thin_red",
+      "y": 0
+    },
+    {
+      "wall": "north",
+      "piece": 7,
+      "model": "dungeon/banner_thin_red",
+      "y": 0
+    }
+  ],
+  "props": [
+    {
+      "cell": [
+        6,
+        0
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 90
+        }
+      ],
+      "size": [
+        1,
+        2
+      ]
+    },
+    {
+      "cell": [
+        6,
+        4
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 90
+        }
+      ],
+      "size": [
+        1,
+        2
+      ]
+    },
+    {
+      "cell": [
+        6,
+        6
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 90
+        }
+      ],
+      "size": [
+        1,
+        2
+      ]
+    },
+    {
+      "cell": [
+        0,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 0
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        4,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 0
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        6,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 0
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        8,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 0
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        10,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 0
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        14,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 0
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        16,
+        8
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 0
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        10,
+        10
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 90
+        }
+      ],
+      "size": [
+        1,
+        2
+      ]
+    },
+    {
+      "cell": [
+        10,
+        12
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 90
+        }
+      ],
+      "size": [
+        1,
+        2
+      ]
+    },
+    {
+      "cell": [
+        0,
+        6
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrel_large",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        5
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrel_small_stack",
+          "rot": 30
+        }
+      ]
+    },
+    {
+      "cell": [
+        4,
+        5
+      ],
+      "parts": [
+        {
+          "model": "dungeon/torch_lit",
+          "rot": 0,
+          "offset": [
+            0,
+            0.4,
+            0
+          ]
+        }
+      ],
+      "light": [
+        0,
+        1.6,
+        0
+      ]
+    },
+    {
+      "cell": [
+        4,
+        0
+      ],
+      "parts": [
+        {
+          "model": "dungeon/rubble_half",
+          "rot": 200
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        8,
+        2
+      ],
+      "parts": [
+        {
+          "model": "dungeon/pillar_decorated",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        8,
+        5
+      ],
+      "parts": [
+        {
+          "model": "dungeon/pillar_decorated",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        15,
+        2
+      ],
+      "parts": [
+        {
+          "model": "dungeon/pillar_decorated",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        15,
+        5
+      ],
+      "parts": [
+        {
+          "model": "dungeon/pillar_decorated",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        11,
+        1
+      ],
+      "parts": [
+        {
+          "model": "dungeon/table_long_tablecloth_decorated_A",
+          "rot": 90
+        },
+        {
+          "model": "dungeon/candle_triple",
+          "offset": [
+            0,
+            1,
+            0.6
+          ]
+        },
+        {
+          "model": "dungeon/candle_lit",
+          "offset": [
+            0.2,
+            1,
+            -0.7
+          ]
+        }
+      ],
+      "light": [
+        0.1,
+        1.9,
+        0
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        17,
+        0
+      ],
+      "parts": [
+        {
+          "model": "dungeon/chest",
+          "rot": 225
+        }
+      ]
+    },
+    {
+      "cell": [
+        16,
+        6
+      ],
+      "parts": [
+        {
+          "model": "dungeon/sword_shield_broken",
+          "rot": 40
+        }
+      ]
+    },
+    {
+      "cell": [
+        9,
+        7
+      ],
+      "parts": [
+        {
+          "model": "dungeon/candle_melted",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        0,
+        13
+      ],
+      "parts": [
+        {
+          "model": "dungeon/crates_stacked",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        2,
+        12
+      ],
+      "parts": [
+        {
+          "model": "dungeon/box_stacked",
+          "rot": 20
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        0,
+        11
+      ],
+      "parts": [
+        {
+          "model": "dungeon/keg",
+          "rot": 90
+        }
+      ]
+    },
+    {
+      "cell": [
+        5,
+        13
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrel_large_decorated",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        7,
+        9
+      ],
+      "parts": [
+        {
+          "model": "dungeon/shelf_small_candles",
+          "rot": 0
+        }
+      ],
+      "light": [
+        0,
+        1.6,
+        0
+      ]
+    },
+    {
+      "cell": [
+        8,
+        12
+      ],
+      "parts": [
+        {
+          "model": "dungeon/box_large",
+          "rot": 15
+        }
+      ]
+    },
+    {
+      "cell": [
+        4,
+        10
+      ],
+      "parts": [
+        {
+          "model": "dungeon/table_small_decorated_A",
+          "rot": 0
+        }
+      ]
+    },
+    {
+      "cell": [
+        12,
+        13
+      ],
+      "parts": [
+        {
+          "model": "dungeon/bed_floor",
+          "rot": 90
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        14,
+        11
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier",
+          "rot": 90
+        }
+      ],
+      "size": [
+        1,
+        2
+      ]
+    },
+    {
+      "cell": [
+        14,
+        13
+      ],
+      "parts": [
+        {
+          "model": "dungeon/barrier_column",
+          "rot": 0
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        16,
+        13
+      ],
+      "parts": [
+        {
+          "model": "dungeon/bed_floor",
+          "rot": 90
+        }
+      ],
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "cell": [
+        11,
+        10
+      ],
+      "parts": [
+        {
+          "model": "dungeon/rubble_half",
+          "rot": 120
+        }
+      ],
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "cell": [
+        17,
+        9
+      ],
+      "parts": [
+        {
+          "model": "dungeon/trunk_medium_A",
+          "rot": 270
+        }
+      ]
+    },
+    {
+      "cell": [
+        17,
+        11
+      ],
+      "parts": [
+        {
+          "model": "dungeon/chest_gold",
+          "rot": 270
+        }
+      ]
+    },
+    {
+      "cell": [
+        15,
+        9
+      ],
+      "parts": [
+        {
+          "model": "dungeon/torch_lit",
+          "rot": 0,
+          "offset": [
+            0,
+            0.4,
+            0
+          ]
+        }
+      ],
+      "light": [
+        0,
+        1.6,
+        0
+      ]
+    },
+    {
+      "cell": [
+        10,
+        9
+      ],
+      "parts": [
+        {
+          "model": "dungeon/keyring_hanging",
+          "rot": 0
+        }
+      ]
+    }
+  ],
+  "hero": [
+    1,
+    1
+  ]
+}

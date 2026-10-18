@@ -5,9 +5,18 @@ Engine: pixi (scene) + three (sprite baker)
 Status: draft
 
 ## Effect
-`/012-kaykit-tactics` — the village at the forest edge (default, `?level=village`): KayKit Medieval Hexagon buildings
-scaled x5 (tavern, two houses, smithy, well, grain field), Kenney Fantasy Town cart, stall, fences and three lanterns
-along a brown dirt road, KayKit Forest trees, bushes and rocks around, hex grass ground. `?level=ruins` — a ruined courtyard of KayKit Dungeon pieces (12x10 cells, back walls
+`/012-kaykit-tactics` — locations (`?level=<id>`), all in a muted, grim palette at real scale against the hero:
+- `village` (default, 36x30): laid out by level-design rules (see "Location layout"). The road comes in from the south
+  (the hero starts on it), the church stands at its end as the landmark, a dirt square with the well is the hub, the
+  inn (two-storey house) faces the square, the smithy is at the entrance, houses have doors to the road, fields and
+  the windmill are at the edges, lanterns along the way. Forest border; only low bushes and rocks in front of the map.
+- `forest` (30x24): a road winding from the back-left (west) towards the camera and out at the front (towards the
+  village), dense trees, bushes and rocks, a bandit camp in a clearing (three tents, campfire in a ring of stones that
+  glows at night, crates, barrel, weapon rack), an abandoned cart by the road.
+- `dungeon` (18x14, indoor): a crypt under the church: entrance hall (doorway in the west wall), pillared hall with an
+  altar table and candles, storeroom, ossuary with grates, beds and a gold chest; rooms split by low barriers with
+  gaps for doorways; wall torches and banners. Indoor light at every hour, flames always burn.
+- `ruins` — a ruined courtyard of KayKit Dungeon pieces (12x10 cells, back walls
 with a door, window, breaches, banner, four wall torches; barrels, crates, a table with a candle, chest, keg, a standing
 torch, rubble). The hero (neutral adventurer with a dagger) walks where you click (path preview on hover, 4 neighbours,
 around props). A game clock runs (1 game day = 240 s, starts at 17:30, hold T for 30x): the whole picture is coloured
@@ -53,16 +62,29 @@ animation (attack, cast, wave...) facing the viewer. Front and back views: refer
 - Levels are JSON (`levels/<id>.json`), loaded by `level.ts` with import.meta.glob.
 - Border (`Level.border`): the picture is the map's screen rectangle grown by `depth` cell widths; the ground covers
   it all and `parts` are scattered there; in front of the map (east/south) the first `lowDepth` cells use `low`
-  parts only, because tall trees there would hide the map's front rows. Scenery in front of the map is baked into
-  `front.webp`, drawn above the units.
-- Camera (`location.tsx` CONFIG.view): about 11 cells across, follows the hero, wheel zoom 6..20 cells, never shows
+  parts only, because tall trees there would hide the map's front rows (village and forest use lowDepth 40: only low
+  parts anywhere in front). Scenery in front of the map is baked into the `front-*` tiles, drawn above the units.
+- Camera (`location.tsx` CONFIG.view): about 14 cells across, follows the hero, wheel zoom 6..24 cells, never shows
   past the picture.
+- Real scale (`catalog.ts` defaultScale): 2.4 units = 1.8 m, so 1 m = 1.33 units. KayKit Medieval Hexagon is a
+  strategy-map pack: buildings x9 (a door slightly taller than the hero; a house is 4x4 cells, the church 5x5), its
+  small props x6, wells and fields x5; KayKit Forest trees x2.2 (7-9 m), bushes x3; Kenney Fantasy Town x3;
+  KayKit Dungeon is already at the characters' scale (x1). Trees block only their trunk cell (size 1x1), not the crown.
+  Building doors face +z at rot 0 (towards the camera's left), +x at rot 90.
+- Grim look, two layers: `bake-common.ts` PALETTE mutes every model texture when it is loaded (saturation x0.55,
+  lightness x0.85, yellow-greens pulled to a deep green), so bakes and the editor use the muted palette;
+  `location.tsx` CONFIG.grade (saturation x0.5, brightness 0.8, contrast 1.15, a cold tint) goes into the sky colour
+  matrix over picture, props and units, plus a CSS vignette (CONFIG.vignette).
+- Indoor levels (`Level.indoor`): the scene uses CONFIG.indoor instead of the sky keyframes, so a crypt keeps the same
+  dim light at every hour and its flames always glow. The clock still runs.
+- Big pictures are baked in tiles (`base-<col>-<row>.webp`, `front-…`, 1024 logical px = 2048 stored): browsers cap
+  canvas size (~7000 px here) and phones load textures up to 4096 px. `level.json` `tiles` gives their count.
   `sheets.ts` loads unit sheets for both scenes; `bake-common.ts` holds the loader, light and camera shared by bakers.
 - Location data: `level.ts`, `LEVELS` by id: floor chars + pieces (+ tint), optional hex-grass ground, back walls and
   decor, `scenery` (baked into the base: flat things and things behind the map), `props` (parts with offset, rotation,
   scale; `size` footprint in cells, all blocked; optional flame), hero start. `walkable(level, x, z)` plus the projection used by baker and scene (`dotRight` / `dotUp`, `toPicture`, `cellCenter`,
   `cellAtPoint`). One cell = one KayKit small floor tile = 2x2 world units = a 113x57 px diamond at ppu 40.
-- `bake-level.ts` ("Bake level <id>" on ?bake, output in assets/levels/<id>/): base.webp = floor, walls, decorations with soft key-light shadows
+- `bake-level.ts` ("Bake level <id>" on ?bake, output in assets/levels/<id>/): base tiles = floor, walls, decorations with soft key-light shadows
   (props cast shadows there through colorWrite/depthWrite-off copies of their materials), then each prop alone,
   cropped (prop-<i>.webp + its anchor), and level.json last (picture size, world origin in px, props, flame points).
 - Day/night (`location.tsx`): CONFIG.time and CONFIG.sky keyframes by hour (colour multiply, saturation, glow);
@@ -93,6 +115,21 @@ is the first step; next pieces are background, turn-based combat, NPCs, dialogue
   seconds per turn), so a long fight can run into dusk or night.
 - Four storylines: one per faction (vampires, mages, hunters) and a neutral one. What the neutral path gives is not
   decided yet.
+- Setting (2026-10-18): fantasy, but mostly our real world in its medieval version, as in World of Darkness (Dark Ages):
+  real places, faith and feudal life with the supernatural hidden in them. The story opens when the hero, an ordinary
+  guy, arrives in the village looking for work (the inn is where work is found).
+
+## Location layout
+Rules the locations follow (sources: The Level Design Book on composition, Scott Rogers' "weenies" talk on Disneyland
+design, historic village types):
+- One hub and its spokes: a square everyone passes, roads out to the next locations; edges of the map are exits.
+- A landmark ("weenie") on the sightline of the arrival road (the church), a second one elsewhere (the windmill),
+  so the player always knows where they are.
+- Plausible medieval village: houses along the road with doors facing it, the inn on the square, the smithy at the
+  entrance where traffic is, fields and mill outside.
+- Isometric camera rule: tall things at the back (north/west), only low things in front (south/east) or they hide
+  the streets; doors face the camera's sides (+z or +x) to be seen.
+- Paths go where people would walk; the open square doubles as a combat arena with cover (well, cart, stalls).
 
 ## Plan
 1. Done (first version). Location: one room/area built from KayKit Dungeon tiles, baked with the same camera and light as the units;
@@ -102,16 +139,20 @@ is the first step; next pieces are background, turn-based combat, NPCs, dialogue
 4. First quest "save from bandits": NPC asks, bandits in the room, a captive to free, reward and XP.
 5. Then: levels and XP, inventory, dialogue, faction reputation, level 3 choice.
 
-Next session (2026-10-18 stop point): turn-based combat with bandits in the village (step 3), then the
-"save from bandits" quest. Commits are on main, not pushed to GitHub yet (the user decides).
+Locations village, forest (bandit camp) and crypt exist (2026-10-18); not linked yet (exits at map edges are the next
+small step). Next: turn-based combat with bandits (step 3), then the "save from bandits" quest. Commits are on main, not pushed to GitHub yet (the user decides).
 
 ## Preferences
 - Smooth rendering like the Kenney sample, rather than the angular pixel look of 011 (chose smooth over a pixelated bake).
 - Finds KayKit too cartoony (big heads, toy look).
 - Wants to build NPCs from parts (constructor) and to be able to edit the background.
+- Rejected the bright, toy-like colours ("режет глаз"): wants everything muted and grim (2026-10-18).
+- Wants real proportions: houses were too small next to the hero (now a door is a bit taller than him).
 
 ## Open questions
-- Village grass is the KayKit hex tile's yellow-green; tint it greener?
+- Unit sheets were baked before PALETTE: units get only the runtime grade. Rebake them (`?bake`) for the muted palette?
+- Big Rock_2 boulders at x9 look like basalt columns in the forest.
+- Locations are not linked: walking off the road's end should load the next one.
 - Big props sort by their front cell: a unit right behind a building's side can be drawn under its edge.
 - Sheets: 42 MB for thirteen units (was 29 MB for eight) after WebP and 128 px frames. The long clips weigh most (necromancer 7.9 MB: idle 51
   and summon 52 frames). Next options: per-animation fps or frame caps. Skeleton and necromancer idles (51 frames each) are
@@ -132,3 +173,6 @@ Next session (2026-10-18 stop point): turn-based combat with bandits in the vill
 - 2026-10-18: first location (ruined courtyard from KayKit Dungeon, baked with shadows, props depth-sorted), hero walking by click, day/night clock with glowing flames; showcase moved to ?units
 - 2026-10-18: locations as data (LEVELS), per-prop scale and footprint, scenery, floor tint; village at the forest edge from KayKit Medieval Hexagon + Forest + Kenney Fantasy Town (all CC0)
 - 2026-10-18: world around the map (border forest, front layer), follow camera with wheel zoom; levels moved to JSON; visual location editor (?edit) with the full KayKit Dungeon, Medieval Hexagon, Forest and Kenney Fantasy Town catalogs
+- 2026-10-18: grim look: muted model palette at bake time, runtime colour grade and vignette; real scale for every pack
+  (houses x9, trees x2.2...); village rebuilt by level-design rules (36x30); new forest road with a bandit camp and a crypt
+  under the church (indoor light); big pictures baked in tiles

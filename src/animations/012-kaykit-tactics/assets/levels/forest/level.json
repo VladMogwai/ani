@@ -1,0 +1,585 @@
+{
+  "width": 4640,
+  "height": 3112,
+  "ox": 2150,
+  "oy": 792,
+  "tiles": {
+    "size": 1024,
+    "cols": 5,
+    "rows": 4
+  },
+  "props": [
+    {
+      "file": "prop-0.webp",
+      "ax": 100,
+      "ay": 169
+    },
+    {
+      "file": "prop-1.webp",
+      "ax": 132,
+      "ay": 177
+    },
+    {
+      "file": "prop-2.webp",
+      "ax": 128,
+      "ay": 176
+    },
+    {
+      "file": "prop-3.webp",
+      "ax": 96,
+      "ay": 160
+    },
+    {
+      "file": "prop-4.webp",
+      "ax": 50,
+      "ay": 73
+    },
+    {
+      "file": "prop-5.webp",
+      "ax": 40,
+      "ay": 53
+    },
+    {
+      "file": "prop-6.webp",
+      "ax": 43,
+      "ay": 70
+    },
+    {
+      "file": "prop-7.webp",
+      "ax": 40,
+      "ay": 38
+    },
+    {
+      "file": "prop-8.webp",
+      "ax": 37,
+      "ay": 73
+    },
+    {
+      "file": "prop-9.webp",
+      "ax": 75,
+      "ay": 71
+    },
+    {
+      "file": "prop-10.webp",
+      "ax": 117,
+      "ay": 121
+    },
+    {
+      "file": "prop-11.webp",
+      "ax": 121,
+      "ay": 202
+    },
+    {
+      "file": "prop-12.webp",
+      "ax": 181,
+      "ay": 473
+    },
+    {
+      "file": "prop-13.webp",
+      "ax": 67,
+      "ay": 84
+    },
+    {
+      "file": "prop-14.webp",
+      "ax": 63,
+      "ay": 91
+    },
+    {
+      "file": "prop-15.webp",
+      "ax": 75,
+      "ay": 87
+    },
+    {
+      "file": "prop-16.webp",
+      "ax": 287,
+      "ay": 953
+    },
+    {
+      "file": "prop-17.webp",
+      "ax": 229,
+      "ay": 906
+    },
+    {
+      "file": "prop-18.webp",
+      "ax": 68,
+      "ay": 84
+    },
+    {
+      "file": "prop-19.webp",
+      "ax": 63,
+      "ay": 91
+    },
+    {
+      "file": "prop-20.webp",
+      "ax": 177,
+      "ay": 173
+    },
+    {
+      "file": "prop-21.webp",
+      "ax": 194,
+      "ay": 328
+    },
+    {
+      "file": "prop-22.webp",
+      "ax": 63,
+      "ay": 91
+    },
+    {
+      "file": "prop-23.webp",
+      "ax": 67,
+      "ay": 114
+    },
+    {
+      "file": "prop-24.webp",
+      "ax": 72,
+      "ay": 95
+    },
+    {
+      "file": "prop-25.webp",
+      "ax": 191,
+      "ay": 174
+    },
+    {
+      "file": "prop-26.webp",
+      "ax": 162,
+      "ay": 222
+    },
+    {
+      "file": "prop-27.webp",
+      "ax": 51,
+      "ay": 76
+    },
+    {
+      "file": "prop-28.webp",
+      "ax": 68,
+      "ay": 84
+    },
+    {
+      "file": "prop-29.webp",
+      "ax": 108,
+      "ay": 119
+    },
+    {
+      "file": "prop-30.webp",
+      "ax": 71,
+      "ay": 109
+    },
+    {
+      "file": "prop-31.webp",
+      "ax": 63,
+      "ay": 91
+    },
+    {
+      "file": "prop-32.webp",
+      "ax": 109,
+      "ay": 121
+    },
+    {
+      "file": "prop-33.webp",
+      "ax": 79,
+      "ay": 119
+    },
+    {
+      "file": "prop-34.webp",
+      "ax": 53,
+      "ay": 86
+    },
+    {
+      "file": "prop-35.webp",
+      "ax": 121,
+      "ay": 202
+    },
+    {
+      "file": "prop-36.webp",
+      "ax": 61,
+      "ay": 81
+    },
+    {
+      "file": "prop-37.webp",
+      "ax": 71,
+      "ay": 109
+    },
+    {
+      "file": "prop-38.webp",
+      "ax": 162,
+      "ay": 222
+    },
+    {
+      "file": "prop-39.webp",
+      "ax": 609,
+      "ay": 848
+    },
+    {
+      "file": "prop-40.webp",
+      "ax": 274,
+      "ay": 428
+    },
+    {
+      "file": "prop-41.webp",
+      "ax": 70,
+      "ay": 94
+    },
+    {
+      "file": "prop-42.webp",
+      "ax": 67,
+      "ay": 114
+    },
+    {
+      "file": "prop-43.webp",
+      "ax": 159,
+      "ay": 164
+    },
+    {
+      "file": "prop-44.webp",
+      "ax": 216,
+      "ay": 339
+    },
+    {
+      "file": "prop-45.webp",
+      "ax": 110,
+      "ay": 119
+    },
+    {
+      "file": "prop-46.webp",
+      "ax": 63,
+      "ay": 91
+    },
+    {
+      "file": "prop-47.webp",
+      "ax": 146,
+      "ay": 214
+    },
+    {
+      "file": "prop-48.webp",
+      "ax": 122,
+      "ay": 126
+    },
+    {
+      "file": "prop-49.webp",
+      "ax": 70,
+      "ay": 94
+    },
+    {
+      "file": "prop-50.webp",
+      "ax": 75,
+      "ay": 87
+    },
+    {
+      "file": "prop-51.webp",
+      "ax": 67,
+      "ay": 84
+    },
+    {
+      "file": "prop-52.webp",
+      "ax": 75,
+      "ay": 87
+    },
+    {
+      "file": "prop-53.webp",
+      "ax": 143,
+      "ay": 149
+    },
+    {
+      "file": "prop-54.webp",
+      "ax": 121,
+      "ay": 125
+    },
+    {
+      "file": "prop-55.webp",
+      "ax": 67,
+      "ay": 84
+    },
+    {
+      "file": "prop-56.webp",
+      "ax": 201,
+      "ay": 352
+    },
+    {
+      "file": "prop-57.webp",
+      "ax": 69,
+      "ay": 85
+    },
+    {
+      "file": "prop-58.webp",
+      "ax": 75,
+      "ay": 87
+    },
+    {
+      "file": "prop-59.webp",
+      "ax": 61,
+      "ay": 81
+    },
+    {
+      "file": "prop-60.webp",
+      "ax": 103,
+      "ay": 115
+    },
+    {
+      "file": "prop-61.webp",
+      "ax": 109,
+      "ay": 120
+    },
+    {
+      "file": "prop-62.webp",
+      "ax": 195,
+      "ay": 515
+    },
+    {
+      "file": "prop-63.webp",
+      "ax": 164,
+      "ay": 459
+    },
+    {
+      "file": "prop-64.webp",
+      "ax": 63,
+      "ay": 91
+    },
+    {
+      "file": "prop-65.webp",
+      "ax": 70,
+      "ay": 94
+    },
+    {
+      "file": "prop-66.webp",
+      "ax": 68,
+      "ay": 84
+    },
+    {
+      "file": "prop-67.webp",
+      "ax": 126,
+      "ay": 128
+    },
+    {
+      "file": "prop-68.webp",
+      "ax": 111,
+      "ay": 120
+    },
+    {
+      "file": "prop-69.webp",
+      "ax": 78,
+      "ay": 88
+    },
+    {
+      "file": "prop-70.webp",
+      "ax": 72,
+      "ay": 95
+    },
+    {
+      "file": "prop-71.webp",
+      "ax": 123,
+      "ay": 125
+    },
+    {
+      "file": "prop-72.webp",
+      "ax": 57,
+      "ay": 78
+    },
+    {
+      "file": "prop-73.webp",
+      "ax": 70,
+      "ay": 94
+    },
+    {
+      "file": "prop-74.webp",
+      "ax": 216,
+      "ay": 339
+    },
+    {
+      "file": "prop-75.webp",
+      "ax": 188,
+      "ay": 171
+    },
+    {
+      "file": "prop-76.webp",
+      "ax": 69,
+      "ay": 85
+    },
+    {
+      "file": "prop-77.webp",
+      "ax": 146,
+      "ay": 214
+    },
+    {
+      "file": "prop-78.webp",
+      "ax": 65,
+      "ay": 103
+    },
+    {
+      "file": "prop-79.webp",
+      "ax": 162,
+      "ay": 222
+    },
+    {
+      "file": "prop-80.webp",
+      "ax": 57,
+      "ay": 78
+    },
+    {
+      "file": "prop-81.webp",
+      "ax": 69,
+      "ay": 85
+    },
+    {
+      "file": "prop-82.webp",
+      "ax": 100,
+      "ay": 111
+    },
+    {
+      "file": "prop-83.webp",
+      "ax": 61,
+      "ay": 81
+    },
+    {
+      "file": "prop-84.webp",
+      "ax": 67,
+      "ay": 84
+    },
+    {
+      "file": "prop-85.webp",
+      "ax": 68,
+      "ay": 84
+    },
+    {
+      "file": "prop-86.webp",
+      "ax": 78,
+      "ay": 88
+    },
+    {
+      "file": "prop-87.webp",
+      "ax": 196,
+      "ay": 178
+    },
+    {
+      "file": "prop-88.webp",
+      "ax": 181,
+      "ay": 428
+    },
+    {
+      "file": "prop-89.webp",
+      "ax": 61,
+      "ay": 81
+    },
+    {
+      "file": "prop-90.webp",
+      "ax": 158,
+      "ay": 460
+    },
+    {
+      "file": "prop-91.webp",
+      "ax": 194,
+      "ay": 328
+    },
+    {
+      "file": "prop-92.webp",
+      "ax": 70,
+      "ay": 94
+    },
+    {
+      "file": "prop-93.webp",
+      "ax": 223,
+      "ay": 342
+    },
+    {
+      "file": "prop-94.webp",
+      "ax": 91,
+      "ay": 110
+    },
+    {
+      "file": "prop-95.webp",
+      "ax": 91,
+      "ay": 110
+    },
+    {
+      "file": "prop-96.webp",
+      "ax": 92,
+      "ay": 111
+    },
+    {
+      "file": "prop-97.webp",
+      "ax": 68,
+      "ay": 84
+    },
+    {
+      "file": "prop-98.webp",
+      "ax": 71,
+      "ay": 101
+    },
+    {
+      "file": "prop-99.webp",
+      "ax": 53,
+      "ay": 86
+    },
+    {
+      "file": "prop-100.webp",
+      "ax": 89,
+      "ay": 110
+    },
+    {
+      "file": "prop-101.webp",
+      "ax": 110,
+      "ay": 119
+    },
+    {
+      "file": "prop-102.webp",
+      "ax": 57,
+      "ay": 78
+    },
+    {
+      "file": "prop-103.webp",
+      "ax": 193,
+      "ay": 173
+    },
+    {
+      "file": "prop-104.webp",
+      "ax": 75,
+      "ay": 87
+    },
+    {
+      "file": "prop-105.webp",
+      "ax": 75,
+      "ay": 87
+    },
+    {
+      "file": "prop-106.webp",
+      "ax": 68,
+      "ay": 84
+    },
+    {
+      "file": "prop-107.webp",
+      "ax": 83,
+      "ay": 105
+    },
+    {
+      "file": "prop-108.webp",
+      "ax": 75,
+      "ay": 87
+    },
+    {
+      "file": "prop-109.webp",
+      "ax": 57,
+      "ay": 78
+    },
+    {
+      "file": "prop-110.webp",
+      "ax": 69,
+      "ay": 85
+    },
+    {
+      "file": "prop-111.webp",
+      "ax": 65,
+      "ay": 103
+    },
+    {
+      "file": "prop-112.webp",
+      "ax": 61,
+      "ay": 81
+    }
+  ],
+  "front": true,
+  "lights": [
+    {
+      "x": 2885.3910524340095,
+      "y": 1503.1423411280452
+    }
+  ]
+}
