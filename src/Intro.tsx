@@ -78,7 +78,7 @@ export function Intro({ panelRef, onDone }: { panelRef: RefObject<HTMLElement | 
       {/* "hi" is a window into the backdrop: the same gradient and blobs, cut out by a multiply mask */}
       <div ref={hiRef} className="intro-hi">
         <div className="blobs" aria-hidden><i /><i /><i /><i /><i /></div>
-        <div className="intro-hi-mask">hi</div>
+        <div className="intro-hi-mask">hello</div>
       </div>
     </div>
   )
