@@ -5,6 +5,7 @@ export type AnimationMeta = {
   tags: string[]
   status: 'template' | 'draft' | 'matches reference' | 'customized'
   updated: string
+  kind?: 'animation' | 'scene' // scene = a small playable game world, not a single effect; default animation
 }
 
 export type AnimationEntry = AnimationMeta & {

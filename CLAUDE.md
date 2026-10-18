@@ -24,7 +24,7 @@ src/
     000-template-pixi/        starter for a PixiJS animation
     NNN-slug/
       index.tsx               default export: the page component (full screen)
-      meta.ts                 title, tags, status, updated
+      meta.ts                 title, tags, status, updated, kind ('scene' for small game worlds, default animation)
       NOTES.md                the context of this animation (see below)
       reference/              what the user sent: files, links in source.md, screenshots of the source
 ```

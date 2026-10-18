@@ -101,7 +101,7 @@ function Gallery() {
           {visible.map((a, i) => (
             <li key={a.id} style={{ '--i': i + 1 } as CSSProperties}>
               <Link to={`/${a.id}`}>
-                <div className="muted">{a.id} · {a.status}</div>
+                <div className="muted">{a.id} · {a.kind ?? 'animation'} · {a.status}</div>
                 <div className="title">{a.title}</div>
                 <div className="muted">{a.tags.join(', ')} · {a.updated}</div>
               </Link>
