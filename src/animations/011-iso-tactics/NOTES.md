@@ -8,7 +8,7 @@ Status: draft
 A hand-editable pixel-art dungeon drawn in Aseprite (terraced cliffs, stone slabs, dirt, grass, rubble,
 a flooded pit with a mossy block, three wall torches). The torch light flickers. The player's mage (gold ring)
 and the enemy Dark Knight (red ring) stand on floor cells, play their idle loops and face each other.
-Every 30 s (first time 3 s after load) the mage casts a fireball at the knight: cast animation, the orb leaves her
+Every 5 s (first time 3 s after load) the mage casts a fireball at the knight: cast animation, the orb leaves her
 hand on frame 15, flies along a shallow arc with a spark trail, bursts on the knight, who plays his hurt animation.
 Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery's dark panel on the colour backdrop
 (`src/shared/ScreenFrame.tsx`), the canvas is transparent so the panel texture shows around the picture.
@@ -58,3 +58,4 @@ Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery'
 - 2026-10-18: new map: tall wall only as a one-cell rim at the back and left, the rest are walkable terraces
   (6 and 4) linked by one-level stairs; torches and chains only on visible wall faces (the script asserts it)
 - 2026-10-18: the mage throws a fireball at the knight every 30 s; knight hurt animation on impact
+- 2026-10-18: fireball every 5 s instead of 30

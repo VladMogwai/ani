@@ -44,7 +44,7 @@ const CONFIG = {
   ] as const,
   // the mage throws a fireball at the knight every `every` seconds, the first one `first` seconds after load
   fireball: {
-    every: 30,
+    every: 5,
     first: 3,
     release: 15, // frame of the cast animation where the hand is thrust forward
     speed: 220, // px per second along the straight line
