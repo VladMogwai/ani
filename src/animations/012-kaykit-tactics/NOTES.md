@@ -100,6 +100,9 @@ is the first step; next pieces are background, turn-based combat, NPCs, dialogue
 4. First quest "save from bandits": NPC asks, bandits in the room, a captive to free, reward and XP.
 5. Then: levels and XP, inventory, dialogue, faction reputation, level 3 choice.
 
+Next session (2026-10-18 stop point): turn-based combat with bandits in the village (step 3), then the
+"save from bandits" quest. Commits are on main, not pushed to GitHub yet (the user decides).
+
 ## Preferences
 - Smooth rendering like the Kenney sample, rather than the angular pixel look of 011 (chose smooth over a pixelated bake).
 - Finds KayKit too cartoony (big heads, toy look).
