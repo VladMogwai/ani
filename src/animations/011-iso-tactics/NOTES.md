@@ -49,12 +49,17 @@ Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery'
 - Vampire VFX (Frostwindz, free version: use in projects, no redistribution, no AI training) live in
   `licensed/fx/vampire/` as frames; `licensed/fx/import-vampire.lua` builds `blood-bat` / `blood-star` .aseprite files.
   They are drawn at half size (`scale` in `CONFIG.fx`).
-- CONFIG: move, spells, light flicker, hover colour, ring and foot shadow sizes, character sheets (frames, fps, feet), units.
+- Kenney props (Isometric Miniature Dungeon, CC0, committed in `assets/kenney/`): `art/kenney/import-kenney.lua` resizes
+  the pack's 256x512 renders to 192x384 (drawn at 0.5, i.e. 1.5x the pack's scale, its figures are smaller than ours).
+  `CONFIG.props`: cell per item, anchor at the pack's floor-tile centre, a grey tint; they sit in the units' container
+  (depth sorted with the characters) and their cells are not walkable. Light and darkness layers draw over them.
+  Pack unzipped outside the repo; re-run with `--script-param pack=<dir> --script-param out=<assets/kenney>`.
+- CONFIG: move, props, spells, light flicker, hover colour, ring and foot shadow sizes, character sheets (frames, fps, feet), units.
 
 ## Plan
-1. Diorama (this version).
-2. Movement: click a cell, show reachable cells, walk along a path respecting move points and height steps.
-3. Combat: turns, dice roll, attack, HP, portraits, END TURN.
+1. Diorama — done.
+2. Movement — done (click a cell, path preview, range 5, one-level stairs). Not yet: move points per turn.
+3. Combat: turns, dice roll, attack, HP, portraits, END TURN. Spells already exist as timed demo casts.
 4. Enemy AI: approach and attack.
 
 ## Preferences
@@ -64,6 +69,16 @@ Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery'
 - Prefers the background drawn in Aseprite over the 3D scene.
 
 ## Open questions
+- Kenney props are a trial (barrels, crates, chest, barrel, table). Keep them, change the set or the size/tint?
+  Also in the downloads: Kenney Miniature Bases (CC0) as stands under the characters instead of the team ring.
+- Next decision (asked, not answered yet): the user downloaded "Free Isometric Tile" by waliango
+  (https://waliango.itch.io/free-isometic-tile, `~/Downloads/Isometric.rar`: IsometricTile.png 512x512 + sanmple.png).
+  Hand-drawn 2:1 iso dungeon tiles, 32x16 diamonds = exactly half our 64x32 grid (scale 2x nearest): floor blocks,
+  wall pieces, 6 arched doors, wooden coffins, stone sarcophagus, two chests, floor grates. Matches our style well.
+  No license text on the page (listed under Free) — treat as all rights reserved: keep in `licensed/`, suggest the user
+  asks the author before publishing. Options offered: (1) slice props (doors on walls, coffins, sarcophagus, chests)
+  and place them on the current dungeon as blocked cells; (2) rebuild floor/walls from these tiles, keeping our light,
+  torches, darkness and props (the pack has few blocks; cliffs and water stay procedural).
 - The mage is a girl in an orange coat (CC0 sample model); recolour the coat to a robe colour, or keep it?
 - Dice rules: what each die colour does.
 
@@ -86,3 +101,4 @@ Hovering a floor cell highlights it. Fixed camera. The page sits in the gallery'
   (Frostwindz Vampire VFX); projectiles home on moving targets
 - 2026-10-18: sharper picture: canvas at device pixel ratio; mage sheets at full 256 px drawn at half scale
 - 2026-10-18: knight sheets cleaned up (hard edges, flat shadow, sharpening, 24 colours)
+- 2026-10-18: trial Kenney Miniature Dungeon props (CC0) on five floor cells, blocked for movement

@@ -24,6 +24,11 @@ import bloodBatUrl from './licensed/fx/blood-bat.png'
 import bloodBatSheet from './licensed/fx/blood-bat.json?raw'
 import bloodStarUrl from './licensed/fx/blood-star.png'
 import bloodStarSheet from './licensed/fx/blood-star.json?raw'
+import barrelsUrl from './assets/kenney/barrelsStacked_E.png'
+import cratesUrl from './assets/kenney/woodenCrates_W.png'
+import chestUrl from './assets/kenney/chestClosed_W.png'
+import barrelUrl from './assets/kenney/barrel_S.png'
+import tableUrl from './assets/kenney/tableShortChairs_S.png'
 
 type Anim = { url: string; frames: number; fps: number; loop: boolean }
 // Aseprite "json-array" export with --list-tags: frame rectangles, per-frame durations in ms, named frame ranges
@@ -74,6 +79,20 @@ const CONFIG = {
   // Movement: hover a floor cell to see the path, click to walk there (player unit only).
   // Steps go to the 4 neighbouring cells, at most `range` steps, up or down one height level per step.
   move: { unit: 0, range: 5, speed: 3, maxStep: 1, path: 0.18, target: 0.38 }, // speed in cells per second
+  // Kenney Miniature Dungeon props (CC0, art/kenney/import-kenney.lua): 192x384 renders drawn at 0.5 (1.5x the pack's
+  // own scale, its figures are smaller than ours), the pack's floor tile centre sits at `anchor`. Their cells are not walkable. `tint` pulls the beige renders towards the grey stone.
+  props: {
+    scale: 0.5,
+    anchor: [0.5, 428 / 512] as [number, number],
+    tint: 0x9a9494,
+    items: [
+      { url: barrelsUrl, cell: [2, 6] },
+      { url: cratesUrl, cell: [2, 8] },
+      { url: chestUrl, cell: [15, 10] },
+      { url: barrelUrl, cell: [7, 12] },
+      { url: tableUrl, cell: [13, 13] },
+    ] as { url: string; cell: [number, number] }[],
+  },
   // Aseprite effects: sheet + json, optionally one tag of it, drawn at `scale` (whole-number fractions keep pixels even)
   fx: {
     fireball: { url: fireballUrl, json: fireballSheet },
@@ -179,7 +198,8 @@ export default function Page() {
 
       const animUrls = Object.values(CONFIG.characters).flatMap((c) => Object.values(c.anims).map((a: Anim) => a.url))
       const fxUrls = Object.values(CONFIG.fx).map((f) => f.url)
-      const urls = [...new Set([baseUrl, lightUrl, darknessUrl, ...fxUrls, ...animUrls])]
+      const propUrls = CONFIG.props.items.map((p) => p.url)
+      const urls = [...new Set([baseUrl, lightUrl, darknessUrl, ...fxUrls, ...animUrls, ...propUrls])]
       const textures = await Promise.all(urls.map((u) => Assets.load<Texture>(u)))
       if (cancelled) return
       for (const t of textures) t.source.scaleMode = 'nearest'
@@ -253,6 +273,17 @@ export default function Page() {
           step: 0, // progress 0..1 between the current cell and path[0]
         }
       })
+      // props share the units' container, so the depth sort puts them in front of or behind the characters
+      for (const item of CONFIG.props.items) {
+        const p = cellCenter(item.cell[0], item.cell[1])
+        const prop = new Sprite(tex(item.url))
+        prop.anchor.set(...CONFIG.props.anchor)
+        prop.scale.set(CONFIG.props.scale)
+        prop.tint = CONFIG.props.tint
+        prop.position.set(p.x, p.y)
+        units.addChild(prop)
+      }
+      const propAt = (x: number, z: number) => CONFIG.props.items.some((p) => p.cell[0] === x && p.cell[1] === z)
       type Unit = (typeof built)[number]
       const play = (u: Unit, name: string, at: number) => {
         u.anim = name
@@ -274,7 +305,7 @@ export default function Page() {
             const nx = x + dx, nz = z + dz
             const nk = key(nx, nz)
             const c = cellAt(nx, nz)
-            if (prev.has(nk) || !c || !walkable(c)) continue
+            if (prev.has(nk) || !c || !walkable(c) || propAt(nx, nz)) continue
             if (Math.abs(c.h - cellAt(x, z)!.h) > CONFIG.move.maxStep) continue
             if (built.some((o) => o !== from && o.cell[0] === nx && o.cell[1] === nz)) continue
             prev.set(nk, k)
