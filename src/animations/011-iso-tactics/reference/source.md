@@ -11,3 +11,12 @@
   The per-direction sheets (256px cells) were packed with Aseprite CLI into `assets/mage/*.png`
   (one row per direction E, SE, S, SW, W, NW, N, NE; frames scaled to 128px). CC0, so they are committed.
 - Dungeon background: drawn by `art/scenes/dungeon/build-dungeon.lua` in Aseprite, exported to `assets/dungeon/`.
+- Dark spell effects: "Dark Spell Effect" by pimen, free VFX 01-02 — https://pimen.itch.io/dark-spell-effect
+  License: use and modify in personal and commercial projects, no resale or redistribution of the sprites.
+  Kept in `licensed/fx/` (gitignored). To restore: download "Dark VFX 01 - 02" from the page, put the two sheets in
+  `licensed/fx/` as `dark-vfx-1-sheet.png` / `dark-vfx-2-sheet.png` and run `import-dark-vfx.lua` there.
+- Knight spell animation: `CastSpell.png` from the same free HD Knight pack, also in `licensed/knight/`.
+- Blood effects: "Pixel Art VFX - Vampire" (free version) by Frostwindz — https://frostwindz.itch.io/
+  License: use and modify in commercial and non-commercial projects; no redistribution or resale, no use for AI training,
+  assets must stay part of a larger project. Kept in `licensed/fx/vampire/` (gitignored); to restore, put the VFX1 and VFX3
+  `Frames/*.png` into `vampire/vfx1` and `vampire/vfx3` and run `import-vampire.lua`.
