@@ -89,8 +89,10 @@ is the first step; next pieces are background, turn-based combat, NPCs, dialogue
 - Indoors the time of day shows through windows: daylight falls in during the day, windows go dark at night and the
   candles and torches inside take over.
 - The clock cannot be fast-forwarded during combat (the T key is a dev aid for now; it must be blocked once combat
-  exists). Open: does game time advance per combat turn or stand still during a fight?
-- Not decided yet: what staying neutral gives.
+  exists). Game time keeps running during combat: each turn advances the clock (amount to tune, e.g. a few game
+  seconds per turn), so a long fight can run into dusk or night.
+- Four storylines: one per faction (vampires, mages, hunters) and a neutral one. What the neutral path gives is not
+  decided yet.
 
 ## Plan
 1. Done (first version). Location: one room/area built from KayKit Dungeon tiles, baked with the same camera and light as the units;
