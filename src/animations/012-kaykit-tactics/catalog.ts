@@ -1,7 +1,7 @@
 // Everything the location editor can place: every model in source/<pack>/, with a default scale that brings it to the
 // characters' size (the packs use different scales) and whether it carries a flame that glows at night.
 
-const files = import.meta.glob('./source/{dungeon,forest,medieval,town}/*.{gltf,glb}', { query: '?url', import: 'default' })
+const files = import.meta.glob('./source/{dungeon,forest,medieval,town,village}/*.{gltf,glb}', { query: '?url', import: 'default' })
 
 // model names as level.ts uses them: <pack>/<file> (.gltf dropped, .glb kept)
 export const CATALOG: string[] = Object.keys(files)
@@ -9,11 +9,12 @@ export const CATALOG: string[] = Object.keys(files)
   .filter((m) => !m.includes('_Mesh') && !m.includes('Singlesided') && !m.includes('hex_grass'))
   .sort()
 
-export const PACKS = ['medieval', 'town', 'forest', 'dungeon'] as const
+export const PACKS = ['medieval', 'village', 'town', 'forest', 'dungeon'] as const
 export const packOf = (m: string) => m.split('/')[0]
 
 // real sizes against the characters (2.4 units = 1.8 m, so 1 m = 1.33 units): a house door a bit taller than the hero,
-// trees 7-9 m, a barrel about 1 m; the dungeon pack is already at the characters' scale
+// trees 7-9 m, a barrel about 1 m; the dungeon pack is already at the characters' scale; Quaternius Medieval Village
+// is in metres (a wall module 2 m wide, a door 2.1 m)
 export const defaultScale = (m: string) => {
   if (m.startsWith('medieval/building_well')) return 5
   if (m.startsWith('medieval/building_grain') || m.startsWith('medieval/building_dirt')) return 5
@@ -29,6 +30,7 @@ export const defaultScale = (m: string) => {
   if (m.startsWith('forest/Grass')) return 3
   if (m === 'town/lantern.glb') return 2
   if (m.startsWith('town/')) return 3
+  if (m.startsWith('village/')) return 2
   return 1
 }
 

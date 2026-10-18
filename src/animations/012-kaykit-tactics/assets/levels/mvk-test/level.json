@@ -1,0 +1,35 @@
+{
+  "width": 2328,
+  "height": 1693,
+  "ox": 1129,
+  "oy": 736,
+  "tiles": {
+    "size": 1024,
+    "cols": 3,
+    "rows": 2
+  },
+  "props": [
+    {
+      "file": "prop-0.webp",
+      "ax": 379,
+      "ay": 934
+    },
+    {
+      "file": "prop-1.webp",
+      "ax": 324,
+      "ay": 697
+    },
+    {
+      "file": "prop-2.webp",
+      "ax": 70,
+      "ay": 113
+    },
+    {
+      "file": "prop-3.webp",
+      "ax": 159,
+      "ay": 209
+    }
+  ],
+  "front": false,
+  "lights": []
+}

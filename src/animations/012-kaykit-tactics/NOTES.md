@@ -60,6 +60,10 @@ animation (attack, cast, wave...) facing the viewer. Front and back views: refer
   stroke is one step), Ctrl/Cmd+S save to `levels/<id>.json`, "Save + Bake" bakes the location. `catalog.ts` lists every
   model in source/ (645) with a default scale per pack and kind, and which ones carry a flame.
 - Levels are JSON (`levels/<id>.json`), loaded by `level.ts` with import.meta.glob.
+- Houses (`tools/houses.py`): builds a house from Quaternius modules (floors, stone or plaster ground floor, timber-frame
+  upper floors, corners, door, windows, roof with gable fronts, chimney) for a size in modules (2x2, 3x2, 2x3, 3x3) and
+  a number of storeys, and writes it into a prop of a level, keeping the prop's cell, size and door rotation. Rebake the
+  level after it.
 - Border (`Level.border`): the picture is the map's screen rectangle grown by `depth` cell widths; the ground covers
   it all and `parts` are scattered there; in front of the map (east/south) the first `lowDepth` cells use `low`
   parts only, because tall trees there would hide the map's front rows (village and forest use lowDepth 40: only low
@@ -68,7 +72,9 @@ animation (attack, cast, wave...) facing the viewer. Front and back views: refer
   past the picture.
 - Real scale (`catalog.ts` defaultScale): 2.4 units = 1.8 m, so 1 m = 1.33 units. KayKit Medieval Hexagon is a
   strategy-map pack: buildings x9 (a door slightly taller than the hero; a house is 4x4 cells, the church 5x5), its
-  small props x6, wells and fields x5; KayKit Forest trees x2.2 (7-9 m), bushes x3; Kenney Fantasy Town x3;
+  small props x6, wells and fields x5; KayKit Forest trees x2.2 (7-9 m), bushes x3; Kenney Fantasy Town x3; Quaternius Medieval
+  Village is in metres, x2 by the user's choice (bigger than real: a door is 1.75x the hero; a wall module 2 m = 4 units
+  = exactly 2 cells); a house is one prop whose parts sit at offsets, built by `tools/houses.py`;
   KayKit Dungeon is already at the characters' scale (x1). Trees block only their trunk cell (size 1x1), not the crown.
   Building doors face +z at rot 0 (towards the camera's left), +x at rot 90.
 - Grim look, two layers: `bake-common.ts` PALETTE mutes every model texture when it is loaded (saturation x0.55,
@@ -148,6 +154,8 @@ small step). Next: turn-based combat with bandits (step 3), then the "save from 
 - Wants to build NPCs from parts (constructor) and to be able to edit the background.
 - Rejected the bright, toy-like colours ("режет глаз"): wants everything muted and grim (2026-10-18).
 - Wants real proportions: houses were too small next to the hero (now a door is a bit taller than him).
+- KayKit is temporary (2026-10-18): kept only to build locations for now, to be replaced step by step. New content
+  comes from other packs (Quaternius Medieval Village for buildings; characters still to be found by the user).
 
 ## Open questions
 - Unit sheets were baked before PALETTE: units get only the runtime grade. Rebake them (`?bake`) for the muted palette?
@@ -176,3 +184,9 @@ small step). Next: turn-based combat with bandits (step 3), then the "save from 
 - 2026-10-18: grim look: muted model palette at bake time, runtime colour grade and vignette; real scale for every pack
   (houses x9, trees x2.2...); village rebuilt by level-design rules (36x30); new forest road with a bandit camp and a crypt
   under the church (indoor light); big pictures baked in tiles
+- 2026-10-18: Quaternius Medieval Village MegaKit (CC0, free part: 176 modular pieces) added as pack `village` in
+  source/village (textures shrunk 2048 → 512 px); test level `mvk-test`: a house assembled from walls, corners, door,
+  windows and roof next to a KayKit house, a crate and a wagon. Characters will come from elsewhere.
+- 2026-10-18: pack `village` at scale x2 (user wanted bigger houses); every KayKit house in the village replaced by a
+  modular Quaternius house (`tools/houses.py`): homes 2x2 modules, one or two storeys, the smithy 3x3; church,
+  windmill, fields and well stay KayKit for now (no such pieces in the free kit)

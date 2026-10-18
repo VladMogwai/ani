@@ -735,9 +735,424 @@
       ],
       "parts": [
         {
-          "model": "medieval/building_home_B_red",
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            -2.0
+          ],
           "rot": 0,
-          "scale": 9
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Door_Round",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Door_1_Round",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            4.0,
+            0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -4.0,
+            0,
+            -2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -4.0,
+            0,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            4.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            -4.0,
+            0,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            4.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            -4.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            6,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            6,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            6,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            6,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            -2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Flat",
+          "offset": [
+            2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Flat1",
+          "offset": [
+            2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -2.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            2.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Flat",
+          "offset": [
+            4.0,
+            6,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Flat1",
+          "offset": [
+            4.0,
+            6,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            4.0,
+            6,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            -4.0,
+            6,
+            -2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Thin_Round",
+          "offset": [
+            -4.0,
+            6,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Thin_Round1",
+          "offset": [
+            -4.0,
+            6,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            6,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            6,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_RoundTiles_4x4",
+          "offset": [
+            0.0,
+            12,
+            0.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            0.0,
+            12,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            0.0,
+            12,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Prop_Chimney",
+          "offset": [
+            2.0,
+            15.0,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
         }
       ],
       "size": [
@@ -752,9 +1167,234 @@
       ],
       "parts": [
         {
-          "model": "medieval/building_home_A_yellow",
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            -2.0
+          ],
           "rot": 0,
-          "scale": 9
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Door_Round",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Door_1_Round",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Round",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Round",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            4.0,
+            0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -4.0,
+            0,
+            -2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -4.0,
+            0,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            0,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_RoundTiles_4x4",
+          "offset": [
+            0.0,
+            6,
+            0.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            0.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            0.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Prop_Chimney",
+          "offset": [
+            2.0,
+            9.0,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
         }
       ],
       "size": [
@@ -769,9 +1409,334 @@
       ],
       "parts": [
         {
-          "model": "medieval/building_blacksmith_red",
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -4.0,
+            0,
+            4.0
+          ],
           "rot": 90,
-          "scale": 9
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -0.0,
+            0,
+            4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            4.0,
+            0,
+            4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -4.0,
+            0,
+            -0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            0.0,
+            0,
+            0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            4.0,
+            0,
+            0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -4.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            0.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            4.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Door_Round",
+          "offset": [
+            6.0,
+            0,
+            4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Door_1_Round",
+          "offset": [
+            6.0,
+            0,
+            4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            6.0,
+            0,
+            0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            6.0,
+            0,
+            0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            6.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -6.0,
+            0,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -6.0,
+            0,
+            -0.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -6.0,
+            0,
+            -4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            4.0,
+            0,
+            -6.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            4.0,
+            0,
+            -6.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            0.0,
+            0,
+            -6.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            -4.0,
+            0,
+            -6.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            -4.0,
+            0,
+            -6.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -4.0,
+            0,
+            6.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -0.0,
+            0,
+            6.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            4.0,
+            0,
+            6.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            6.0,
+            0,
+            -6.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            6.0,
+            0,
+            6.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            -6.0,
+            0,
+            -6.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            -6.0,
+            0,
+            6.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_RoundTiles_6x6",
+          "offset": [
+            0.0,
+            6,
+            0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick6",
+          "offset": [
+            6.0,
+            6,
+            0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick6",
+          "offset": [
+            -6.0,
+            6,
+            -0.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Prop_Chimney",
+          "offset": [
+            -4.0,
+            9.0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
         }
       ],
       "size": [
@@ -786,9 +1751,234 @@
       ],
       "parts": [
         {
-          "model": "medieval/building_home_A_red",
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            2.0
+          ],
           "rot": 90,
-          "scale": 9
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Door_Round",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Door_1_Round",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            4.0,
+            0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            4.0,
+            0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -4.0,
+            0,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -4.0,
+            0,
+            -2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            4.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            4.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            -4.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            -4.0,
+            0,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_RoundTiles_4x4",
+          "offset": [
+            0.0,
+            6,
+            0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            4.0,
+            6,
+            0.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            -4.0,
+            6,
+            -0.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Prop_Chimney",
+          "offset": [
+            -2.0,
+            9.0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
         }
       ],
       "size": [
@@ -803,9 +1993,424 @@
       ],
       "parts": [
         {
-          "model": "medieval/building_home_B_blue",
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            -2.0
+          ],
           "rot": 0,
-          "scale": 9
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Door_Round",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Door_1_Round",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Window_Wide_Round",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            4.0,
+            0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -4.0,
+            0,
+            -2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_UnevenBrick_Straight",
+          "offset": [
+            -4.0,
+            0,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            4.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            -4.0,
+            0,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            4.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Brick",
+          "offset": [
+            -4.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            6,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            6,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            6,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            6,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            -2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Flat",
+          "offset": [
+            2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Flat1",
+          "offset": [
+            2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -2.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            2.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Flat",
+          "offset": [
+            4.0,
+            6,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Flat1",
+          "offset": [
+            4.0,
+            6,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            4.0,
+            6,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            -4.0,
+            6,
+            -2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Thin_Round",
+          "offset": [
+            -4.0,
+            6,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Thin_Round1",
+          "offset": [
+            -4.0,
+            6,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            6,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            6,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_RoundTiles_4x4",
+          "offset": [
+            0.0,
+            12,
+            0.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            0.0,
+            12,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            0.0,
+            12,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Prop_Chimney",
+          "offset": [
+            2.0,
+            15.0,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
         }
       ],
       "size": [
@@ -820,9 +2425,424 @@
       ],
       "parts": [
         {
-          "model": "medieval/building_home_A_red",
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            -2.0
+          ],
           "rot": 0,
-          "scale": 9
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            0,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            0,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Door_Round",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Door_1_Round",
+          "offset": [
+            -2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Round",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            2.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            2.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Round",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Round1",
+          "offset": [
+            4.0,
+            0,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            4.0,
+            0,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -4.0,
+            0,
+            -2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -4.0,
+            0,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            0,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            0,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            0,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            0,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            6,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            -2.0,
+            6,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            6,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Floor_WoodDark",
+          "offset": [
+            2.0,
+            6,
+            2.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            -2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Flat",
+          "offset": [
+            2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Flat1",
+          "offset": [
+            2.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            -2.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Straight",
+          "offset": [
+            2.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Wide_Flat",
+          "offset": [
+            4.0,
+            6,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Wide_Flat1",
+          "offset": [
+            4.0,
+            6,
+            2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            4.0,
+            6,
+            -2.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_WoodGrid",
+          "offset": [
+            -4.0,
+            6,
+            -2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Wall_Plaster_Window_Thin_Round",
+          "offset": [
+            -4.0,
+            6,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Window_Thin_Round1",
+          "offset": [
+            -4.0,
+            6,
+            2.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            6,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            6,
+            4.0
+          ],
+          "rot": 270,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            4.0,
+            6,
+            -4.0
+          ],
+          "rot": 90,
+          "scale": 2
+        },
+        {
+          "model": "village/Corner_Exterior_Wood",
+          "offset": [
+            -4.0,
+            6,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_RoundTiles_4x4",
+          "offset": [
+            0.0,
+            12,
+            0.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            0.0,
+            12,
+            4.0
+          ],
+          "rot": 0,
+          "scale": 2
+        },
+        {
+          "model": "village/Roof_Front_Brick4",
+          "offset": [
+            0.0,
+            12,
+            -4.0
+          ],
+          "rot": 180,
+          "scale": 2
+        },
+        {
+          "model": "village/Prop_Chimney",
+          "offset": [
+            2.0,
+            15.0,
+            -2.0
+          ],
+          "rot": 0,
+          "scale": 2
         }
       ],
       "size": [
