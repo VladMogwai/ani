@@ -387,80 +387,174 @@ def make_claw_stance(rig):
 # beside the head, rakes across the front and follows through low on the other side, the body twists and lunges into
 # it, the other hand pulls back. Wrist/fingertip targets in Blender space for the left hand (k = +1); the right hand
 # mirrors them (k = -1). Frames are 30 fps, relative to the swipe's start.
-SWIPE = [  # frame, wrist, fingertips, twist (deg, + turns the chest to its left), lean (deg), lunge (forward, down m), open
-    (0, None, None, 0, 0, (0, 0), 0),
-    (6, (0.62, 0.08, 1.55), (0.8, 0.12, 1.75), 30, -8, (-0.04, 0), 1),  # wound up out to the side and back, claws spread
-    (9, (0.2, -0.78, 1.38), (-0.05, -1.15, 1.3), -30, 18, (0.2, 0.05), 1),  # arm out in front at chest height, claws lead
-    (12, (0.02, -0.62, 0.98), (-0.25, -0.9, 0.75), -38, 22, (0.24, 0.07), 0.6),  # raked in to the centre line, not past it
-    (15, (0.04, -0.58, 0.96), (-0.22, -0.86, 0.72), -34, 20, (0.23, 0.06), 0.4),  # a short hold: the hit reads
-    (26, None, None, 0, 0, (0, 0), 0),
-]
-# the foot opposite the striking hand steps forward into the rake and back: (frame, forward m, lift m, outward m)
-STEP = [(0, 0, 0, 0), (4, 0.12, 0.07, 0.02), (8, 0.3, 0, 0.05), (16, 0.3, 0, 0.05), (21, 0.15, 0.06, 0.02), (26, 0, 0, 0)]
+# Own claw strikes, from the normal idle (no separate claw stance any more): boxing moves with open clawed hands.
+# Each channel is a list of keys (frame, value) passed through a Catmull-Rom spline and sampled every frame, so the
+# motion flows through the keys instead of stopping at each. Positions are Blender space for the LEFT hand
+# (+x = its own side, -y forward, z up, metres); the right hand mirrors. None = the idle value. 30 fps.
+#   hook: the hand comes up, cocks out to the side with the elbow raised, then a flat arc at head height into the
+#         centre line, the chest and hips turning through it (it stops at the centre: the hands never cross)
+#   uppercut: knees dip, the hand drops low in front, then drives straight up past the chin as the body rises
+MOVES = {
+    'hook': {
+        'len': 32,
+        'wrist': [(0, None), (6, (0.2, -0.22, 1.3)), (10, (0.44, -0.08, 1.44)), (12, (0.32, -0.44, 1.47)),
+                  (13.5, (0.04, -0.52, 1.46)), (16, (0.0, -0.46, 1.43)), (20, (0.02, -0.44, 1.42)), (32, None)],
+        'aim': [(0, None), (6, (0, -0.6, 0.8)), (10, (0.0, -1.0, 0.15)), (12, (-0.5, -0.85, 0.1)),
+                (13.5, (-0.9, -0.35, 0.0)), (16, (-0.8, 0.15, -0.1)), (20, (-0.7, 0.1, -0.2)), (32, None)],
+        'elbow': [(0, None), (6, (0.45, 0.2, 1.1)), (10, (0.8, 0.1, 1.45)), (13.5, (0.7, -0.1, 1.5)),
+                  (20, (0.6, 0.1, 1.35)), (32, None)],  # IK pole: the elbow rises out to the side
+        'twist': [(0, 0), (6, 4), (10, 24), (12, 6), (13.5, -24), (16, -32), (20, -26), (32, 0)],  # + turns away
+        'lean': [(0, 0), (6, 2), (10, 0), (13.5, 8), (16, 10), (20, 8), (32, 0)],
+        'lunge': [(0, (0, 0)), (6, (0, 0.02)), (10, (-0.02, 0.03)), (13.5, (0.08, 0.04)), (16, (0.1, 0.04)),
+                  (20, (0.08, 0.03)), (32, (0, 0))],  # pelvis forward, down
+        'open': [(0, 0), (6, 0.5), (10, 1), (16, 1), (20, 0.6), (32, 0)],
+        'step': [(0, (0, 0, 0)), (9, (0.06, 0.05, 0.02)), (13, (0.16, 0, 0.04)), (24, (0.16, 0, 0.04)),
+                 (29, (0.06, 0.04, 0.01)), (32, (0, 0, 0))],  # the other foot: forward, lift, outward
+        'guard': [(0, (0, 0, 0)), (9, (-0.04, -0.12, 0.3)), (24, (-0.04, -0.12, 0.3)), (32, (0, 0, 0))],  # other hand
+    },
+    'uppercut': {
+        'len': 32,
+        'wrist': [(0, None), (6, (0.22, -0.14, 1.02)), (10, (0.16, -0.26, 0.95)), (13, (0.08, -0.44, 1.5)),
+                  (16, (0.07, -0.4, 1.68)), (20, (0.08, -0.36, 1.6)), (32, None)],
+        'aim': [(0, None), (6, (0.1, -0.6, -0.8)), (10, (0, -0.9, -0.3)), (13, (0, -0.45, 0.9)),
+                (16, (0, -0.2, 1.0)), (20, (0, -0.3, 0.95)), (32, None)],  # claws lead upwards
+        'elbow': [(0, None), (6, (0.35, 0.2, 0.9)), (10, (0.3, -0.1, 0.8)), (13, (0.3, -0.35, 1.1)),
+                  (16, (0.3, -0.35, 1.25)), (32, None)],  # the elbow stays under the fist
+        'twist': [(0, 0), (6, 12), (10, 14), (13, -14), (16, -18), (20, -12), (32, 0)],
+        'lean': [(0, 0), (6, 8), (10, 10), (13, -6), (16, -8), (20, -4), (32, 0)],
+        'lunge': [(0, (0, 0)), (6, (0.02, 0.07)), (10, (0.04, 0.09)), (13, (0.08, -0.01)), (16, (0.08, -0.02)),
+                  (20, (0.06, 0.0)), (32, (0, 0))],  # dip, then rise onto the toes
+        'open': [(0, 0), (6, 0.6), (10, 1), (16, 1), (20, 0.6), (32, 0)],
+        'step': [(0, (0, 0, 0)), (32, (0, 0, 0))],
+        'guard': [(0, (0, 0, 0)), (8, (-0.04, -0.12, 0.3)), (24, (-0.04, -0.12, 0.3)), (32, (0, 0, 0))],
+    },
+}
+# the body follows the strike with overlap: the pelvis leads, each spine bone a frame later, the neck counters
+RAKE_CHAIN = [('pelvis', 0.2, -1), ('spine_01', 0.25, 0), ('spine_02', 0.3, 1), ('spine_03', 0.25, 2)]
 CLAW_OPEN = {'curl': {1: 8, 2: 12, 3: 10}, 'thumb': {1: 5, 2: 5, 3: 5}}  # fingers spread for the rake
-CLAW_ATTACKS = {'Claw_Swipe_R': [(-1, 0)], 'Claw_Swipe_L': [(1, 0)], 'Claw_Double': [(-1, 0), (1, 9)]}  # (k, start)
+CLAW_REST = {'curl': {1: 12, 2: 22, 3: 18}, 'thumb': {1: 10, 2: 15, 3: 10}}  # = the viewer's open claw hand (pose.ts)
+# (move, k = +1 left / -1 right hand, start frame)
+CLAW_ATTACKS = {
+    'Claw_Swipe_R': [('hook', -1, 0)], 'Claw_Swipe_L': [('hook', 1, 0)],
+    'Claw_Double': [('hook', -1, 0), ('uppercut', 1, 11)],  # hook, then an uppercut with the other hand
+    'Claw_DoubleHook': [('hook', -1, 0), ('hook', 1, 10)],
+}
+
+
+def spline(keys, f):
+    # Catmull-Rom through (frame, value) keys (numbers or Vectors), clamped at both ends
+    if f <= keys[0][0]:
+        return keys[0][1]
+    if f >= keys[-1][0]:
+        return keys[-1][1]
+    i = max(j for j in range(len(keys) - 1) if keys[j][0] <= f)
+    p0, p1, p2, p3 = (keys[max(i - 1, 0)][1], keys[i][1], keys[i + 1][1], keys[min(i + 2, len(keys) - 1)][1])
+    t = (f - keys[i][0]) / (keys[i + 1][0] - keys[i][0])
+    t2, t3 = t * t, t * t * t
+    return 0.5 * ((2 * p1) + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 + (-p0 + 3 * p1 - 3 * p2 + p3) * t3)
 
 
 def make_claw_attack(rig, name, swipes):
-    empties = pose_claw_stance(rig)
+    sc = bpy.context.scene
     pbs = rig.pose.bones
+    ad = rig.animation_data or rig.animation_data_create()
+    idle = bpy.data.actions['Idle_Loop']
+    ad.action = idle
+    if idle.slots:
+        ad.action_slot = idle.slots[0]
+    sc.frame_set(0)
     base = {pb.name: (pb.rotation_quaternion.copy(), pb.location.copy()) for pb in pbs}
-    stance = {n: e.location.copy() for n, e in empties.items()}
+    W = lambda n, tail=True: rig.matrix_world @ (pbs[n].tail if tail else pbs[n].head)
     rest = lambda n: (rig.matrix_world @ rig.data.bones[n].matrix_local).to_3x3()
-    ad = rig.animation_data
+    start = {}
+    for s, X in (('l', 'L'), ('r', 'R')):
+        start[f'wrist.{X}'] = W(f'lowerarm_{s}')
+        start[f'aim.{X}'] = (W(f'middle_03_{s}') - W(f'lowerarm_{s}')).normalized()
+        start[f'elbow.{X}'] = W(f'upperarm_{s}') + Vector((0.15 if s == 'l' else -0.15, 0.4, 0))
+        start[f'foot.{X}'] = W(f'calf_{s}')
+        start[f'toes.{X}'] = W(f'ball_{s}') + (W(f'ball_{s}') - W(f'calf_{s}')).normalized() * 0.1
+        start[f'knee.{X}'] = W(f'thigh_{s}') + Vector((0, -0.5, 0))
+        for bone in (f'lowerarm_{s}', f'calf_{s}'):
+            start[bone] = W(bone, False)  # the idle elbow / knee
+    ad.action = None
+    for n, (q, l) in base.items():
+        pbs[n].rotation_mode = 'QUATERNION'
+        pbs[n].rotation_quaternion, pbs[n].location = q, l
+    empties = {}
+    for n in ('wrist', 'fingers', 'elbow', 'foot', 'toes', 'knee'):
+        for X in ('L', 'R'):
+            e = bpy.data.objects.new(f'{n}.{X}', None)
+            sc.collection.objects.link(e)
+            empties[f'{n}.{X}'] = e
+            e.location = start[f'{n}.{X}'] if n != 'fingers' else start[f'wrist.{X}'] + start[f'aim.{X}'] * 0.2
+    for s, X in (('l', 'L'), ('r', 'R')):
+        for bone, tgt, pole in ((f'calf_{s}', 'foot', 'knee'), (f'lowerarm_{s}', 'wrist', 'elbow')):
+            c = pbs[bone].constraints.new('IK')
+            c.target, c.chain_count, c.pole_target = empties[f'{tgt}.{X}'], 2, empties[f'{pole}.{X}']
+            best = None
+            for a in range(-180, 180, 15):  # the pole angle that keeps the idle elbow / knee
+                c.pole_angle = math.radians(a)
+                bpy.context.view_layer.update()
+                err = (W(bone, False) - start[bone]).length
+                if best is None or err < best[0]:
+                    best = (err, a)
+            c.pole_angle = math.radians(best[1])
+        pbs[f'foot_{s}'].constraints.new('DAMPED_TRACK').target = empties[f'toes.{X}']
+        pbs[f'hand_{s}'].constraints.new('DAMPED_TRACK').target = empties[f'fingers.{X}']
     src = bpy.data.actions.new(name + '_src')
     ad.action = src
     mirror = lambda v, k: Vector((v[0] * k, v[1], v[2]))
     side = lambda k: 'L' if k > 0 else 'R'
-    # hand targets: keyed per empty at its own swipe's frames (the other hand pulls back meanwhile)
-    for k, t0 in swipes:
-        X, O = side(k), side(-k)
-        for f, wrist, tips, *_rest in SWIPE:
-            for e, loc in ((f'wrist.{X}', wrist), (f'fingers.{X}', tips)):
-                empties[e].location = mirror(loc, k) if loc else stance[e]
-                empties[e].keyframe_insert('location', frame=t0 + f)
-            back = stance[f'wrist.{O}'] + Vector((0, 0.11, 0.05)) if 0 < f < SWIPE[-1][0] else stance[f'wrist.{O}']
-            if len(swipes) == 1:
-                empties[f'wrist.{O}'].location = back
-                empties[f'wrist.{O}'].keyframe_insert('location', frame=t0 + f)
-        for f, fwd, lift, out in STEP:  # step with the other foot (toes target moves with it, the foot stays flat)
-            d = Vector((out * -k, -fwd, lift))
-            for e in (f'foot.{O}', f'toes.{O}'):
-                empties[e].location = stance[e] + d
-                empties[e].keyframe_insert('location', frame=t0 + f)
 
-    def curve(i, k, t0, f):  # piecewise-linear value of SWIPE column i for one swipe at frame f
-        pts = [(t0 + row[0], row[i] * (k if i == 3 else 1) if not isinstance(row[i], tuple) else row[i]) for row in SWIPE]
-        if f <= pts[0][0] or f >= pts[-1][0]:
-            return pts[0][1] if f <= pts[0][0] else pts[-1][1]
-        for (fa, va), (fb, vb) in zip(pts, pts[1:]):
-            if fa <= f <= fb:
-                t = (f - fa) / (fb - fa)
-                return tuple(a + (b - a) * t for a, b in zip(va, vb)) if isinstance(va, tuple) else va + (vb - va) * t
+    def track(move, k, key):  # the spline keys of one channel for one hand, None resolved to the idle value
+        X = side(k)
+        out = []
+        for f, v in MOVES[move][key]:
+            if key in ('wrist', 'elbow'):
+                v = start[f'{key}.{X}'] if v is None else mirror(v, k)
+            elif key == 'aim':
+                v = start[f'aim.{X}'] if v is None else mirror(v, k).normalized()
+            elif isinstance(v, tuple):
+                v = Vector(v)
+            out.append((f, v))
+        return out
 
     def turn(n, axis, deg):
         bpy.context.view_layer.update()
         w = (rig.matrix_world @ pbs[n].matrix).to_3x3()
         pbs[n].rotation_quaternion = pbs[n].rotation_quaternion @ Quaternion((w.inverted() @ Vector(axis)).normalized(), math.radians(deg))
 
-    end = max(t0 for _, t0 in swipes) + SWIPE[-1][0]
-    frames = sorted({t0 + row[0] for _, t0 in swipes for row in SWIPE} | {end})
-    for f in frames:
-        twist = sum(curve(3, k, t0, f) for k, t0 in swipes)
-        lean = sum(curve(4, k, t0, f) for k, t0 in swipes)
-        fwd = sum(curve(5, k, t0, f)[0] for k, t0 in swipes)
-        down = sum(curve(5, k, t0, f)[1] for k, t0 in swipes)
+    end = max(t0 + MOVES[mv]['len'] for mv, _, t0 in swipes)
+    tracks = {(k, t0, key): track(mv, k, key) for mv, k, t0 in swipes for key in MOVES[mv] if key != 'len'}
+    swipes = [(k, t0) for _, k, t0 in swipes]
+    at = lambda k, t0, key, f: spline(tracks[(k, t0, key)], f - t0)
+    for f in range(0, end + 1):
+        for k, t0 in swipes:
+            X, O = side(k), side(-k)
+            w = at(k, t0, 'wrist', f)
+            empties[f'wrist.{X}'].location = w
+            empties[f'elbow.{X}'].location = at(k, t0, 'elbow', f)
+            empties[f'fingers.{X}'].location = w + at(k, t0, 'aim', f).normalized() * 0.2
+            st = at(k, t0, 'step', f)
+            for e in (f'foot.{O}', f'toes.{O}'):
+                empties[e].location = start[e] + Vector((st.z * -k, -st.x, st.y))
+            if len(swipes) == 1:
+                empties[f'wrist.{O}'].location = start[f'wrist.{O}'] + at(k, t0, 'guard', f)
+                empties[f'fingers.{O}'].location = empties[f'wrist.{O}'].location + start[f'aim.{O}'] * 0.2
+        for e in empties.values():
+            e.keyframe_insert('location', frame=f)
         for n, (q, l) in base.items():
             pbs[n].rotation_quaternion, pbs[n].location = q.copy(), l.copy()
-        pbs['pelvis'].location = base['pelvis'][1] + rest('pelvis').inverted() @ Vector((0, -fwd, -down))
-        for n, share in (('spine_01', 0.3), ('spine_02', 0.35), ('spine_03', 0.35)):
-            turn(n, (0, 0, 1), twist * share)
-            turn(n, (1, 0, 0), lean * share)
-        turn('neck_01', (0, 0, 1), -twist * 0.4)  # the head keeps facing the target
-        for k, t0 in swipes:  # the attacking hand opens for the rake and closes again
-            o = curve(6, k, t0, f)
+        lunge = sum((at(k, t0, 'lunge', f) for k, t0 in swipes), Vector((0, 0)))
+        pbs['pelvis'].location = base['pelvis'][1] + rest('pelvis').inverted() @ Vector((0, -lunge.x, -lunge.y))
+        for bone, share, lag in RAKE_CHAIN:  # overlap: each bone samples the curve `lag` frames later
+            turn(bone, (0, 0, 1), sum(at(k, t0, 'twist', f - lag) * k for k, t0 in swipes) * share)
+            turn(bone, (1, 0, 0), sum(at(k, t0, 'lean', f - lag) for k, t0 in swipes) * share)
+        turn('neck_01', (0, 0, 1), -sum(at(k, t0, 'twist', f - 2) * k for k, t0 in swipes) * 0.45)  # eyes on target
+        for k, t0 in swipes:
+            o = max(0.0, min(1.0, at(k, t0, 'open', f)))
             mix = lambda a, b: {j: a[j] * (1 - o) + b[j] * o for j in a}
-            curl_hand(rig, 'l' if k > 0 else 'r', k, mix(STANCE['curl'], CLAW_OPEN['curl']), mix(STANCE['thumb'], CLAW_OPEN['thumb']))
+            curl_hand(rig, 'l' if k > 0 else 'r', k, mix(CLAW_REST['curl'], CLAW_OPEN['curl']), mix(CLAW_REST['thumb'], CLAW_OPEN['thumb']))
         for pb in pbs:
             pb.keyframe_insert('rotation_quaternion', frame=f)
             pb.keyframe_insert('location', frame=f)

@@ -19,3 +19,12 @@ chainmail under a worn leather jacket, dark knee-length cloak, one-handed sword,
   bald elongated skull, pointed ears swept back, heavy brow, protruding jaw and teeth, baggy trousers in knee-high
   boots; posture: wide crouch, knees out, back bent forward ~35-40°, neck forward, chin up, arms hanging forward and
   out with the hands in front of / outside the knees.
+
+## Licensed (gitignored, not in the repo): Mixamo
+- `licensed/mixamo/*.fbx`: Mixamo "Creature Pack" (mutant idle, walking, run, swiping, punch, jump attack, roaring,
+  flexing, dying, turns, X Bot), "Zombie Scream", "Walking" (saved as walking.fbx) and "Slow Run" (slow run.fbx), downloaded by the user from https://www.mixamo.com (free with an
+  Adobe ID; royalty-free in games, the raw files may not be redistributed). To restore: download those animations as
+  FBX Binary, Without Skin, 30 fps into `licensed/mixamo/` (file names as listed in tools/mixamo_clips.py `CLIPS`),
+  then run `/Applications/Blender.app/Contents/MacOS/Blender -b --factory-startup --python tools/mixamo_clips.py`
+  (writes `licensed/mixamo-clips.glb`). Without it the viewer falls back to the own claw attacks.
+- `licensed/mixamo/magic/*.fbx`: Mixamo "Pro Magic Pack" and "Standing 1H Magic Attack 03", "Standing 2H Magic Attack 01", "Standing 2H Magic Attack 04" (user's downloads); clip list in tools/mixamo_clips.py (`Mage_*`).

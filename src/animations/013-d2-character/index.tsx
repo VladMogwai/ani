@@ -2,21 +2,22 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useAnimations, useGLTF } from '@react-three/drei'
 import {
-  AnimationUtils, Bone, CanvasTexture, Object3D, Group, LoopOnce, MathUtils, Mesh, MeshStandardMaterial, Quaternion, RepeatWrapping,
+  AdditiveBlending, AnimationUtils, Bone, CanvasTexture, Color, Sprite, SpriteMaterial, Object3D, Group, LoopOnce, LoopRepeat, MathUtils, Mesh, MeshStandardMaterial, Quaternion, RepeatWrapping,
   SRGBColorSpace, Vector3, type AnimationAction, type OrthographicCamera,
 } from 'three'
 import {
-  ATTACKS, CHARACTERS, HUMAN, ITEM_HAND, RIGS, SKIN, SLOTS, attacksOf, claws, visibleParts,
+  ATTACKS, CHARACTERS, MIXAMO_URL, HUMAN, ITEM_HAND, RIGS, SKIN, SLOTS, attacksOf, claws, visibleParts,
   type Attack, type CharacterId, type Equipped, type Form, type Item, type Race, type Rig, type RigId, type Slot,
 } from './parts'
 import { SLIDERS, applyTurns, clawHandPose, clawHandStretch, poseTurns, rigBones, type PoseValues } from './pose'
 import savedPose from './claw-pose.json'
+import savedMap from './anim-map.json'
 
 const CONFIG = {
   elevation: 30, // degrees, same isometric camera as 012
   viewHeight: 4.2, // metres visible vertically; the 1.8 m hero is then about 40% of the screen
-  // render pixels the hero is tall in pixel mode: 80 as on an 800x600 Diablo II screen, more for finer detail
-  heroPixels: ['80', '128', '160', '200'] as const,
+  // render pixels the hero is tall in pixel mode (80 and 128, the Diablo II sizes, were dropped by the user)
+  heroPixels: ['160', '200'] as const,
   directions: 8,
   turnEvery: 0.9, // seconds per direction step when auto-turning
   fade: 0.2, // clip crossfade, seconds
@@ -25,12 +26,21 @@ const CONFIG = {
   // so the return reads as the strike's recovery instead of a freeze and a snap (at most 40% of a short clip)
   attackOut: 0.45,
   hunchSpeed: 1.5, // how fast the hunch layer follows the number of claws (weight per second)
+  // the vampire's combat face (shape keys GameFace / GameFace_Mouth from tools/kit_character.py): it comes on with
+  // claws or a strike and fades out after `faceHold` seconds of calm; eyes glow yellow with it
+  // eyes: the iris texture is replaced by the glow colour and the whole eye glows, so it reads at game size
+  face: { speed: 4, hold: 2.5, eyeGlow: 3.5 },
+  // a soft additive glow in front of each eye, on the head bone: the eyes themselves are a pixel or two at game size
+  eyeHalo: { size: 0.085, forward: 0.02, opacity: 1 },
+  eyeColors: { amber: '#ffb21e', blood: '#ff2a1a', venom: '#7dff3a', frost: '#5ad8ff', violet: '#c45bff' },
   cloak: { walk: 16, flap: 4, idle: 2, sway: 1.5 }, // degrees the procedural cloak bone trails back / moves
   background: '#07070a',
   ambient: { color: '#3a4258', intensity: 0.35 },
   // the light radius around the hero; `shadowShare` of it casts the shadow, the rest fills it so shadows stay see-through
   torch: { color: '#ffb36b', intensity: 34, distance: 8, decay: 1.6, height: 4, shadowShare: 0.6 },
   moon: { color: '#8ea2d6', intensity: 0.5, position: [-4, 6, -3] as const },
+  // a soft warm light from the camera's side: the torch is overhead, so faces under brows and hoods went black
+  fill: { color: '#ffd9b0', intensity: 0.9, position: [5, 3, 5] as const },
   ground: { tile: 4, size: 30 }, // metres per texture repeat, plane size
   // restyle of the kit outfits towards our grim look (the style is not settled yet): a muted multiply on clothing
   clothTint: '#aaa294',
@@ -40,6 +50,7 @@ const pixelRatio = (heroPixels: number, screenHeight: number, heroHeight: number
   (heroPixels * CONFIG.viewHeight) / (heroHeight * screenHeight)
 
 const X_AXIS = new Vector3(1, 0, 0)
+const tmpColor = new Color()
 
 const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -90,14 +101,34 @@ function IsoCamera() {
   return null
 }
 
-type Moving = 'Idle' | 'Walk'
-type Posture = 'layer' | 'predator' | 'zombie'
+type Moving = 'Idle' | 'Walk' | 'Run'
+// the states of the animation map: what each one means, in the user's terms
+const ROLE_INFO: Record<string, string> = {
+  Idle: 'Standing, empty hands',
+  SwordIdle: 'Standing with a sword',
+  ShieldIdle: 'Standing with only a shield',
+  Walk: 'Walking (human hands)',
+  Run: 'Fast walk / run (human hands)',
+  BeastIdle: 'Standing with claws',
+  BeastWalk: 'Walking with claws',
+  BeastRun: 'Running with claws',
+  ClawIdle: 'Claws, posture "zombie": standing',
+  ClawWalk: 'Claws, posture "zombie": walking',
+  ClawStance: 'Claws, posture "predator": standing',
+}
+const ATTACK_INFO: Record<string, string> = Object.fromEntries(
+  Object.entries(ATTACKS).map(([k, a]) => [k, `Attack: ${a.label}`]),
+)
+
+type Posture = 'beast' | 'layer' | 'predator' | 'zombie'
 
 // the looping clip for the current state. With claws: `predator` stands in the claw stance (and walks with the
 // hunch layer), `zombie` uses the pack's zombie clips, `layer` only adds the hunch to the normal clips
+// (`beast`: the Mixamo mutant idle and walk, when licensed/mixamo-clips.glb is present)
 function baseRole(rig: Rig, moving: Moving, form: Form, eq: Equipped, posture: Posture) {
   const beast = rig.zombie && claws(form) > 0 ? posture : 'layer'
-  if (moving === 'Walk') return beast === 'zombie' ? 'ClawWalk' : 'Walk'
+  if (beast === 'beast') return moving === 'Run' ? 'BeastRun' : moving === 'Walk' ? 'BeastWalk' : 'BeastIdle'
+  if (moving !== 'Idle') return beast === 'zombie' ? 'ClawWalk' : moving
   if (beast === 'zombie') return 'ClawIdle'
   if (beast === 'predator') return 'ClawStance'
   return eq.sword ? 'SwordIdle' : eq.shield ? 'ShieldIdle' : 'Idle'
@@ -115,13 +146,23 @@ type Props = {
   eq: Equipped
   race: Race
   posture: Posture
-  attack: { name: Attack; n: number } | null
+  attack: { name: Attack; n: number; clip?: string; loop?: boolean } | null // clip: play this one instead; loop: until stopped
   pose: PoseValues
+  face: Face
+  snarl: boolean
+  eyeColor: EyeColor
+  onClips: (names: string[]) => void
 }
+type EyeColor = keyof typeof CONFIG.eyeColors
+type Face = 'auto' | 'on' | 'off'
 
-function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, posture, attack, pose }: Props) {
+function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, posture, attack, pose, face, snarl, eyeColor, onClips }: Props) {
   const group = useRef<Group>(null)
-  const { scene, animations } = useGLTF(url)
+  const { scene, animations: own } = useGLTF(url)
+  // optional Mixamo clips: the same bone names, so the mixer binds them to this character (the hook is always called;
+  // without the file it just loads the model again from the cache)
+  const extra = useGLTF(MIXAMO_URL ?? url)
+  const animations = useMemo(() => (MIXAMO_URL ? [...own, ...extra.animations] : own), [own, extra])
   // Hunch is stored as a full pose; as an additive layer it adds only its difference from Idle frame 0
   const clips = useMemo(() => {
     const idle = animations.find((c) => c.name === rig.clips.Idle)
@@ -134,6 +175,7 @@ function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, 
     })
   }, [animations, rig])
   const { actions } = useAnimations(clips, group)
+  useEffect(() => onClips(clips.map((c) => c.name).filter((n) => n !== 'Hunch').sort()), [clips, onClips])
   const role = baseRole(rig, moving, form, eq, posture)
   const baseRef = useRef(rig.clips[role])
   baseRef.current = rig.clips[role]
@@ -141,9 +183,77 @@ function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, 
   const ground = useGroundTexture()
   const turnT = useRef(0)
   const hunch = useRef(0)
+  const faceState = useRef({ w: 0, mouth: 0, calm: 99 })
+  const faceMeshes = useMemo(() => {
+    const list: { mesh: Mesh; face: number; mouth: number }[] = []
+    scene.traverse((o) => {
+      const m = o as Mesh
+      const dict = m.isMesh ? m.morphTargetDictionary : undefined
+      if (dict && 'GameFace' in dict) list.push({ mesh: m, face: dict.GameFace, mouth: dict.GameFace_Mouth ?? -1 })
+    })
+    return list
+  }, [scene])
+  const eyes = useMemo(() => {
+    let mat: MeshStandardMaterial | undefined
+    scene.traverse((o) => {
+      const m = (o as Mesh).material as MeshStandardMaterial | undefined
+      if (m?.name?.startsWith('MI_Eyes')) mat = m
+    })
+    return mat
+  }, [scene])
   // claw pose sliders: rest frames from the bind pose, deltas recomputed when the values change
   const frames = useMemo(() => rigBones(scene), [scene])
   const turns = useMemo(() => poseTurns(frames, pose), [frames, pose])
+  // glow sprites at the eye centres (from the Eyes mesh's bind-pose vertices), children of the head bone
+  const halo = useMemo(() => {
+    const head = frames.get('Head')
+    let eyeMesh: Mesh | undefined
+    scene.traverse((o) => {
+      if (!eyeMesh && (o as Mesh).isMesh && o.name.includes('Eyes')) eyeMesh = o as Mesh
+    })
+    if (!head || !eyeMesh) return null
+    const pos = eyeMesh.geometry.attributes.position
+    const c = document.createElement('canvas')
+    c.width = c.height = 64
+    const g = c.getContext('2d')!
+    const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32)
+    grad.addColorStop(0, 'rgba(255,255,255,1)')
+    grad.addColorStop(0.25, 'rgba(255,255,255,0.6)')
+    grad.addColorStop(1, 'rgba(255,255,255,0)')
+    g.fillStyle = grad
+    g.fillRect(0, 0, 64, 64)
+    const map = new CanvasTexture(c)
+    const mat = new SpriteMaterial({ map, blending: AdditiveBlending, depthWrite: false, transparent: true, opacity: 0 })
+    const inv = head.rest.clone().invert()
+    const sprites = [1, -1].map((side) => {
+      const sum = new Vector3()
+      let n = 0
+      for (let i = 0; i < pos.count; i++) {
+        if (pos.getX(i) * side > 0) {
+          sum.add(new Vector3().fromBufferAttribute(pos, i))
+          n++
+        }
+      }
+      const sp = new Sprite(mat)
+      sp.position.copy(sum.divideScalar(Math.max(n, 1)).add(new Vector3(0, 0, CONFIG.eyeHalo.forward)).sub(head.pos).applyQuaternion(inv))
+      sp.scale.setScalar(CONFIG.eyeHalo.size)
+      return sp
+    })
+    return { sprites, mat, map, bone: head.bone }
+  }, [scene, frames])
+  // attached in an effect (not in the memo): a strict-mode remount re-attaches what the cleanup removed
+  useEffect(() => {
+    if (!halo) return
+    halo.sprites.forEach((sp) => halo.bone.add(sp))
+    return () => halo.sprites.forEach((sp) => sp.removeFromParent())
+  }, [halo])
+  useEffect(
+    () => () => {
+      halo?.mat.dispose()
+      halo?.map.dispose()
+    },
+    [halo],
+  )
   const clawHands = useMemo(() => ({ l: clawHandPose(frames, 'l'), r: clawHandPose(frames, 'r') }), [frames])
   const clawStretch = useMemo(() => ({ l: clawHandStretch(frames, 'l'), r: clawHandStretch(frames, 'r') }), [frames])
   const tmp = useMemo(() => ({ v: new Vector3(), w: new Vector3() }), [])
@@ -212,19 +322,23 @@ function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, 
   }, [actions])
 
   // an attack plays once over the current clip; the way back starts before it ends (see useFrame)
-  const strike = useRef<{ action: AnimationAction; out: number; returning: boolean } | null>(null)
+  const strike = useRef<{ action: AnimationAction; out: number; returning: boolean; loop: boolean } | null>(null)
   useEffect(() => {
-    const clip = attack && rig.attacks[attack.name]
+    const clip = attack && (attack.clip ?? rig.attacks[attack.name])
     const a = clip ? actions[clip] : null
     if (!a) return
-    a.reset().setLoop(LoopOnce, 1)
-    a.clampWhenFinished = true
+    const loop = !!attack?.loop
+    a.reset().setLoop(loop ? LoopRepeat : LoopOnce, loop ? Infinity : 1)
+    a.clampWhenFinished = !loop
     a.fadeIn(CONFIG.attackIn).play()
     actions[baseRef.current]?.fadeOut(CONFIG.attackIn)
     attacking.current = true
-    strike.current = { action: a, out: Math.min(CONFIG.attackOut, a.getClip().duration * 0.4), returning: false }
+    const st = { action: a, out: Math.min(CONFIG.attackOut, a.getClip().duration * 0.4), returning: false, loop }
+    strike.current = st
     return () => {
-      a.fadeOut(CONFIG.attackIn) // a newer attack interrupts this one
+      // stopped (or interrupted by a newer one): blend back to the current state unless it already did
+      a.fadeOut(CONFIG.attackIn)
+      if (!st.returning) actions[baseRef.current]?.reset().fadeIn(CONFIG.attackIn).play()
       strike.current = null
       attacking.current = false
     }
@@ -238,7 +352,7 @@ function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, 
 
   useFrame(({ clock }, dt) => {
     const st = strike.current
-    if (st && !st.returning && st.action.time >= st.action.getClip().duration - st.out) {
+    if (st && !st.loop && !st.returning && st.action.time >= st.action.getClip().duration - st.out) {
       st.returning = true
       st.action.fadeOut(st.out)
       actions[baseRef.current]?.reset().fadeIn(st.out).play()
@@ -250,7 +364,7 @@ function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, 
     }
     const yaw = (dir * 2 * Math.PI) / CONFIG.directions
     group.current!.rotation.y = yaw
-    const walking = moving === 'Walk' && !attacking.current
+    const walking = moving !== 'Idle' && !attacking.current
     if (walking && !reduced) {
       // the ground slides under the hero opposite to where it faces, at the clip's own speed
       const d = ((rig.speed[role as 'Walk'] ?? 0) * dt) / CONFIG.ground.tile
@@ -258,7 +372,7 @@ function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, 
       ground.offset.y -= Math.cos(yaw) * d
     }
     // the hunch grows with the claws: half with one, full with two (none when the rig's hunched clips are used)
-    const target = role === 'ClawIdle' || role === 'ClawWalk' || role === 'ClawStance' ? 0 : claws(form) / 2
+    const target = ['ClawIdle', 'ClawWalk', 'ClawStance', 'BeastIdle', 'BeastWalk'].includes(role) ? 0 : claws(form) / 2
     hunch.current = MathUtils.damp(hunch.current, target, CONFIG.hunchSpeed * 3, dt)
     actions.Hunch?.setEffectiveWeight(hunch.current)
     // the slider layer over the claw stance (weighted by how much of the stance is playing); afterwards the pelvis
@@ -295,6 +409,27 @@ function Mercenary({ rig, url, look, moving, dir, auto, onTurn, form, eq, race, 
     for (const [o, t] of touched.current) {
       t.applied.copy(o.quaternion)
       t.pos![1].copy(o.position)
+    }
+    // combat face: on with claws or a strike (auto), forced on / off; the mouth opens only when `snarl` is set
+    const fs = faceState.current
+    const fighting = race === 'vampire' && (claws(form) > 0 || !!strike.current)
+    fs.calm = fighting ? 0 : fs.calm + dt
+    const want = face === 'on' ? 1 : face === 'off' || race !== 'vampire' ? 0 : fs.calm < CONFIG.face.hold ? 1 : 0
+    fs.w = MathUtils.damp(fs.w, want, CONFIG.face.speed, dt)
+    fs.mouth = MathUtils.damp(fs.mouth, snarl ? want : 0, CONFIG.face.speed, dt)
+    for (const f of faceMeshes) {
+      f.mesh.morphTargetInfluences![f.face] = fs.w
+      if (f.mouth >= 0) f.mesh.morphTargetInfluences![f.mouth] = fs.mouth
+    }
+    if (eyes) {
+      const glow = CONFIG.eyeColors[eyeColor]
+      eyes.emissive.set(glow)
+      eyes.emissiveIntensity = fs.w * CONFIG.face.eyeGlow
+      eyes.color.set('#ffffff').lerp(tmpColor.set(glow), fs.w) // tints the iris texture towards the glow
+    }
+    if (halo) {
+      halo.mat.color.set(CONFIG.eyeColors[eyeColor])
+      halo.mat.opacity = fs.w * CONFIG.eyeHalo.opacity
     }
     if (cloak) {
       const t = clock.elapsedTime
@@ -367,13 +502,20 @@ export default function Page() {
   const [dir, setDir] = useState(0)
   const [auto, setAuto] = useState(!reduced)
   const [pixel, setPixel] = useState(true)
-  const [heroPx, setHeroPx] = useState<(typeof CONFIG.heroPixels)[number]>('80')
+  const [heroPx, setHeroPx] = useState<(typeof CONFIG.heroPixels)[number]>('160')
   const [race, setRace] = useState<Race>('vampire')
   const [form, setForm] = useState<Form>(HUMAN)
   const [eq, setEq] = useState<Equipped>({ sword: true, shield: true })
-  const [posture, setPosture] = useState<Posture>('layer') // claws: the normal idle, hunched (no separate stance)
-  const [attack, setAttack] = useState<{ name: Attack; n: number } | null>(null)
+  const [posture, setPosture] = useState<Posture>(MIXAMO_URL ? 'beast' : 'layer') // claws: the mutant idle / walk
+  const [attack, setAttack] = useState<{ name: Attack; n: number; clip?: string } | null>(null)
+  const [previewClip, setPreviewClip] = useState('')
+  const [loopAll, setLoopAll] = useState(true) // attacks and previews repeat until Stop
   const [pose, setPose] = useState<PoseValues>(savedPose)
+  const [face, setFace] = useState<Face>('auto')
+  const [snarl, setSnarl] = useState(true)
+  const [eyeColor, setEyeColor] = useState<EyeColor>('amber')
+  // each character has its own eye colour; picking a character resets the choice to it
+  useEffect(() => setEyeColor((CHARACTERS[character] as { eyes: string }).eyes as EyeColor), [character])
   const [saved, setSaved] = useState('')
   const savePose = async () => {
     const res = await fetch('/__save?path=src/animations/013-d2-character/claw-pose.json', {
@@ -383,12 +525,31 @@ export default function Page() {
     setSaved(res.ok ? 'saved' : 'save failed (dev server only)')
   }
   const [screenHeight, setScreenHeight] = useState(window.innerHeight)
-  const rig: Rig = RIGS[rigId]
-  const ch = CHARACTERS[character] as { url: string; skin: 'baked' | 'texture'; hair?: string }
+  // which clip plays in which state: the defaults in parts.ts, overridden by anim-map.json (edited in the
+  // "Animation map" panel and saved from there)
+  const [animMap, setAnimMap] = useState<{ roles: Record<string, string>; attacks: Record<string, string> }>(savedMap)
+  const [clipNames, setClipNames] = useState<string[]>([])
+  const [showMap, setShowMap] = useState(false)
+  const [mapSaved, setMapSaved] = useState('')
+  const base = RIGS[rigId] as Rig
+  const rig: Rig = useMemo(
+    () => ({ ...base, clips: { ...base.clips, ...animMap.roles }, attacks: { ...base.attacks, ...animMap.attacks } }),
+    [base, animMap],
+  )
+  const saveMap = async () => {
+    const res = await fetch('/__save?path=src/animations/013-d2-character/anim-map.json', {
+      method: 'POST',
+      body: JSON.stringify(animMap, null, 2) + '\n',
+    })
+    setMapSaved(res.ok ? 'saved' : 'save failed (dev server only)')
+  }
+  const ch = CHARACTERS[character] as { url: string; skin: 'baked' | 'texture'; hair?: string; eyes: string }
   const url = rigId === 'ual' ? ch.url : rig.url
   const look = rigId === 'ual' ? ch : { skin: 'baked' as const }
   const attacks = useMemo(() => attacksOf(form, eq).filter((a) => rig.attacks[a]), [form, eq, rig])
-  const trigger = (a: Attack) => setAttack((p) => ({ name: a, n: (p?.n ?? 0) + 1 }))
+  const trigger = (a: Attack) => setAttack((p) => ({ name: a, n: (p?.n ?? 0) + 1, loop: loopAll }))
+  // plays any clip once over the current state (the Animation map's preview)
+  const preview = (clip: string) => clip && setAttack((p) => ({ name: 'Punch', clip, n: (p?.n ?? 0) + 1, loop: loopAll }))
 
   useEffect(() => {
     const onResize = () => setScreenHeight(window.innerHeight)
@@ -414,7 +575,7 @@ export default function Page() {
     setRace(r)
     if (r === 'human') setForm(HUMAN)
   }
-  const { torch, moon, ambient } = CONFIG
+  const { torch, moon, ambient, fill } = CONFIG
 
   return (
     <div style={{ position: 'fixed', inset: 0, background: CONFIG.background }}>
@@ -429,6 +590,7 @@ export default function Page() {
         <IsoCamera />
         <ambientLight color={ambient.color} intensity={ambient.intensity} />
         <directionalLight color={moon.color} intensity={moon.intensity} position={[...moon.position]} />
+        <directionalLight color={fill.color} intensity={fill.intensity} position={[...fill.position]} />
         <pointLight
           color={torch.color}
           intensity={torch.intensity * torch.shadowShare}
@@ -447,6 +609,7 @@ export default function Page() {
           position={[0.25, torch.height, 0.4]}
         />
         <Mercenary
+          onClips={setClipNames}
           key={url}
           rig={rig}
           url={url}
@@ -461,6 +624,9 @@ export default function Page() {
           posture={posture}
           attack={attack}
           pose={pose}
+          face={face}
+          snarl={snarl}
+          eyeColor={eyeColor}
         />
       </Canvas>
       <div style={panel}>
@@ -473,8 +639,36 @@ export default function Page() {
           (Object.keys(SLOTS) as Slot[]).map((slot) => (
             <Choice key={slot} name={SLOTS[slot].label} value={form[slot]} options={SLOTS[slot].variants} onChange={(v) => setSlot(slot, v)} />
           ))}
+        {race === 'vampire' && (
+          <div style={row}>
+            <span style={label}>Face</span>
+            {(['auto', 'on', 'off'] as const).map((f) => (
+              <button key={f} style={face === f ? active : button} onClick={() => setFace(f)}>
+                {f}
+              </button>
+            ))}
+            <button style={snarl ? active : button} onClick={() => setSnarl((v) => !v)}>
+              snarl
+            </button>
+          </div>
+        )}
+        {race === 'vampire' && (
+          <div style={row}>
+            <span style={label}>Eyes</span>
+            {(Object.keys(CONFIG.eyeColors) as EyeColor[]).map((c) => (
+              <button
+                key={c}
+                title={c}
+                style={{ ...(eyeColor === c ? active : button), padding: '8px 10px' }}
+                onClick={() => setEyeColor(c)}
+              >
+                <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 6, background: CONFIG.eyeColors[c] }} />
+              </button>
+            ))}
+          </div>
+        )}
         {race === 'vampire' && rig.zombie && (
-          <Choice name="Hunch" value={posture} options={['layer', 'predator', 'zombie'] as const} onChange={setPosture} />
+          <Choice name="Hunch" value={posture} options={(MIXAMO_URL ? ['beast', 'layer', 'predator', 'zombie'] : ['layer', 'predator', 'zombie']) as Posture[]} onChange={setPosture} />
         )}
         <div style={row}>
           <span style={label}>Inventory</span>
@@ -533,8 +727,66 @@ export default function Page() {
           </div>
         </div>
       )}
+      {showMap && (
+        <div style={{ ...panel, top: 16, left: 'auto', right: 16, width: 400, maxHeight: 'calc(100% - 90px)', overflowY: 'auto', background: '#0d0c0aEE', padding: 10, borderRadius: 8, alignItems: 'stretch' }}>
+          <div style={row}>Preview any animation</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 6 }}>
+            <select
+              value={previewClip}
+              onChange={(e) => (setPreviewClip(e.target.value), preview(e.target.value))}
+              style={{ background: '#1a1712', color: '#d8c9a8', border: '1px solid #3b352c', borderRadius: 4, font: '12px system-ui', padding: 4 }}
+            >
+              <option value="">— choose —</option>
+              {clipNames.map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+            <button style={button} onClick={() => preview(previewClip)}>
+              ▶
+            </button>
+          </div>
+          <div style={{ ...row, marginTop: 6 }}>Which animation plays when (saved to anim-map.json)</div>
+          {([['roles', ROLE_INFO], ['attacks', ATTACK_INFO]] as const).map(([kind, info]) =>
+            Object.entries(info).map(([key, when]) => {
+              const cur = (rig[kind === 'roles' ? 'clips' : 'attacks'] as Record<string, string | undefined>)[key] ?? ''
+              const changed = key in animMap[kind as 'roles' | 'attacks']
+              return (
+                <label key={kind + key} style={{ display: 'grid', gridTemplateColumns: '1fr 150px 28px', gap: 6, alignItems: 'center' }}>
+                  <span style={{ lineHeight: 1.3, color: changed ? '#e8c27a' : undefined }}>{when}</span>
+                  <select
+                    value={cur}
+                    onChange={(e) => (setAnimMap((m) => ({ ...m, [kind]: { ...m[kind as 'roles' | 'attacks'], [key]: e.target.value } })), setMapSaved(''))}
+                    style={{ background: '#1a1712', color: '#d8c9a8', border: '1px solid #3b352c', borderRadius: 4, font: '12px system-ui', padding: 4 }}
+                  >
+                    {!clipNames.includes(cur) && <option value={cur}>{cur || '—'}</option>}
+                    {clipNames.map((n) => (
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
+                    ))}
+                  </select>
+                  <button style={{ ...button, padding: '4px 6px' }} onClick={(e) => (e.preventDefault(), preview(cur))}>
+                    ▶
+                  </button>
+                </label>
+              )
+            }),
+          )}
+          <div style={row}>
+            <button style={button} onClick={() => (setAnimMap({ roles: {}, attacks: {} }), setMapSaved(''))}>
+              Reset
+            </button>
+            <button style={active} onClick={saveMap}>
+              Save
+            </button>
+            <span>{mapSaved}</span>
+          </div>
+        </div>
+      )}
       <div style={{ position: 'absolute', left: 16, right: 16, bottom: 16, display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
-        {(['Idle', 'Walk'] as const).map((c) => (
+        {(['Idle', 'Walk', 'Run'] as const).map((c) => (
           <button key={c} style={moving === c ? active : button} onClick={() => setMoving(c)}>
             {c}
           </button>
@@ -547,6 +799,15 @@ export default function Page() {
         </button>
         <button style={auto ? active : button} onClick={() => setAuto((a) => !a)}>
           Auto-turn
+        </button>
+        <button style={loopAll ? active : button} onClick={() => setLoopAll((v) => !v)}>
+          Loop
+        </button>
+        <button style={attack ? active : button} onClick={() => setAttack(null)}>
+          ■ Stop
+        </button>
+        <button style={showMap ? active : button} onClick={() => setShowMap((v) => !v)}>
+          Animation map
         </button>
         <button style={pixel ? active : button} onClick={() => setPixel((p) => !p)}>
           {pixel ? 'Pixels' : 'Smooth'}
