@@ -1,0 +1,13 @@
+{
+  "feet": 8,
+  "neck": -5,
+  "knees": 5,
+  "crouch": -10,
+  "lean": -3,
+  "chin": -10,
+  "arms": 1,
+  "curl": -30,
+  "wrists": 18,
+  "elbowsOut": -11,
+  "elbowBend": 29
+}
