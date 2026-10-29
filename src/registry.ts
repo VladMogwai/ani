@@ -6,6 +6,7 @@ export type AnimationMeta = {
   status: 'template' | 'draft' | 'matches reference' | 'customized'
   updated: string
   kind?: 'animation' | 'scene' // scene = a small playable game world, not a single effect; default animation
+  hidden?: boolean // left out of the gallery, the page still opens by its URL
 }
 
 export type AnimationEntry = AnimationMeta & {

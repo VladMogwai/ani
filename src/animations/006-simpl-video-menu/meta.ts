@@ -5,4 +5,5 @@ export default {
   tags: ['three', 'shader', 'menu', 'duotone', 'click'],
   status: 'draft',
   updated: '2026-10-17',
+  hidden: true,
 } satisfies AnimationMeta

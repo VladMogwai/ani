@@ -5,4 +5,5 @@ export default {
   tags: ['pixi', 'template'],
   status: 'template',
   updated: '2026-10-17',
+  hidden: true,
 } satisfies AnimationMeta

@@ -7,6 +7,8 @@ import './App.css'
 
 const DEFAULT_PALETTE = 5 // dusk
 
+const listed = animations.filter((a) => !a.hidden)
+
 // Backdrop palettes, one per click on the background: [top-left, top, top-right, bottom-right, bottom-left]
 const PALETTES = [
   ['#ff8a00', '#ff0a4e', '#ff7a5c', '#cfa8f0', '#ff8fa3'], // sunset
@@ -29,7 +31,7 @@ const pageButtons = (page: number, pages: number): (number | null)[] => {
 // How many cards fit in the list: columns from the grid, rows from its height and fixed row size
 const useCardsPerPage = () => {
   const listRef = useRef<HTMLUListElement>(null)
-  const [perPage, setPerPage] = useState(animations.length)
+  const [perPage, setPerPage] = useState(listed.length)
   useEffect(() => {
     const list = listRef.current!
     const measure = () => {
@@ -57,9 +59,9 @@ function Gallery() {
   const panelRef = useRef<HTMLElement>(null)
   const [listRef, perPage] = useCardsPerPage()
   const [pageWanted, setPage] = useState(0)
-  const pages = Math.ceil(animations.length / perPage)
+  const pages = Math.ceil(listed.length / perPage)
   const page = Math.min(pageWanted, pages - 1)
-  const visible = animations.slice(page * perPage, (page + 1) * perPage)
+  const visible = listed.slice(page * perPage, (page + 1) * perPage)
   const style = Object.fromEntries(PALETTES[palette].map((c, i) => [`--c${i + 1}`, c])) as CSSProperties
 
   const onClick = (e: MouseEvent) => {
