@@ -5,7 +5,7 @@ export type AnimationMeta = {
   tags: string[]
   status: 'template' | 'draft' | 'matches reference' | 'customized'
   updated: string
-  kind?: 'animation' | 'scene' // scene = a small playable game world, not a single effect; default animation
+  kind?: 'animation' | 'scene' | 'background' // scene = a small playable game world, not a single effect; background = a full-screen loop for a site; default animation
   hidden?: boolean // left out of the gallery, the page still opens by its URL
 }
 
